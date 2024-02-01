@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserPrivilege {
+  ADMINISTRATOR
+  USER
+}
+
+model User {
+  id             String        @id @default(cuid())
+  name           String
+  email          String        @unique
+  emailVerified  DateTime?
+  imageUrl       String?
+  privilege      UserPrivilege @default(USER)
+  organizationId String
+  provider       String        @default("PASSWORD")
+  password       String?
+  hash           String?
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  deletedAt      DateTime?
+  workspaceUsers WorkspaceUser[]
+  documents      Document[]
+  loginHistories LoginHistory[]
+}
+
+model LoginHistory {
+  id         String   @id @default(uuid())
+  loggedInAt DateTime @default(now())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Workspace {
+  id                  String @id @default(cuid())
+  organizationId      String
+  name                String
+  googleDriveFolderId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  organization         Organization          @relation(fields: [organizationId], references: [id])
+  workspaceUsers       WorkspaceUser[]
+  documents            Document[]
+  workspaceInvitations WorkspaceInvitation[]
+}
+
+model WorkspaceInvitation {
+  id          String        @id @default(cuid())
+  workspaceId String
+  email       String
+  role        WorkspaceRole @default(CUSTOMER)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+}
+
+enum WorkspaceRole {
+  MANAGER
+  CUSTOMER
+  ADMINISTRATOR
+}
+
+model WorkspaceUser {
+  id          String        @id @default(cuid())
+  workspaceId String
+  role        WorkspaceRole
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model Organization {
+  id   String @id @default(cuid())
+  name String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  googleDriveCredentials Json   @default("{}")
+  googleDriveFolderId    String
+
+  users      User[]
+  workspaces Workspace[]
+  tags       Tag[]
+}
+
+model Tag {
+  id             String  @id @default(cuid())
+  name           String
+  color          String
+  isDefault      Boolean @default(false)
+  organizationId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  organization Organization  @relation(fields: [organizationId], references: [id])
+  documentTags DocumentTag[]
+}
+
+model Document {
+  id                  String @id @default(cuid())
+  description         String
+  title               String
+  name                String
+  fileUrl             String
+  mimeType            String
+  workspaceId         String
+  month               String
+  year                String
+  googleDriveFolderId String
+  userId              String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  workspace    Workspace     @relation(fields: [workspaceId], references: [id])
+  user         User          @relation(fields: [userId], references: [id])
+  documentTags DocumentTag[]
+}
+
+model DocumentTag {
+  id         String @id @default(cuid())
+  tagId      String
+  documentId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  tag      Tag      @relation(fields: [tagId], references: [id])
+  document Document @relation(fields: [documentId], references: [id])
+}
