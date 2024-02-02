@@ -31,6 +31,6 @@ export * from "./switcher";
 export * from "./table";
 export * from "./tag";
 export * from "./textarea";
-export * from "./theme-switcher";
 export * from "./tooltip";
 export * from "./typography";
+export * from "./icon";

@@ -19,8 +19,7 @@
     "vite-plugin-env-compatible": "^2.0.1"
   },
   "devDependencies": {
-    "@nexus/eslint-config": "*",
-    "@nexus/typescript-config": "*",
+    "@nexus/configs": "*",
     "@storybook/addon-actions": "^7.6.7",
     "@storybook/addon-docs": "^7.6.7",
     "@storybook/addon-essentials": "^7.6.7",

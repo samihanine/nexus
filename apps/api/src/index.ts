@@ -4,17 +4,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { authRouter } from "./routes/auth.route";
-import { organizationRouter } from "./routes/organization.route";
-import { documentRouter } from "./routes/document.route";
-import { tagRouter } from "./routes/tag.route";
-import { workspaceRouter } from "./routes/workspace.route";
 import { healthRouter } from "./routes/health.route";
 import { userRouter } from "./routes/user.route";
 import helmet from "helmet";
 import hpp from "hpp";
 import express from "express";
-import { workspaceUserRouter } from "./routes/workspace-user.route";
-import { workspaceInvitationRouter } from "./routes/workspace-invitation.route";
 
 dotenv.config();
 
@@ -42,17 +36,7 @@ server
   .use(helmet())
   .use(hpp());
 
-server.use(
-  userRouter,
-  healthRouter,
-  organizationRouter,
-  authRouter,
-  workspaceRouter,
-  documentRouter,
-  tagRouter,
-  workspaceUserRouter,
-  workspaceInvitationRouter
-);
+server.use(userRouter, healthRouter, authRouter);
 
 server.get("/", (_, res) => {
   res.json({

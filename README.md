@@ -12,10 +12,7 @@ This turborepo uses [Yarn](https://classic.yarnpkg.com/lang/en/) as a package ma
 - `@nexus/web`: a [Next.js](https://nextjs.org/) app
 - `@nexus/api`: an [Express](https://expressjs.com/) server
 - `@nexus/ui`: ui: a React component library
-- `@nexus/eslint-config-custom`: `eslint` configurations for client side applications (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@nexus/eslint-config-custom-server`: `eslint` configurations for server side applications (includes `eslint-config-next` and `eslint-config-prettier`)
-- `scripts`: Jest configurations
-- `@nexus/typescript-config`: tsconfig.json's used throughout the monorepo
+- `@nexus/configs`: tsconfig.json's used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 

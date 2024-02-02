@@ -48,8 +48,7 @@
     "vaul": "^0.7.9"
   },
   "devDependencies": {
-    "@nexus/eslint-config": "*",
-    "@nexus/typescript-config": "*",
+    "@nexus/configs": "*",
     "@next/eslint-plugin-next": "^14.0.2",
     "@types/node": "^20.9.4",
     "@types/react": "^18.2.38",

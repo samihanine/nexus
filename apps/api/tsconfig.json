@@ -1,5 +1,5 @@
 {
-  "extends": "@nexus/typescript-config/base.json",
+  "extends": "@nexus/configs/typescript/base.json",
   "compilerOptions": {
     "lib": ["ES2015"],
     "outDir": "./dist",

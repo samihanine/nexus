@@ -1,5 +1,5 @@
 {
-  "extends": "@nexus/typescript-config/nextjs.json",
+  "extends": "@nexus/configs/typescript/nextjs.json",
   "include": [".", "../../apps/docs/stories/*.tsx"],
   "exclude": [
     "dist",

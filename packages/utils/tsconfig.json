@@ -1,6 +1,5 @@
 {
-  "extends": "@nexus/typescript-config/react-library.json",
-  "include": [".", "../../apps/docs/stories/*.tsx"],
+  "extends": "@nexus/configs/typescript/react-library.json",
   "exclude": [
     "dist",
     "build",

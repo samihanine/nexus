@@ -47,9 +47,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@nexus/eslint-config": "*",
-    "@nexus/jest-presets": "*",
-    "@nexus/typescript-config": "*",
+    "@nexus/configs": "*",
     "@types/bcrypt": "^5.0.2",
     "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.17",

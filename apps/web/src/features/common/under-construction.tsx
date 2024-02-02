@@ -1,4 +1,4 @@
-import Section from "@nexus/ui/section";
+import { Section, H1, Muted } from "@nexus/ui";
 
 const UnderConstruction = () => {
   return (
@@ -14,13 +14,11 @@ const UnderConstruction = () => {
         />
       </svg>
 
-      <h1 className="text-center text-4xl font-medium">
-        This page is under construction
-      </h1>
+      <H1 className="text-center">This page is under construction</H1>
 
-      <p className="text-center text-muted-foreground">
+      <Muted className="text-center">
         We are working hard to bring you this feature. Stay tuned!
-      </p>
+      </Muted>
     </Section>
   );
 };

@@ -8,8 +8,7 @@
     "lint": "eslint \"**/*.ts*\" --max-warnings 0"
   },
   "devDependencies": {
-    "@nexus/eslint-config": "*",
-    "@nexus/typescript-config": "*",
+    "@nexus/configs": "*",
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.17",
     "eslint": "^8.54.0",
