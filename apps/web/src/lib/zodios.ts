@@ -1,30 +1,10 @@
+import { authApi, healthApi, userApi } from "@nexus/schemas";
 import { Zodios } from "@zodios/core";
-import {
-  workspaceApi,
-  userApi,
-  tagApi,
-  healthApi,
-  organizationApi,
-  authApi,
-  documentApi,
-  workspaceInvitationApi,
-  workspaceUserApi,
-} from "@nexus/schemas";
 import { pluginToken } from "@zodios/plugins";
 
 const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:3001";
 
-const zodios = new Zodios(API_HOST, [
-  ...workspaceApi,
-  ...userApi,
-  ...tagApi,
-  ...healthApi,
-  ...organizationApi,
-  ...authApi,
-  ...documentApi,
-  ...workspaceInvitationApi,
-  ...workspaceUserApi,
-]);
+const zodios = new Zodios(API_HOST, [...userApi, ...healthApi, ...authApi]);
 
 zodios.use(
   pluginToken({

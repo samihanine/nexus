@@ -1,6 +1,6 @@
 "use client";
 
-import Modal, { ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
+import Modal, { ModalBody, ModalFooter, ModalHeader } from "@nexus/ui/modal";
 import { useUploadDocuments } from "@/features/document/use-upload-documents";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
@@ -10,10 +10,10 @@ import {
   useMemo,
   useState,
 } from "react";
-import Button from "@/components/button";
-import Label from "@/components/label";
-import Input from "@/components/input";
-import Select from "@/components/select";
+import Button from "@nexus/ui/button";
+import Label from "@nexus/ui/label";
+import Input from "@nexus/ui/input";
+import Select from "@nexus/ui/select";
 import UploadFile from "./upload-file";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";

@@ -2,11 +2,27 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@nexus/ui";
 
 const meta: Meta<typeof Button> = {
+  title: "UI/Button",
   component: Button,
   argTypes: {
-    type: {
+    children: {
+      control: { type: "text" },
+    },
+    variant: {
       control: { type: "radio" },
-      options: ["button", "submit", "reset"],
+      options: [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link",
+        "action",
+      ],
+    },
+    size: {
+      control: { type: "radio" },
+      options: ["sm", "default", "lg"],
     },
   },
 };
@@ -28,13 +44,12 @@ export const Primary: Story = {
         // eslint-disable-next-line no-alert -- alert for demo
         console.log("Hello from Turborepo!");
       }}
-    >
-      Hello
-    </Button>
+    />
   ),
   name: "Button",
   args: {
-    children: "Hello",
-    type: "button",
+    children: "Hello from Turborepo!",
+    variant: "default",
+    size: "default",
   },
 };

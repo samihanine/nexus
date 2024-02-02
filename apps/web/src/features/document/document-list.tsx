@@ -1,15 +1,15 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@nexus/ui/button";
 import { useUploadDocumentsModal } from "./upload-documents-modal";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import DocumentsTable from "./documents-table";
-import Label from "@/components/label";
-import { DatePickerWithRange } from "@/components/date-picker-with-range";
-import MultiSelect from "@/components/multi-select";
+import Label from "@nexus/ui/label";
+import { DatePickerWithRange } from "@nexus/ui/date-picker-with-range";
+import MultiSelect from "@nexus/ui/multi-select";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
-import Input from "@/components/input";
+import Input from "@nexus/ui/input";
 
 type DocumentListProps = React.ComponentProps<"div"> & {
   documents: {

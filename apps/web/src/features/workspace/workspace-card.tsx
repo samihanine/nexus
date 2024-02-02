@@ -1,4 +1,4 @@
-import Card from "@/components/card";
+import Card from "@nexus/ui/card";
 import { Cog8ToothIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 

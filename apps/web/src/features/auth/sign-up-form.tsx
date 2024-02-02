@@ -2,9 +2,9 @@
 
 import { useSignUp } from "features/auth/use-sign-up";
 import toast from "react-hot-toast";
-import Button from "@/components/button";
-import Input from "@/components/input";
-import Label from "@/components/label";
+import Button from "@nexus/ui/button";
+import Input from "@nexus/ui/input";
+import Label from "@nexus/ui/label";
 
 const SignUpForm = () => {
   const signup = useSignUp();

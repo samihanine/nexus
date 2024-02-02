@@ -7,7 +7,7 @@ import {
 import type { Organization } from "@nexus/schemas";
 import Link from "next/link";
 import React, { useState } from "react";
-import Popover from "@/components/popover";
+import Popover from "@nexus/ui/popover";
 
 type SelectOrganizationProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,

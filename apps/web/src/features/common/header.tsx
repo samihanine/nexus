@@ -2,8 +2,8 @@ import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { Workspace } from "@nexus/schemas";
 import Link from "next/link";
 import WorkspaceDropdown from "@/features/workspace/workspace-dropdown";
-import Logo from "@/components/logo";
-import { ThemeSwitcher } from "@/components/theme-switcher";
+import Logo from "@nexus/ui/logo";
+import { ThemeSwitcher } from "@nexus/ui/theme-switcher";
 import UserDropdown from "@/features/user/user-dropdown";
 
 const Header = ({

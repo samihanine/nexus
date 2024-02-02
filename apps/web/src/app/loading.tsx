@@ -1,4 +1,4 @@
-import LoadingView from "@/components/loading-view";
+import { LoadingView } from "@nexus/ui";
 
 export default function Loading() {
   return (

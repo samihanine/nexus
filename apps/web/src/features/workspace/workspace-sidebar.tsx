@@ -6,7 +6,7 @@ import {
   HomeIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import MenuItem from "@/components/menu-item";
+import MenuItem from "@nexus/ui/menu-item";
 
 const WorkspaceSidebar = ({ workspaceId }: { workspaceId: string }) => {
   return (

@@ -2,7 +2,7 @@
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import React, { useState } from "react";
-import Popover from "@/components/popover";
+import Popover from "@nexus/ui/popover";
 
 type SelectWorkspaceProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,

@@ -1,4 +1,4 @@
-import Section from "@/components/section";
+import Section from "@nexus/ui/section";
 
 const UnderConstruction = () => {
   return (

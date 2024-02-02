@@ -1,7 +1,7 @@
-import Button from "@/components/button";
-import Checkbox from "@/components/checkbox";
-import { Chip } from "@/components/chip";
-import DataTable from "@/components/data-table";
+import Button from "@nexus/ui/button";
+import Checkbox from "@nexus/ui/checkbox";
+import { Chip } from "@nexus/ui/chip";
+import DataTable from "@nexus/ui/data-table";
 import { ArchiveBoxIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";

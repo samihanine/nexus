@@ -1,6 +1,6 @@
 "use client";
 
-import Modal, { ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
+import Modal, { ModalBody, ModalFooter, ModalHeader } from "@nexus/ui/modal";
 import { useCreateWorkspace } from "@/features/workspace/use-create-workspace";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import {
@@ -10,9 +10,9 @@ import {
   useMemo,
   useState,
 } from "react";
-import Button from "@/components/button";
-import Label from "@/components/label";
-import Input from "@/components/input";
+import Button from "@nexus/ui/button";
+import Label from "@nexus/ui/label";
+import Input from "@nexus/ui/input";
 
 const CreateWorkspaceModal = ({
   showCreateWorkspaceModal,

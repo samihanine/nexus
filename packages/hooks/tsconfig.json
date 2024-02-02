@@ -1,0 +1,11 @@
+{
+  "extends": "@nexus/typescript-config/nextjs.json",
+  "include": [".", "../../apps/docs/stories/*.tsx"],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "postcss.config.js",
+    "tailwind.config.js"
+  ]
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/card";
+import Card from "@nexus/ui/card";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 type UploadFileProps = React.ComponentProps<"input"> & {

@@ -2,9 +2,7 @@
 
 import { useSignIn } from "features/auth/use-sign-in";
 import toast from "react-hot-toast";
-import Button from "@/components/button";
-import Input from "@/components/input";
-import Label from "@/components/label";
+import { Button, Input, Label } from "@nexus/ui";
 import { useGoogleCallback } from "features/auth/use-google-callback";
 import { KeyIcon } from "@heroicons/react/24/outline";
 

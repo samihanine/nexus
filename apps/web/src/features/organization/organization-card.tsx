@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import Card, { CardBody } from "@/components/card";
+import Card, { CardBody } from "@nexus/ui/card";
 
 type OrganizationCardProps = React.ComponentProps<typeof Card> & {
   id: string;

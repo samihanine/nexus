@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Logo from "@/components/logo";
+import { Logo } from "@nexus/ui";
 import image from "public/images/symbolic-1.webp";
 
 export default async function RootLayout({

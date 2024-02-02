@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "@/components/button";
-import Input from "@/components/input";
+import Button from "@nexus/ui/button";
+import Input from "@nexus/ui/input";
 import { useDeleteWorkspace } from "@/features/workspace/use-delete-workspace";
 import { useUpdateWorkspace } from "@/features/workspace/use-update-workspace";
-import Card, { CardBody, CardFooter } from "@/components/card";
+import Card, { CardBody, CardFooter } from "@nexus/ui/card";
 import { useState } from "react";
 import { useWorkspaceInvitations } from "./use-workspace-invitations";
 import { useWorkspaceUsers } from "./use-worspace-users";

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Switcher, { SwitcherTab } from "@/components/switcher";
+import { SwitcherTab, Switcher } from "@nexus/ui";
 import { usePathname } from "next/navigation";
 
 const AuthSwitcher = () => {

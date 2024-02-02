@@ -1,8 +1,8 @@
 "use client";
 
 import { useSignInWithGoogle } from "features/auth/use-sign-in-with-google";
-import { Google } from "../../components/icon";
-import Button from "@/components/button";
+import { Google } from "@nexus/ui";
+import { Button } from "@nexus/ui";
 
 const LoginWithGoogleButton = () => {
   const signInWithGoogle = useSignInWithGoogle();

@@ -15,7 +15,8 @@
   "dependencies": {
     "@nexus/ui": "*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-plugin-env-compatible": "^2.0.1"
   },
   "devDependencies": {
     "@nexus/eslint-config": "*",

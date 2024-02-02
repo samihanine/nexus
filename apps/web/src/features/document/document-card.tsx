@@ -1,4 +1,4 @@
-import Card, { CardBody } from "@/components/card";
+import Card, { CardBody } from "@nexus/ui/card";
 import { DocumentIcon } from "@heroicons/react/24/outline";
 
 export default function DocumentCard({

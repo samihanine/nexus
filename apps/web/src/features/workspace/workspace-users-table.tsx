@@ -1,8 +1,8 @@
-import Avatar from "@/components/avatar";
-import { Chip } from "@/components/chip";
-import DataTable from "@/components/data-table";
+import Avatar from "@nexus/ui/avatar";
+import { Chip } from "@nexus/ui/chip";
+import DataTable from "@nexus/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
-import Button from "@/components/button";
+import Button from "@nexus/ui/button";
 import { useDeleteWorkspaceUser } from "./use-delete-workspace-user";
 
 type Member = {

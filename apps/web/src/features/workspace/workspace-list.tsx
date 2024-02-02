@@ -1,7 +1,7 @@
 "use client";
 
 import WorkspaceCard from "./workspace-card";
-import Button from "@/components/button";
+import Button from "@nexus/ui/button";
 import { useCreateWorkspaceModal } from "./create-workspace-modal";
 import { PlusIcon } from "@heroicons/react/24/outline";
 

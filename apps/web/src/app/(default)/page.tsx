@@ -1,6 +1,6 @@
 "use client";
 
-import LoadingView from "@/components/loading-view";
+import { LoadingView } from "@nexus/ui";
 import { useCurrentUser } from "@/features/user/use-current-user";
 import { redirect } from "next/navigation";
 
