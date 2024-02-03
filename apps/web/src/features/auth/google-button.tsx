@@ -4,7 +4,7 @@ import { useSignInWithGoogle } from "features/auth/use-sign-in-with-google";
 import { Google } from "@nexus/ui";
 import { Button } from "@nexus/ui";
 
-const LoginWithGoogleButton = () => {
+const GoogleButton = ({ children }: { children: React.ReactNode }) => {
   const signInWithGoogle = useSignInWithGoogle();
 
   const handleClick = async () => {
@@ -18,14 +18,14 @@ const LoginWithGoogleButton = () => {
   return (
     <Button
       variant={"outline"}
-      className="flex !h-12 gap-5"
+      className="flex gap-5"
       onClick={handleClick}
       loading={signInWithGoogle.isPending}
     >
       <Google className="h-5 w-5 " />
-      <p>Se connecter avec google</p>
+      {children}
     </Button>
   );
 };
 
-export default LoginWithGoogleButton;
+export default GoogleButton;

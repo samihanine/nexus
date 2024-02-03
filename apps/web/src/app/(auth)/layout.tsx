@@ -1,32 +1,82 @@
 import Image from "next/image";
-import { Logo } from "@nexus/ui";
+import { LogoText } from "@nexus/ui";
 import image from "public/images/symbolic-1.webp";
+import AuthCarousel from "@/features/auth/auth-carousel";
+import AuthCarouselImage1 from "public/images/auth/auth-carousel-1.jpg";
+import AuthCarouselImage2 from "public/images/auth/auth-carousel-2.jpg";
+import AuthCarouselImage3 from "public/images/auth/auth-carousel-3.jpg";
+import AuthCarouselImage4 from "public/images/auth/auth-carousel-4.jpg";
+import AuthCarouselImage5 from "public/images/auth/auth-carousel-5.jpg";
+import AuthCarouselImage6 from "public/images/auth/auth-carousel-6.jpg";
+import AuthCarouselImage7 from "public/images/auth/auth-carousel-7.jpg";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const testimonials = [
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage1,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage2,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage3,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage4,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage5,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage6,
+    },
+    {
+      author: "Samuel Paquette",
+      title: "CEO, Nexus",
+      quote:
+        "Lorem ipsum dolor sit amet. Est nostrum rerum sed dicta fugit cum provident beatae. Est enim iure hic galisum dicta galisum.",
+      imageUrl: AuthCarouselImage7,
+    },
+  ];
+
   return (
     <>
-      <div className="flex min-h-screen w-full bg-secondary">
-        <div className="flex flex-1 flex-col border-r border-border px-4 py-20 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96 h-full flex justify-center flex-col">
-            <div className="flex items-center gap-3">
-              <Logo className="h-8 w-auto" />
-              <h2 className="text-xl font-medium text-foreground">nexus</h2>
-            </div>
+      <div className="flex min-h-screen w-full px-8 py-12">
+        <div className="px-5 md:px-20 space-y-14 mt-10 lg:max-w-lg w-full">
+          <LogoText />
 
-            <div className="mt-12">{children}</div>
-          </div>
+          {children}
         </div>
-        <div className="relative hidden w-0 flex-1 lg:block">
-          <Image
-            className="absolute inset-0 h-full w-full object-cover"
-            src={image}
-            alt="Symbolic megascale image"
-          />
-        </div>
+
+        <AuthCarousel testimonials={testimonials} />
       </div>
     </>
   );

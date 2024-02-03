@@ -1,15 +1,13 @@
 "use client";
 
-import { Button, H3, Input, Muted, P } from "@nexus/ui";
-import Link from "next/link";
+import { useSignUp } from "features/auth/use-sign-up";
 import toast from "react-hot-toast";
+import { Button, H3, Input, Label, Muted, P, Small } from "@nexus/ui";
 import GoogleButton from "./google-button";
-import { useGoogleCallback } from "./use-google-callback";
-import { useSignIn } from "./use-sign-in";
+import Link from "next/link";
 
 const RegisterForm = () => {
-  const login = useSignIn();
-  useGoogleCallback();
+  const signup = useSignUp();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,8 +16,9 @@ const RegisterForm = () => {
       const formData = new FormData(e.currentTarget);
       const email = formData.get("email") as string;
       const password = formData.get("password") as string;
+      const name = formData.get("name") as string;
 
-      login.mutate({ email, password });
+      await signup.mutateAsync({ email, password, name });
     } catch (err) {
       toast.error((err as Error).message);
     }
@@ -33,6 +32,12 @@ const RegisterForm = () => {
       </div>
 
       <form className="space-y-5" onSubmit={handleSubmit}>
+        <div className="flex gap-5 items-center">
+          <Input name="name" placeholder="Prénom" />
+
+          <Input name="name" placeholder="Nom de famille" />
+        </div>
+
         <Input placeholder="Email" name="email" type="email" />
 
         <Input
@@ -42,16 +47,23 @@ const RegisterForm = () => {
           placeholder="Mot de passe"
         />
 
-        <div className="space-y-2 !mt-10 !mb-8">
-          <Button loading={login.isPending}>Se connecter</Button>
+        <Input
+          name="password_confirmation"
+          type="password"
+          min="8"
+          placeholder="Confirmer le mot de passe"
+        />
 
-          <GoogleButton>Se connecter avec Google</GoogleButton>
+        <div className="space-y-2 !mt-10 !mb-8">
+          <Button loading={signup.isPending}>S&apos;inscrire</Button>
+
+          <GoogleButton>S&apos;inscrire avec Google</GoogleButton>
         </div>
 
         <P className="text-sm text-center">
-          Vous n'avez pas de compte ?{" "}
-          <Link href="/register" className="font-medium">
-            S'inscrire
+          Vous avez déjà un compte ?{" "}
+          <Link href="/login" className="font-medium">
+            Se connecter
           </Link>
         </P>
       </form>

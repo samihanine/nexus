@@ -1,6 +1,7 @@
-const LoadingSpinner: React.FC<{ color?: string; className?: string }> = ({
-  className,
-}) => (
+export const LoadingSpinner: React.FC<{
+  color?: string;
+  className?: string;
+}> = ({ className }) => (
   <svg
     className={`h-5 w-5 animate-spin ${className ?? ""}`}
     xmlns="http://www.w3.org/2000/svg"
@@ -22,5 +23,3 @@ const LoadingSpinner: React.FC<{ color?: string; className?: string }> = ({
     ></path>
   </svg>
 );
-
-export default LoadingSpinner;

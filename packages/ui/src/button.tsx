@@ -5,7 +5,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 
 export const buttonVariants = cva(
-  "inline-flex items-center whitespace-nowrap justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
+  "inline-flex items-center w-full whitespace-nowrap justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
   {
     variants: {
       variant: {
@@ -21,9 +21,9 @@ export const buttonVariants = cva(
           "text-white !py-3 !text-base bg-gradient-to-br shadow-md from-blue-600 to-sky-500 hover:ring-4 hover:ring-sky-400 focus:ring-4 focus:outline-none focus:ring-sky-400 dark:focus:ring-sky-800 text-center",
       },
       size: {
-        default: "py-2 px-4",
+        default: "py-3 h-10 px-4",
         sm: "h-9 px-3",
-        lg: "h-11 px-8",
+        lg: "h-10 px-8",
       },
     },
     defaultVariants: {

@@ -1,10 +1,8 @@
 "use client";
 
-import Popover from "@nexus/ui/popover";
+import { Popover, Button, Avatar } from "@nexus/ui";
 import { LogOut } from "lucide-react";
 import { useState } from "react";
-import Button from "@nexus/ui/button";
-import Avatar from "@nexus/ui/avatar";
 import { useSignOut } from "features/auth/use-sign-out";
 
 export default function UserDropdown({

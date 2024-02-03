@@ -1,4 +1,7 @@
-export { default as LoadingSpinner } from "./loading-spinner";
-export { default as Google } from "./google";
-export { default as Linkedin } from "./linkedin";
-export { default as Gmail } from "./gmail";
+export * from "./loading-spinner";
+export * from "./google";
+export * from "./linkedin";
+export * from "./gmail";
+export * from "./quote";
+export * from "./rounded-arrow-left";
+export * from "./rounded-arrow-right";

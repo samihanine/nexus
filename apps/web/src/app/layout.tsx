@@ -25,7 +25,7 @@ export default async function RootLayout({
     <html lang={"en"}>
       <body className={GeistSans.className}>
         <Providers>
-          <main className="flex h-full min-h-screen w-full flex-col items-center bg-secondary">
+          <main className="flex h-full min-h-screen w-full flex-col items-center">
             {children}
           </main>
         </Providers>

@@ -1,3 +1,5 @@
+"use client";
+
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <svg

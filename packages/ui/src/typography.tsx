@@ -24,10 +24,14 @@ export const H3 = (props: React.ComponentPropsWithoutRef<"h3">) => (
   <h3
     {...props}
     className={cn(
-      "scroll-m-20 text-2xl font-semibold tracking-tight",
+      "scroll-m-20 text-2xl font-medium tracking-tight",
       props.className
     )}
   />
+);
+
+export const Strong = (props: React.ComponentPropsWithoutRef<"strong">) => (
+  <strong {...props} className={cn("font-semibold", props.className)} />
 );
 
 export const H4 = (props: React.ComponentPropsWithoutRef<"h4">) => (

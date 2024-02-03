@@ -1,3 +1,5 @@
+"use client";
+
 export const SwitcherTab = ({
   active,
   className,
