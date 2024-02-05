@@ -3,7 +3,6 @@ import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { googleClient } from "../lib/google";
 import { createUser } from "./user.service";
-import { getOrganizations } from "./organization.service";
 
 export async function signIn({
   email,
@@ -105,14 +104,11 @@ export const authWithGoogleCallback = async ({
       },
     });
   } else {
-    const organizations = await getOrganizations();
-
     const newUser = await createUser({
       email: email as string,
       name: name as string,
       imageUrl: picture as string,
       provider: "GOOGLE",
-      organizationId: organizations[0].id,
     });
 
     user = newUser;
@@ -147,14 +143,11 @@ export const signUpWithPassword = async ({
 
   const hash = await bcrypt.hash(password, 10);
 
-  const organizations = await getOrganizations();
-
   const newUser = await createUser({
     email,
     name,
     password: hash,
     provider: "PASSWORD",
-    organizationId: organizations[0].id,
   });
 
   const accessToken = jsonwebtoken.sign(

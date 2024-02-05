@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { LogoText } from "@nexus/ui";
-import image from "public/images/symbolic-1.webp";
 import AuthCarousel from "@/features/auth/auth-carousel";
 import AuthCarouselImage1 from "public/images/auth/auth-carousel-1.jpg";
 import AuthCarouselImage2 from "public/images/auth/auth-carousel-2.jpg";

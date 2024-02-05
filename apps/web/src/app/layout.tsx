@@ -1,11 +1,12 @@
 import Providers from "@/features/common/providers";
 import { GeistSans } from "geist/font/sans";
-import "./globals.css";
+import "@nexus/ui/styles";
+import "leaflet/dist/leaflet.css";
 
 export const metadata = {
-  title: "nexus - Find and contact leads with AI",
+  title: "Nexus - Find and contact leads with AI",
   description:
-    "nexus is a lead generation tool that helps you find and contact leads with AI.",
+    "Nexus is a lead generation tool that helps you find and contact leads with AI.",
   twitter: {
     card: "summary_large_image",
     title: "nexus - Find and contact leads with AI",

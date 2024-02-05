@@ -10,24 +10,52 @@ datasource db {
 enum UserPrivilege {
   ADMINISTRATOR
   USER
+  ROOT
 }
 
 model User {
-  id             String        @id @default(cuid())
-  name           String
-  email          String        @unique
-  emailVerified  DateTime?
-  imageUrl       String?
-  privilege      UserPrivilege @default(USER)
-  organizationId String
-  provider       String        @default("PASSWORD")
-  password       String?
-  hash           String?
+  id            String        @id @default(cuid())
+  name          String
+  email         String        @unique
+  emailVerified DateTime?
+  imageUrl      String?
+  privilege     UserPrivilege @default(USER)
+  provider      String        @default("PASSWORD")
+  password      String?
+  hash          String?
 
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   deletedAt      DateTime?
   loginHistories LoginHistory[]
+  profiles       Profile[]
+}
+
+enum ProfileType {
+  BUYER
+  SELLER
+  TENANT
+  OWNER
+  BROKER
+}
+
+model Profile {
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String      @unique
+  type      ProfileType
+  firstName String
+  lastName  String
+  imageUrl  String?
+
+  brokers   Broker?
+  owners    Owner?
+  sellers   Seller?
+  buyers    Buyer?
+  tenants   Tenant?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 }
 
 model LoginHistory {
@@ -38,4 +66,156 @@ model LoginHistory {
   device     String
   userId     String
   user       User     @relation(fields: [userId], references: [id])
+}
+
+model Broker {
+  id          String    @id @default(cuid())
+  phone       String
+  email       String
+  description String    @db.Text
+  centrisLink String
+  websiteUrl  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  agency   Agency @relation(fields: [agencyId], references: [id])
+  agencyId String
+
+  buyers    Buyer[]
+  sellers   Seller[]
+  Profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId String   @unique
+}
+
+model Owner {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  properties Property[]
+  Profile    Profile    @relation(fields: [profileId], references: [id])
+  profileId  String     @unique
+}
+
+model Seller {
+  id String @id @default(cuid())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  properties Property[]
+  broker     Broker?    @relation(fields: [brokerId], references: [id])
+  brokerId   String?
+  Profile    Profile    @relation(fields: [profileId], references: [id])
+  profileId  String     @unique
+}
+
+model Buyer {
+  id           String    @id @default(cuid())
+  firstName    String
+  lastName     String
+  imageUrl     String?   @db.Text
+  minimumPrice Float
+  maximumPrice Float
+  buyingPeriod String
+  latitude     Float
+  longitude    Float
+  radius       Float
+  propertyType String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  broker    Broker? @relation(fields: [brokerId], references: [id])
+  brokerId  String?
+  Profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String  @unique
+}
+
+model Tenant {
+  id String @id @default(cuid())
+
+  minimumPrice Float
+  maximumPrice Float
+  buyingPeriod String
+  latitude     Float
+  longitude    Float
+  radius       Float
+  imageUrl     String?   @db.Text
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  Profile      Profile   @relation(fields: [profileId], references: [id])
+  profileId    String    @unique
+}
+
+model Agency {
+  id        String  @id @default(cuid())
+  name      String
+  imageUrl  String?
+  addressId String
+  number    String
+  email     String
+  website   String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  brokers   Broker[]
+}
+
+model Property {
+  id              String    @id @default(cuid())
+  title           String
+  description     String    @db.Text
+  imageUrl        String?   @db.Text
+  price           Float     @default(0)
+  currency        String
+  rent            Float     @default(0)
+  parkingSpots    Int
+  yearBuilt       Int
+  stories         Int
+  mlsNumber       String
+  garages         Int
+  landSize        Int
+  rooms           Int
+  bedrooms        Int
+  bathrooms       Int
+  squareFeet      Int
+  type            String
+  hasRefrigerator Boolean
+  hasDishwasher   Boolean
+  hasSauna        Boolean
+  hasPool         Boolean
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+  addressId       String
+  address         Address   @relation(fields: [addressId], references: [id])
+  realtorId       String?
+  owner           Owner?    @relation(fields: [ownerId], references: [id])
+  ownerId         String?
+  seller          Seller?   @relation(fields: [sellerId], references: [id])
+  sellerId        String?
+}
+
+model Address {
+  id               String     @id @default(cuid())
+  unit             String?
+  formattedAddress String
+  streetNumber     String
+  streetName       String
+  city             String
+  region           String
+  postalCode       String
+  country          String
+  latitude         Float
+  longitude        Float
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  deletedAt        DateTime?
+  property         Property[]
 }

@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { authRouter } from "./routes/auth.route";
 import { healthRouter } from "./routes/health.route";
 import { userRouter } from "./routes/user.route";
+import { addressRouter } from "./routes/address.route";
 import helmet from "helmet";
 import hpp from "hpp";
 import express from "express";
@@ -36,7 +37,7 @@ server
   .use(helmet())
   .use(hpp());
 
-server.use(userRouter, healthRouter, authRouter);
+server.use(userRouter, healthRouter, authRouter, addressRouter);
 
 server.get("/", (_, res) => {
   res.json({

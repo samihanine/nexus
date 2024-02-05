@@ -1,5 +1,5 @@
 {
-  "name": "database",
+  "name": "@nexus/database",
   "version": "0.0.0",
   "dependencies": {
     "@prisma/client": "5.6.0"

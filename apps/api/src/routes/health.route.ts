@@ -6,7 +6,7 @@ export const healthRouter = zodiosRouter(healthApi);
 healthRouter.get("/health", async (_, response, next) => {
   try {
     response.status(200).json({
-      message: "The nexus API is healthy.",
+      message: "The Nexus API is healthy.",
       status: "healthy",
     });
   } catch (error) {

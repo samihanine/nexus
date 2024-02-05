@@ -16,5 +16,5 @@ export default function Home() {
 
   if (!user) return redirect("/login");
 
-  return redirect("/workspace");
+  return redirect("/onboarding");
 }

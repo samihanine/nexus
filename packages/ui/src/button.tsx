@@ -9,16 +9,16 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default:
+          "bg-foreground text-primary-foreground hover:bg-foreground hover:opacity-70",
         destructive:
           "bg-background border border-red-500 !text-red-500 hover:bg-accent hover:text-accent-foreground",
         outline:
           "bg-background border border-input hover:bg-secondary hover:text-accent-foreground",
-        secondary: "bg-secondary text-muted-foreground hover:bg-secondary/80",
+        secondary:
+          "bg-primary text-primary-foreground hover:bg-primary hover:opacity-70",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "underline-offset-4 hover:underline text-primary",
-        action:
-          "text-white !py-3 !text-base bg-gradient-to-br shadow-md from-blue-600 to-sky-500 hover:ring-4 hover:ring-sky-400 focus:ring-4 focus:outline-none focus:ring-sky-400 dark:focus:ring-sky-800 text-center",
       },
       size: {
         default: "py-3 h-10 px-4",

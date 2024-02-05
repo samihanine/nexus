@@ -37,11 +37,10 @@ export function DatePickerWithRange({
           />
         }
       >
-        <Button
+        <button
           id="date"
-          variant={"outline"}
           className={cn(
-            "w-[300px] justify-start text-left font-normal",
+            "w-[300px] justify-start text-left font-normal border-border text-foreground",
             !date && "text-muted-foreground"
           )}
         >
@@ -58,7 +57,7 @@ export function DatePickerWithRange({
           ) : (
             <span>Choisissez une date</span>
           )}
-        </Button>
+        </button>
       </Popover>
     </div>
   );
