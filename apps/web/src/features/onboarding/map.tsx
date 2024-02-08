@@ -1,4 +1,5 @@
 "use client";
+import { LoadingView } from "@nexus/ui";
 import L from "leaflet";
 import React, { useEffect } from "react";
 import { Circle, MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
@@ -28,12 +29,17 @@ const Map = (props: {
 
   useEffect(() => {
     setIsMounted(true);
+
+    return () => {
+      setIsMounted(false);
+    };
   }, []);
 
-  if (!isMounted) return null;
+  if (!isMounted) return <LoadingView />;
 
   return (
     <MapContainer
+      key={`${latitude}-${longitude}`}
       center={[latitude, longitude]}
       zoom={13}
       style={{ height: "400px", width: "100%", borderRadius: "10px" }}

@@ -1,12 +1,26 @@
-import { MultiSelectCard, LoadingView } from "@nexus/ui";
+import { LoadingView } from "@nexus/ui";
 import { Address } from "@prisma/client";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddressSearch from "./address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
+import { useUpdateProfile } from "./use-update-profile";
+import toast from "react-hot-toast";
+import { useCurrentUser } from "../user/use-current-user";
+import BudgetSelect from "./budget-select";
+import PropertyTypesSelect from "./property-types-select";
+import PeriodSelect from "./period-select";
+import { useRouter } from "next/navigation";
+import IdentityInputs from "./identity-inputs";
 
-const BuyerOnboarding = () => {
-  const [step, setStep] = useState(1);
+const BuyerOnboarding = ({
+  step,
+  setStep,
+}: {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const { data: user } = useCurrentUser();
   const [radius, setRadius] = useState(0);
   const [minimumPrice, setMinimumPrice] = useState(0);
   const [maximumPrice, setMaximumPrice] = useState(0);
@@ -14,50 +28,84 @@ const BuyerOnboarding = () => {
     undefined
   );
   const [propertyTypes, setPropertyTypes] = useState<string[]>([]);
-  const [when, setWhen] = useState<string | undefined>(undefined);
+  const [buyingPeriod, setBuyingPeriod] = useState<string | undefined>(
+    undefined
+  );
+  const updateProfileMutation = useUpdateProfile();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const router = useRouter();
 
-  const budgetSteps = [
-    {
-      label: "< $350 K",
-      value: 350_000,
-    },
-    {
-      label: "$350 K - $500 K",
-      value: 500_000,
-    },
-    {
-      label: "$500 K - $750 K",
-      value: 750_000,
-    },
-    {
-      label: "$750 K - $1 M",
-      value: 1_000_000,
-    },
-    {
-      label: "$1 M - $1.5 M",
-      value: 1_500_000,
-    },
-    {
-      label: "> $1.5 M",
-      value: 1_500_001,
-    },
-  ];
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.name);
+      if (user.imageUrl) setImageUrl(user.imageUrl);
+    }
+  }, [user]);
 
-  const handleSumit = () => {
+  const handleSumit = async () => {
     setStep((oldStep) => oldStep + 1);
-    console.log({
-      radius,
-      minimumPrice,
-      maximumPrice,
-      address,
-      propertyTypes,
-      when,
-    });
+
+    if (!user) return;
+
+    try {
+      await updateProfileMutation.mutateAsync({
+        id: user.profileId,
+        type: "BUYER",
+        firstName,
+        lastName,
+        imageUrl,
+        buyer: {
+          radius,
+          minimumPrice,
+          maximumPrice,
+          longitude: address?.longitude || 0,
+          latitude: address?.latitude || 0,
+          propertyTypes,
+          buyingPeriod: buyingPeriod as string,
+        },
+      });
+
+      router.push("/dashboard");
+    } catch (error) {
+      toast.error("Une erreur s'est produite");
+      setStep((oldStep) => oldStep - 1);
+    }
   };
 
   return (
     <>
       {step === 1 && (
+        <>
+          <StepTitle
+            title="Qui êtes-vous ?"
+            description="Veuillez saisir votre prénom, votre nom et une photo de profil."
+            percentage={0}
+          />
+
+          <div className="flex flex-col gap-8 w-full max-w-lg items-center self-center">
+            <IdentityInputs
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              imageUrl={imageUrl}
+              setImageUrl={setImageUrl}
+            />
+          </div>
+
+          <StepButtons
+            handlePreviousStep={() => setStep(step - 1)}
+            handleNextStep={() => setStep(step + 1)}
+            isNextStepDisabled={
+              !firstName.length || !lastName.length || !imageUrl.length
+            }
+          />
+        </>
+      )}
+
+      {step === 2 && (
         <>
           <StepTitle
             title="Où cherchez-vous à acheter ?"
@@ -75,37 +123,23 @@ const BuyerOnboarding = () => {
           <StepButtons
             handlePreviousStep={() => setStep(step - 1)}
             handleNextStep={() => setStep(step + 1)}
-            isNextStepDisabled={!radius}
+            isNextStepDisabled={!radius || !address}
           />
         </>
       )}
 
-      {step === 2 && (
+      {step === 3 && (
         <>
           <StepTitle
             title="Quel budget prévoyez-vous pour l'achat de votre nouveau bien immobilier ?"
             description="En nous donnant une idée de votre budget, vous nous aiderez à trouver le bien qui vous convient."
             percentage={50}
           />
-          <MultiSelectCard
-            selected={[maximumPrice]}
-            className="max-w-md w-full self-center"
-            setSelected={(value) => {
-              const budget = budgetSteps.find((b) => b.value === value[0]);
-              if (!budget) return;
-              const upperBound = budget.value;
-              let lowerBound = 0;
-              for (let i = 0; i < budgetSteps.length; i++) {
-                if (budgetSteps[i].value < upperBound) {
-                  lowerBound = budgetSteps[i].value;
-                }
-              }
-
-              setMaximumPrice(upperBound || 0);
-              setMinimumPrice(lowerBound);
-            }}
-            maxItems={1}
-            items={budgetSteps}
+          <BudgetSelect
+            setMinimumPrice={setMinimumPrice}
+            setMaximumPrice={setMaximumPrice}
+            minmuimPrice={minimumPrice}
+            maximumPrice={maximumPrice}
           />
 
           <StepButtons
@@ -116,7 +150,7 @@ const BuyerOnboarding = () => {
         </>
       )}
 
-      {step === 3 && (
+      {step === 4 && (
         <>
           <StepTitle
             title="Quel type de bien souhaitez-vous acheter ?"
@@ -124,24 +158,9 @@ const BuyerOnboarding = () => {
             percentage={75}
           />
 
-          <MultiSelectCard
-            selected={propertyTypes}
-            className="max-w-md w-full self-center"
-            setSelected={setPropertyTypes}
-            items={[
-              {
-                label: "Maisons",
-                value: "HOUSE",
-              },
-              {
-                label: "Condo",
-                value: "CONDO",
-              },
-              {
-                label: "Terrain",
-                value: "LAND",
-              },
-            ]}
+          <PropertyTypesSelect
+            propertyTypes={propertyTypes}
+            setPropertyTypes={setPropertyTypes}
           />
 
           <StepButtons
@@ -152,7 +171,7 @@ const BuyerOnboarding = () => {
         </>
       )}
 
-      {step === 4 && (
+      {step === 5 && (
         <>
           <StepTitle
             title="Quand souhaitez-vous acheter ?"
@@ -160,39 +179,17 @@ const BuyerOnboarding = () => {
             percentage={100}
           />
 
-          <MultiSelectCard
-            selected={when ? [when] : []}
-            className="max-w-md w-full self-center"
-            setSelected={(value) => setWhen(value[0])}
-            items={[
-              {
-                label: "Dans les 3 prochains mois",
-                value: "0-3",
-              },
-              {
-                label: "Dans les 6 prochains mois",
-                value: "0-6",
-              },
-              {
-                label: "Dans l'année",
-                value: "0-12",
-              },
-              {
-                label: "Dans les 2 prochaines années",
-                value: "0-24",
-              },
-            ]}
-          />
+          <PeriodSelect period={buyingPeriod} setPeriod={setBuyingPeriod} />
 
           <StepButtons
-            isNextStepDisabled={!when}
+            isNextStepDisabled={!buyingPeriod}
             handleNextStep={handleSumit}
             handlePreviousStep={() => setStep(step - 1)}
           />
         </>
       )}
 
-      {step === 5 && (
+      {step === 6 && (
         <div className="h-full w-full">
           <LoadingView />
         </div>

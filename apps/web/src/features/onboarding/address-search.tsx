@@ -1,12 +1,10 @@
 "use client";
-import { Card, CardContent, Muted, Select } from "@nexus/ui";
-import type { Address } from "@prisma/client";
-import L from "leaflet";
-import React, { useEffect, useState } from "react";
-import { Circle, MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
-import AddressAutocomplete from "./address-autocomplete";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Card, Muted } from "@nexus/ui";
+import type { Address } from "@prisma/client";
 import dynamic from "next/dynamic";
+import React from "react";
+import AddressAutocomplete from "./address-autocomplete";
 
 type AddressSearchProps = {
   address: Partial<Address> | undefined;
@@ -34,15 +32,15 @@ const AddressSearch: React.FC<AddressSearchProps> = ({
           />
         </div>
 
-        {setRadius && (
-          <div className="w-fit border-border border-l gap-1 h-fit flex flex-col justify-center px-3">
+        {Boolean(setRadius && radius !== undefined) && (
+          <div className="w-fit border-border border-l gap-1 h-full flex flex-col justify-center px-3">
             <Muted className="text-xs">Rayon</Muted>
             <select
               className="focus:ring-0 focus:outline-none border-none text-base"
               onChange={(e) => setRadius && setRadius(Number(e.target.value))}
-              defaultValue={radius || 0}
+              defaultValue={radius}
             >
-              <option value="0">Select radius</option>
+              <option value="0">Choisir un rayon</option>
               <option value="100">100m</option>
               <option value="500">500m</option>
               <option value="1000">1000m</option>

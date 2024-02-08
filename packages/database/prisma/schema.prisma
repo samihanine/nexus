@@ -14,7 +14,7 @@ enum UserPrivilege {
 }
 
 model User {
-  id            String        @id @default(cuid())
+  id            String        @id @default(uuid())
   name          String
   email         String        @unique
   emailVerified DateTime?
@@ -28,7 +28,8 @@ model User {
   updatedAt      DateTime       @updatedAt
   deletedAt      DateTime?
   loginHistories LoginHistory[]
-  profiles       Profile[]
+  profile        Profile        @relation(fields: [profileId], references: [id])
+  profileId      String         @unique
 }
 
 enum ProfileType {
@@ -37,25 +38,8 @@ enum ProfileType {
   TENANT
   OWNER
   BROKER
-}
-
-model Profile {
-  id        String      @id @default(cuid())
-  user      User        @relation(fields: [userId], references: [id])
-  userId    String      @unique
-  type      ProfileType
-  firstName String
-  lastName  String
-  imageUrl  String?
-
-  brokers   Broker?
-  owners    Owner?
-  sellers   Seller?
-  buyers    Buyer?
-  tenants   Tenant?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  BUYER_SELLER
+  DEFAULT
 }
 
 model LoginHistory {
@@ -68,75 +52,104 @@ model LoginHistory {
   user       User     @relation(fields: [userId], references: [id])
 }
 
+model Profile {
+  id        String      @id @default(uuid())
+  type      ProfileType
+  firstName String
+  lastName  String
+  imageUrl  String?
+
+  broker        Broker?
+  owner         Owner?
+  seller        Seller?
+  buyer         Buyer?
+  tenant        Tenant?
+  user          User?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+  properties    Property[]
+  brokerProfile BrokerProfile[]
+}
+
 model Broker {
-  id          String    @id @default(cuid())
+  id          String    @id @default(uuid())
   phone       String
   email       String
   description String    @db.Text
   centrisLink String
   websiteUrl  String?
+  oaciqNumber String
+  latitude    Float
+  longitude   Float
+  radius      Float
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
 
-  agency   Agency @relation(fields: [agencyId], references: [id])
-  agencyId String
+  agency   Agency? @relation(fields: [agencyId], references: [id])
+  agencyId String?
 
-  buyers    Buyer[]
-  sellers   Seller[]
-  Profile   Profile  @relation(fields: [profileId], references: [id])
-  profileId String   @unique
+  profile        Profile         @relation(fields: [profileId], references: [id])
+  profileId      String          @unique
+  brokerProfiles BrokerProfile[]
+}
+
+model BrokerProfile {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String  @unique
+
+  broker   Broker @relation(fields: [brokerId], references: [id])
+  brokerId String @unique
 }
 
 model Owner {
-  id        String    @id @default(cuid())
+  id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  properties Property[]
-  Profile    Profile    @relation(fields: [profileId], references: [id])
-  profileId  String     @unique
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String  @unique
 }
 
 model Seller {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  properties Property[]
-  broker     Broker?    @relation(fields: [brokerId], references: [id])
-  brokerId   String?
-  Profile    Profile    @relation(fields: [profileId], references: [id])
-  profileId  String     @unique
+  sellingPeriod String
+  profile       Profile @relation(fields: [profileId], references: [id])
+  profileId     String  @unique
 }
 
 model Buyer {
-  id           String    @id @default(cuid())
-  firstName    String
-  lastName     String
-  imageUrl     String?   @db.Text
-  minimumPrice Float
-  maximumPrice Float
-  buyingPeriod String
-  latitude     Float
-  longitude    Float
-  radius       Float
-  propertyType String
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
+  id            String    @id @default(uuid())
+  minimumPrice  Float
+  maximumPrice  Float
+  buyingPeriod  String
+  latitude      Float
+  longitude     Float
+  radius        Float
+  propertyTypes String[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
 
-  broker    Broker? @relation(fields: [brokerId], references: [id])
   brokerId  String?
-  Profile   Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
 }
 
 model Tenant {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   minimumPrice Float
   maximumPrice Float
@@ -153,9 +166,10 @@ model Tenant {
 }
 
 model Agency {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   name      String
   imageUrl  String?
+  phone     String
   addressId String
   number    String
   email     String
@@ -168,7 +182,7 @@ model Agency {
 }
 
 model Property {
-  id              String    @id @default(cuid())
+  id              String    @id @default(uuid())
   title           String
   description     String    @db.Text
   imageUrl        String?   @db.Text
@@ -185,7 +199,7 @@ model Property {
   bedrooms        Int
   bathrooms       Int
   squareFeet      Int
-  type            String
+  propertyType    String
   hasRefrigerator Boolean
   hasDishwasher   Boolean
   hasSauna        Boolean
@@ -195,15 +209,12 @@ model Property {
   deletedAt       DateTime?
   addressId       String
   address         Address   @relation(fields: [addressId], references: [id])
-  realtorId       String?
-  owner           Owner?    @relation(fields: [ownerId], references: [id])
-  ownerId         String?
-  seller          Seller?   @relation(fields: [sellerId], references: [id])
-  sellerId        String?
+  profileId       String
+  profile         Profile   @relation(fields: [profileId], references: [id])
 }
 
 model Address {
-  id               String     @id @default(cuid())
+  id               String     @id @default(uuid())
   unit             String?
   formattedAddress String
   streetNumber     String

@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "./helpers";
+import { profileSchema } from "./profile.schema";
+import { UserPrivilege } from "@prisma/client";
 
 export const userSchema = z.object({
   id: z.string(),
@@ -8,10 +10,12 @@ export const userSchema = z.object({
   email: z.string(),
   password: z.string().nullish(),
   imageUrl: z.string().nullish(),
-  privilege: z.enum(["ADMINISTRATOR", "USER"]).default("USER"),
+  privilege: z.nativeEnum(UserPrivilege).default("USER"),
   createdAt: z.any(),
   updatedAt: z.any(),
   deletedAt: z.any().nullish(),
+  profile: profileSchema.nullish(),
+  profileId: z.string(),
 });
 
 export type User = z.infer<typeof userSchema>;
@@ -127,26 +131,6 @@ export const userApi = apiBuilder()
       },
       {
         status: 404,
-        schema: schemaError,
-      },
-    ],
-  })
-  .addEndpoint({
-    method: "get",
-    path: "/workspaces/:workspaceId/users",
-    alias: "getUsersByWorkspaceId",
-    description: "Get Users by Workspace ID",
-    response: z.array(userSchema),
-    parameters: [
-      {
-        type: "Path",
-        name: "workspaceId",
-        schema: z.string(),
-      },
-    ],
-    errors: [
-      {
-        status: 500,
         schema: schemaError,
       },
     ],

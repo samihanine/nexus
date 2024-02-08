@@ -10,6 +10,7 @@ import { addressRouter } from "./routes/address.route";
 import helmet from "helmet";
 import hpp from "hpp";
 import express from "express";
+import { profileRouter } from "./routes/profile.route";
 
 dotenv.config();
 
@@ -37,7 +38,7 @@ server
   .use(helmet())
   .use(hpp());
 
-server.use(userRouter, healthRouter, authRouter, addressRouter);
+server.use(userRouter, healthRouter, authRouter, addressRouter, profileRouter);
 
 server.get("/", (_, res) => {
   res.json({

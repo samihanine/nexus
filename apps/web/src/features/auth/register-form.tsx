@@ -32,11 +32,7 @@ const RegisterForm = () => {
       </div>
 
       <form className="space-y-5" onSubmit={handleSubmit}>
-        <div className="flex gap-5 items-center">
-          <Input name="name" placeholder="Prénom" />
-
-          <Input name="name" placeholder="Nom de famille" />
-        </div>
+        <Input name="name" placeholder="Nom complet" />
 
         <Input placeholder="Email" name="email" type="email" />
 

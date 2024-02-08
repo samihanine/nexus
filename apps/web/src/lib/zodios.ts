@@ -1,4 +1,10 @@
-import { addressApi, authApi, healthApi, userApi } from "@nexus/schemas";
+import {
+  addressApi,
+  authApi,
+  healthApi,
+  profileApi,
+  userApi,
+} from "@nexus/schemas";
 import { Zodios } from "@zodios/core";
 import { pluginToken } from "@zodios/plugins";
 
@@ -9,6 +15,7 @@ const zodios = new Zodios(API_HOST, [
   ...healthApi,
   ...authApi,
   ...addressApi,
+  ...profileApi,
 ]);
 
 zodios.use(

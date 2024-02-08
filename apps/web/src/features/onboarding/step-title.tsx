@@ -11,10 +11,12 @@ const StepTitle = ({
 }) => {
   return (
     <>
-      <Logo className="self-center text-foreground w-12 h-12" />
+      <div className="self-center">
+        <Logo className=" text-foreground w-12 h-12" />
+      </div>
 
       <div className="flex flex-col w-full">
-        {percentage && <ProgressBar percentage={percentage} />}
+        {percentage !== undefined && <ProgressBar percentage={percentage} />}
 
         <H3 className="text-center mt-10 mb-2">{title}</H3>
         {description && <Muted className="text-center">{description}</Muted>}

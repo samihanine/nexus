@@ -15,10 +15,9 @@ const Header = ({
   userImageUrl?: string;
 }) => {
   return (
-    <div className="flex h-16 w-full items-center justify-between border-b border-r border-border border-b-border bg-background px-7">
+    <div className="flex h-20 w-full items-center justify-between shadow-md bg-background px-7 dark:shadow-white/15 dark:shadow-lg">
       <Link href="/" className="flex items-center gap-3">
-        <Logo className="h-6 w-6" />
-        <h1 className="hidden text-xl font-medium sm:flex">Nexus</h1>
+        <Logo className="h-10 w-10" />
       </Link>
 
       <div className="flex items-center gap-2"></div>

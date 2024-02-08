@@ -18,6 +18,7 @@ const GoogleButton = ({ children }: { children: React.ReactNode }) => {
   return (
     <Button
       variant={"outline"}
+      type="button"
       className="flex gap-5"
       onClick={handleClick}
       loading={signInWithGoogle.isPending}

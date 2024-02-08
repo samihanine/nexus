@@ -21,17 +21,16 @@ const AddressAutocomplete = ({
 
   const debouncedQueryChange = useCallback(
     debounce(async (query) => {
-      if (query.length < 3) return;
       const result = await autocompleteAddressMutation.mutateAsync(query);
-      if (result.length === 0 && suggestions.length > 0) return;
       setLoading(false);
       setSuggestions(result);
-    }, 2000),
+    }, 1000),
     []
   );
 
   const handleQueryChange = (query: string) => {
     setQuery(query);
+    if (query.length < 3) return;
     setLoading(true);
     if (!open) setOpen(true);
     debouncedQueryChange(query);
@@ -49,28 +48,35 @@ const AddressAutocomplete = ({
       />
       {open && (
         <div className="absolute bg-background mt-2 w-full h-fit z-[999] shadow-lg border border-border rounded-md p-3 flex flex-col gap-3">
-          {!loading &&
-            suggestions.map((suggestion, index) => (
-              <div
-                key={index}
-                onClick={() => {
-                  setAddress(suggestion);
-                  setQuery(suggestion.formattedAddress || query);
-                  setOpen(false);
-                }}
-                className="font-medium flex items-center"
-              >
-                <div className="w-max">
-                  <MapPin className="w-5 h-5 mr-2" />
+          {!loading && (
+            <>
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setAddress(suggestion);
+                    setQuery(suggestion.formattedAddress || query);
+                    setOpen(false);
+                  }}
+                  className="font-medium flex items-center"
+                >
+                  <div className="w-max">
+                    <MapPin className="w-5 h-5 mr-2" />
+                  </div>
+                  <span className="line-clamp-1 cursor-pointer">
+                    {suggestion.formattedAddress}
+                  </span>
                 </div>
-                <span className="line-clamp-1 cursor-pointer">
-                  {suggestion.formattedAddress}
-                </span>
-              </div>
-            ))}
+              ))}
+
+              {suggestions.length === 0 && (
+                <P className="text-center">Aucune addresse trouvée</P>
+              )}
+            </>
+          )}
 
           {loading && (
-            <P className="text-center">Chargement des suggestions...</P>
+            <P className="text-center">Chargement des addresses...</P>
           )}
         </div>
       )}

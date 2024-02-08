@@ -42,7 +42,7 @@ export default function UserDropdown({
           className="flex items-center gap-3 font-medium"
         >
           <p className="capitalize text-muted-foreground">{name}</p>
-          <Avatar alt={email} src={image} className="h-8 w-8" />
+          <Avatar alt={email} src={image} className="h-12 w-12" />
         </button>
       </Popover>
     </>

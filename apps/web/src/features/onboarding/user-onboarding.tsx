@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, H3, Muted } from "@nexus/ui";
 import StepButtons from "./step-buttons";
 import { cn } from "@nexus/utils";
 import StepTitle from "./step-title";
+import { useCurrentUser } from "../user/use-current-user";
 
 const UserOnboarding = ({
   setUserType,
@@ -12,11 +13,15 @@ const UserOnboarding = ({
   userType: string | undefined;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const { data: user } = useCurrentUser();
+
   return (
     <>
       <StepTitle
-        title="Bonjour Samuel, répondez à quelques questions rapides pour voir comment
-        nous pouvons vous aider."
+        title={`Bonjour ${
+          user?.name || ""
+        }, répondez à quelques questions rapides pour voir comment
+        nous pouvons vous aider.`}
       />
 
       <div className="flex flex-col gap-10 sm:grid sm:grid-cols-2 md:grid-cols-3">

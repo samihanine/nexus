@@ -18,11 +18,17 @@ export default function Onboarding() {
         />
       )}
 
-      {step > 0 && userType === "SELLER" && <BuyerOnboarding />}
+      {step > 0 && userType === "SELLER" && (
+        <BuyerOnboarding setStep={setStep} step={step} />
+      )}
 
-      {step > 0 && userType === "BUYER" && <BuyerOnboarding />}
+      {step > 0 && userType === "BUYER" && (
+        <BuyerOnboarding setStep={setStep} step={step} />
+      )}
 
-      {step > 0 && userType === "BROKER" && <BuyerOnboarding />}
+      {step > 0 && userType === "BROKER" && (
+        <BuyerOnboarding setStep={setStep} step={step} />
+      )}
     </div>
   );
 }

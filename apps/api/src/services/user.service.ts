@@ -9,9 +9,31 @@ export const getUserById = async (userId: string) => {
   });
 };
 
-export const createUser = async (newUser: Prisma.UserCreateManyInput) => {
+export const createUser = async (newUser: {
+  name: string;
+  email: string;
+  imageUrl?: string;
+  provider: string;
+  password?: string;
+}) => {
+  const profile = await prisma.profile.create({
+    data: {
+      imageUrl: newUser.imageUrl,
+      firstName: newUser.name,
+      lastName: "",
+      type: "DEFAULT",
+    },
+  });
+
   const user = await prisma.user.create({
-    data: newUser,
+    data: {
+      name: newUser.name,
+      email: newUser.email,
+      imageUrl: newUser.imageUrl,
+      profileId: profile.id,
+      provider: newUser.provider,
+      password: newUser.password,
+    },
   });
 
   return user;

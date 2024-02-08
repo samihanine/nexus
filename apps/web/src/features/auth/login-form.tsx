@@ -43,7 +43,9 @@ const RegisterForm = () => {
         />
 
         <div className="space-y-2 !mt-10 !mb-8">
-          <Button loading={login.isPending}>Se connecter</Button>
+          <Button type="submit" loading={login.isPending}>
+            Se connecter
+          </Button>
 
           <GoogleButton>Se connecter avec Google</GoogleButton>
         </div>

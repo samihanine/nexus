@@ -6,7 +6,7 @@ export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export const Section = ({ children, className = "" }: SectionProps) => (
   <section
-    className={`mx-auto w-full max-w-7xl px-10 py-10 h-full ${className}`}
+    className={`mx-auto w-full max-w-7xl px-10 py-10 flex-1 ${className}`}
   >
     {children}
   </section>
