@@ -8,13 +8,13 @@ import React from "react";
 import AddressAutocomplete from "./address-autocomplete";
 
 type AddressSearchProps = {
-  address: Partial<Address> | undefined;
-  setAddress: (address: Partial<Address>) => void;
+  address: Address | undefined;
+  setAddress: (address: Address) => void;
   radius?: number;
   setRadius?: (radius: number) => void;
 };
 
-const Map = dynamic(() => import("./map"), { ssr: false });
+const Map = dynamic(() => import("../onboarding/map"), { ssr: false });
 
 const AddressSearch: React.FC<AddressSearchProps> = ({
   address,

@@ -16,25 +16,25 @@ export const profileSchema = z.object({
       email: z.string(),
       description: z.string(),
       centrisUrl: z.string(),
-      websiteUrl: z.string().optional(),
+      websiteUrl: z.string().nullish(),
       oaciqNumber: z.string(),
       latitude: z.number(),
       longitude: z.number(),
       radius: z.number(),
       agencyId: z.string().uuid().nullish(),
-      createdAt: z.any(),
-      updatedAt: z.any(),
-      deletedAt: z.any().optional(),
+      createdAt: z.string().or(z.date()).nullish(),
+      updatedAt: z.string().or(z.date()).nullish(),
+      deletedAt: z.string().or(z.date()).nullish(),
       agency: z
         .object({
           id: z.string().uuid().nullish(),
           name: z.string(),
           phone: z.string(),
           email: z.string(),
-          websiteUrl: z.string().optional(),
-          createdAt: z.any(),
-          updatedAt: z.any(),
-          deletedAt: z.any().nullish(),
+          websiteUrl: z.string().nullish(),
+          createdAt: z.string().or(z.date()).nullish(),
+          updatedAt: z.string().or(z.date()).nullish(),
+          deletedAt: z.string().or(z.date()).nullish(),
         })
         .nullish(),
     })
@@ -43,9 +43,9 @@ export const profileSchema = z.object({
   owner: z
     .object({
       id: z.string().uuid().nullish(),
-      createdAt: z.any(),
-      updatedAt: z.any(),
-      deletedAt: z.any().nullish(),
+      createdAt: z.string().or(z.date()).nullish(),
+      updatedAt: z.string().or(z.date()).nullish(),
+      deletedAt: z.string().or(z.date()).nullish(),
     })
     .nullish(),
 
@@ -53,9 +53,9 @@ export const profileSchema = z.object({
     .object({
       id: z.string().uuid().nullish(),
       sellingPeriod: z.string(),
-      createdAt: z.any(),
-      updatedAt: z.any(),
-      deletedAt: z.any().nullish(),
+      createdAt: z.string().or(z.date()).nullish(),
+      updatedAt: z.string().or(z.date()).nullish(),
+      deletedAt: z.string().or(z.date()).nullish(),
     })
     .nullish(),
 
@@ -69,9 +69,9 @@ export const profileSchema = z.object({
       longitude: z.number(),
       radius: z.number(),
       propertyTypes: z.array(z.string()),
-      createdAt: z.any(),
-      updatedAt: z.any(),
-      deletedAt: z.any().nullish(),
+      createdAt: z.string().or(z.date()).nullish(),
+      updatedAt: z.string().or(z.date()).nullish(),
+      deletedAt: z.string().or(z.date()).nullish(),
     })
     .nullish(),
 
@@ -84,16 +84,16 @@ export const profileSchema = z.object({
       latitude: z.number(),
       longitude: z.number(),
       radius: z.number(),
-      imageUrl: z.string().optional(),
-      createdAt: z.any(),
-      updatedAt: z.any(),
-      deletedAt: z.any().optional(),
+      imageUrl: z.string().nullish(),
+      createdAt: z.string().or(z.date()).nullish(),
+      updatedAt: z.string().or(z.date()).nullish(),
+      deletedAt: z.string().or(z.date()).nullish(),
     })
-    .optional(),
+    .nullish(),
 
-  createdAt: z.any(),
-  updatedAt: z.any(),
-  deletedAt: z.any().optional(),
+  createdAt: z.string().or(z.date()),
+  updatedAt: z.string().or(z.date()),
+  deletedAt: z.string().or(z.date()).nullish(),
 });
 
 export type Profile = z.infer<typeof profileSchema>;
@@ -110,7 +110,7 @@ export const profileApi = apiBuilder()
       {
         name: "New Profile",
         type: "Body",
-        schema: profileSchema.omit({ id: true, userId: true }),
+        schema: profileSchema.omit({ id: true, userId: true, createdAt: true, updatedAt: true, deletedAt: true }),
       },
     ],
     errors: [

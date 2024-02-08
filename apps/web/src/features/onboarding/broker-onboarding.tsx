@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useCurrentUser } from "../user/use-current-user";
-import AddressSearch from "./address-search";
+import AddressSearch from "../address/address-search";
 import IdentityInputs from "./identity-inputs";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
@@ -20,9 +20,7 @@ const BrokerOnboarding = ({
 }) => {
   const { data: user } = useCurrentUser();
   const [radius, setRadius] = useState(0);
-  const [address, setAddress] = useState<Partial<Address> | undefined>(
-    undefined
-  );
+  const [address, setAddress] = useState<Address | undefined>(undefined);
   const updateProfileMutation = useUpdateProfile();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -65,7 +63,6 @@ const BrokerOnboarding = ({
 
       router.push("/dashboard");
     } catch (error) {
-      toast.error("Une erreur s'est produite");
       setStep((oldStep) => oldStep - 1);
     }
   };

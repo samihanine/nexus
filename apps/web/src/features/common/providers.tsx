@@ -17,7 +17,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         mutations: {
           onError: (error) => {
             console.error(error);
-            toast.error(error.message);
+            toast.error("Une erreur est survenue. Veuillez réessayer plus tard.");
           },
         },
       },

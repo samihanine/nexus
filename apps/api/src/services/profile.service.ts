@@ -30,6 +30,40 @@ export const updateProfile = async (
     });
   }
 
+  if (data.seller) {
+    await prisma.seller.upsert({
+      // @ts-ignore
+      update: {
+        ...data.seller,
+      },
+      // @ts-ignore
+      create: {
+        ...data.seller,
+        profileId: id,
+      },
+      where: {
+        profileId: id,
+      },
+    });
+  }
+
+  if (data.broker) {
+    await prisma.broker.upsert({
+      // @ts-ignore
+      update: {
+        ...data.broker,
+      },
+      // @ts-ignore
+      create: {
+        ...data.broker,
+        profileId: id,
+      },
+      where: {
+        profileId: id,
+      },
+    });
+  }
+
   return await prisma.profile.update({
     where: {
       id,

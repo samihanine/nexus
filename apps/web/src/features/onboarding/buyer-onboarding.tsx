@@ -1,7 +1,7 @@
 import { LoadingView } from "@nexus/ui";
 import { Address } from "@prisma/client";
 import React, { useEffect, useState } from "react";
-import AddressSearch from "./address-search";
+import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
 import { useUpdateProfile } from "./use-update-profile";
@@ -24,7 +24,7 @@ const BuyerOnboarding = ({
   const [radius, setRadius] = useState(0);
   const [minimumPrice, setMinimumPrice] = useState(0);
   const [maximumPrice, setMaximumPrice] = useState(0);
-  const [address, setAddress] = useState<Partial<Address> | undefined>(
+  const [address, setAddress] = useState<Address | undefined>(
     undefined
   );
   const [propertyTypes, setPropertyTypes] = useState<string[]>([]);
@@ -69,7 +69,6 @@ const BuyerOnboarding = ({
 
       router.push("/dashboard");
     } catch (error) {
-      toast.error("Une erreur s'est produite");
       setStep((oldStep) => oldStep - 1);
     }
   };
@@ -145,7 +144,7 @@ const BuyerOnboarding = ({
           <StepButtons
             handleNextStep={() => setStep(step + 1)}
             handlePreviousStep={() => setStep(step - 1)}
-            isNextStepDisabled={!minimumPrice}
+            isNextStepDisabled={!maximumPrice}
           />
         </>
       )}

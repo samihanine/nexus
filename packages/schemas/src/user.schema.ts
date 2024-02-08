@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
-import { schemaError } from "./helpers";
+import { schemaError } from "@nexus/utils";
 import { profileSchema } from "./profile.schema";
 import { UserPrivilege } from "@prisma/client";
 
@@ -11,9 +11,9 @@ export const userSchema = z.object({
   password: z.string().nullish(),
   imageUrl: z.string().nullish(),
   privilege: z.nativeEnum(UserPrivilege).default("USER"),
-  createdAt: z.any(),
-  updatedAt: z.any(),
-  deletedAt: z.any().nullish(),
+  createdAt: z.string().or(z.date()),
+  updatedAt: z.string().or(z.date()),
+  deletedAt: z.string().or(z.date()).nullish(),
   profile: profileSchema.nullish(),
   profileId: z.string(),
 });

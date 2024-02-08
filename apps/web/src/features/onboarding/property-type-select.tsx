@@ -8,15 +8,11 @@ export default function PropertyTypeSelect({
   propertyType: string | undefined;
   setPropertyType: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
-  const [selected, setSelected] = React.useState<string[]>(
-    propertyType ? [propertyType] : []
-  );
-
   return (
     <MultiSelectCard
       selected={propertyType ? [propertyType] : []}
       className="max-w-md w-full self-center"
-      setSelected={setSelected}
+      setSelected={(selected) => setPropertyType(selected[0])}
       maxItems={1}
       items={[
         {

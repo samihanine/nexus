@@ -1,16 +1,17 @@
 import { Input, LoadingView } from "@nexus/ui";
 import { Address } from "@prisma/client";
 import React, { useState, useEffect } from "react";
-import AddressSearch from "./address-search";
+import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
 import { useUpdateProfile } from "./use-update-profile";
-import toast from "react-hot-toast";
 import { useCurrentUser } from "../user/use-current-user";
 import PropertyTypeSelect from "./property-type-select";
 import PeriodSelect from "./period-select";
 import { useRouter } from "next/navigation";
 import IdentityInputs from "./identity-inputs";
+import { useCreateProperty } from "../property/use-create-property";
+import { useCreateAddress } from "../address/use-create-address";
 
 const SellerOnboarding = ({
   step,
@@ -21,19 +22,20 @@ const SellerOnboarding = ({
 }) => {
   const { data: user } = useCurrentUser();
   const [price, setPrice] = useState<number | undefined>(undefined);
-  const [address, setAddress] = useState<Partial<Address> | undefined>(
+  const [address, setAddress] = useState<Address | undefined>(
     undefined
   );
   const [propertyType, setPropertyType] = useState<string | undefined>(
     undefined
   );
-  const [radius, setRadius] = useState(0);
   const [period, setPeriod] = useState<string | undefined>(undefined);
   const updateProfileMutation = useUpdateProfile();
   const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const createPropertyMutation = useCreateProperty();
+  const createAddressMutation = useCreateAddress();
 
   useEffect(() => {
     if (user) {
@@ -45,7 +47,7 @@ const SellerOnboarding = ({
   const handleSumit = async () => {
     setStep((oldStep) => oldStep + 1);
 
-    if (!user) return;
+    if (!user || !address) return;
 
     try {
       await updateProfileMutation.mutateAsync({
@@ -59,9 +61,20 @@ const SellerOnboarding = ({
         },
       });
 
+      const newAddress = await createAddressMutation.mutateAsync({
+        ...address,
+      });
+
+      await createPropertyMutation.mutateAsync({
+        addressId: newAddress.id as string,
+        price: price as number,
+        propertyType: propertyType as string,
+        profileId: user.profileId,
+        title: ""
+      });
+
       router.push("/dashboard");
     } catch (error) {
-      toast.error("Une erreur s'est produite");
       setStep((oldStep) => oldStep - 1);
     }
   };
@@ -108,14 +121,12 @@ const SellerOnboarding = ({
           <AddressSearch
             address={address}
             setAddress={setAddress}
-            radius={radius}
-            setRadius={setRadius}
           />
 
           <StepButtons
             handlePreviousStep={() => setStep(step - 1)}
             handleNextStep={() => setStep(step + 1)}
-            isNextStepDisabled={!radius || !address}
+            isNextStepDisabled={!address}
           />
         </>
       )}

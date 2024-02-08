@@ -1,9 +1,11 @@
 import axios from "axios";
 import type { Address } from "@prisma/client";
+import prisma from "../lib/prisma";
+import type { Prisma } from "@prisma/client";
 
 export async function autocompleteAddress(
   query: string
-): Promise<Partial<Address>[]> {
+): Promise<Address[]> {
   const apiKey = process.env.GEOAPIFY_API_KEY;
   const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
     query
@@ -28,4 +30,10 @@ export async function autocompleteAddress(
     console.error("Error fetching autocomplete addresses:", error);
     return [];
   }
+}
+
+export async function createAddress(address: Prisma.AddressCreateInput) {
+  return await prisma.address.create({
+    data: address,
+  });
 }

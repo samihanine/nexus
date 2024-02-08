@@ -11,6 +11,7 @@ import helmet from "helmet";
 import hpp from "hpp";
 import express from "express";
 import { profileRouter } from "./routes/profile.route";
+import { propertyRouter } from "./routes/property.route";
 
 dotenv.config();
 
@@ -38,7 +39,7 @@ server
   .use(helmet())
   .use(hpp());
 
-server.use(userRouter, healthRouter, authRouter, addressRouter, profileRouter);
+server.use(userRouter, healthRouter, authRouter, addressRouter, profileRouter, propertyRouter);
 
 server.get("/", (_, res) => {
   res.json({

@@ -11,10 +11,10 @@ const AddressAutocomplete = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"input"> & {
-  setAddress: (address: Partial<Address>) => void;
+  setAddress: (address: Address) => void;
 }) => {
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<Partial<Address>[]>([]);
+  const [suggestions, setSuggestions] = useState<Address[]>([]);
   const autocompleteAddressMutation = useAutocompleteAddress();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const AddressAutocomplete = ({
     debounce(async (query) => {
       const result = await autocompleteAddressMutation.mutateAsync(query);
       setLoading(false);
-      setSuggestions(result);
+      setSuggestions(result as Address[]);
     }, 1000),
     []
   );
