@@ -185,6 +185,7 @@ const BuyerOnboarding = ({
             isNextStepDisabled={!buyingPeriod}
             handleNextStep={handleSumit}
             handlePreviousStep={() => setStep(step - 1)}
+            isLastStep
           />
         </>
       )}

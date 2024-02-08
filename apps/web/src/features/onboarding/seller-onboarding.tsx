@@ -1,6 +1,6 @@
 import { Input, LoadingView } from "@nexus/ui";
 import { Address } from "@prisma/client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddressSearch from "./address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
@@ -10,6 +10,7 @@ import { useCurrentUser } from "../user/use-current-user";
 import PropertyTypeSelect from "./property-type-select";
 import PeriodSelect from "./period-select";
 import { useRouter } from "next/navigation";
+import IdentityInputs from "./identity-inputs";
 
 const SellerOnboarding = ({
   step,
@@ -19,16 +20,27 @@ const SellerOnboarding = ({
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { data: user } = useCurrentUser();
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState<number | undefined>(undefined);
   const [address, setAddress] = useState<Partial<Address> | undefined>(
     undefined
   );
   const [propertyType, setPropertyType] = useState<string | undefined>(
     undefined
   );
+  const [radius, setRadius] = useState(0);
   const [period, setPeriod] = useState<string | undefined>(undefined);
   const updateProfileMutation = useUpdateProfile();
   const router = useRouter();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.name);
+      if (user.imageUrl) setImageUrl(user.imageUrl);
+    }
+  }, [user]);
 
   const handleSumit = async () => {
     setStep((oldStep) => oldStep + 1);
@@ -39,6 +51,9 @@ const SellerOnboarding = ({
       await updateProfileMutation.mutateAsync({
         id: user.profileId,
         type: "SELLER",
+        firstName,
+        lastName,
+        imageUrl,
         seller: {
           sellingPeriod: period as string,
         },
@@ -56,17 +71,28 @@ const SellerOnboarding = ({
       {step === 1 && (
         <>
           <StepTitle
-            title="What is the adress of the property you are looking to sell ?"
-            description="Please enter the city or postal code of your property."
-            percentage={25}
+            title="Qui êtes-vous ?"
+            description="Veuillez saisir votre prénom, votre nom et une photo de profil."
+            percentage={0}
           />
 
-          <AddressSearch address={address} setAddress={setAddress} />
+          <div className="flex flex-col gap-8 w-full max-w-lg items-center self-center">
+            <IdentityInputs
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              imageUrl={imageUrl}
+              setImageUrl={setImageUrl}
+            />
+          </div>
 
           <StepButtons
             handlePreviousStep={() => setStep(step - 1)}
             handleNextStep={() => setStep(step + 1)}
-            isNextStepDisabled={!address}
+            isNextStepDisabled={
+              !firstName.length || !lastName.length || !imageUrl.length
+            }
           />
         </>
       )}
@@ -74,17 +100,22 @@ const SellerOnboarding = ({
       {step === 2 && (
         <>
           <StepTitle
-            title="What selling price would you consider for your property ?"
-            description="By assessing the value of your property, we can develop a customized plan to meet your requirements."
-            percentage={50}
+            title="Où se site votre bien"
+            description="Veuillez saisir la ville ou le code postal qui vous intéresse le plus."
+            percentage={25}
           />
 
-          <Input onChange={(e) => setPrice(Number(e.target.value))} />
+          <AddressSearch
+            address={address}
+            setAddress={setAddress}
+            radius={radius}
+            setRadius={setRadius}
+          />
 
           <StepButtons
-            handleNextStep={() => setStep(step + 1)}
             handlePreviousStep={() => setStep(step - 1)}
-            isNextStepDisabled={!price}
+            handleNextStep={() => setStep(step + 1)}
+            isNextStepDisabled={!radius || !address}
           />
         </>
       )}
@@ -92,8 +123,32 @@ const SellerOnboarding = ({
       {step === 3 && (
         <>
           <StepTitle
-            title="Quel type de bien souhaitez-vous acheter ?"
-            description="Vous pouvez sélectionner plusieurs types de biens si vous le souhaitez."
+            title="Quel prix de vente envisagez-vous pour votre bien ?"
+            description="En évaluant la valeur de votre propriété, nous pouvons élaborer un plan personnalisé pour répondre à vos besoins."
+            percentage={50}
+          />
+
+          <Input
+            value={price}
+            onChange={(e) => setPrice(Number(e.currentTarget.value))}
+            placeholder="Saisir le prix du logement"
+            className="w-full max-w-lg self-center"
+            type="number"
+            min="0"
+          />
+
+          <StepButtons
+            handlePreviousStep={() => setStep(step - 1)}
+            handleNextStep={() => setStep(step + 1)}
+            isNextStepDisabled={!price}
+          />
+        </>
+      )}
+
+      {step === 4 && (
+        <>
+          <StepTitle
+            title="Quel type de bien souhaitez-vous vendre ?"
             percentage={75}
           />
 
@@ -110,11 +165,11 @@ const SellerOnboarding = ({
         </>
       )}
 
-      {step === 4 && (
+      {step === 5 && (
         <>
           <StepTitle
-            title="Quand souhaitez-vous acheter ?"
-            description="Votre chronologie nous aide à comprendre comment nous pouvons vous aider à trouver le logement qui vous convient."
+            title="Quand souhaitez-vous vendre ?"
+            description="Votre calendrier nous aide à comprendre comment nous pouvons vous aider à trouver le bon acheteur."
             percentage={100}
           />
 
@@ -124,11 +179,12 @@ const SellerOnboarding = ({
             isNextStepDisabled={!period}
             handleNextStep={handleSumit}
             handlePreviousStep={() => setStep(step - 1)}
+            isLastStep
           />
         </>
       )}
 
-      {step === 5 && (
+      {step === 6 && (
         <div className="h-full w-full">
           <LoadingView />
         </div>

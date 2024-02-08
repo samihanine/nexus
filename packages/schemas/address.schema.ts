@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
-import { schemaError } from "./helpers";
+import { schemaError } from "@nexus/utils";
 
 const addressSchema = z
   .object({

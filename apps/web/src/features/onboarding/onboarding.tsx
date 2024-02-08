@@ -1,8 +1,9 @@
 "use client";
-import { Logo } from "@nexus/ui";
 import { useState } from "react";
 import BuyerOnboarding from "./buyer-onboarding";
 import UserOnboarding from "./user-onboarding";
+import SellerOnboarding from "./seller-onboarding";
+import BrokerOnboarding from "./broker-onboarding";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);
@@ -19,7 +20,7 @@ export default function Onboarding() {
       )}
 
       {step > 0 && userType === "SELLER" && (
-        <BuyerOnboarding setStep={setStep} step={step} />
+        <SellerOnboarding setStep={setStep} step={step} />
       )}
 
       {step > 0 && userType === "BUYER" && (
@@ -27,7 +28,7 @@ export default function Onboarding() {
       )}
 
       {step > 0 && userType === "BROKER" && (
-        <BuyerOnboarding setStep={setStep} step={step} />
+        <BrokerOnboarding setStep={setStep} step={step} />
       )}
     </div>
   );

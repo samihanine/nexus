@@ -1,4 +1,5 @@
 "use client";
+
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Card, Muted } from "@nexus/ui";
 import type { Address } from "@prisma/client";
@@ -41,9 +42,15 @@ const AddressSearch: React.FC<AddressSearchProps> = ({
               defaultValue={radius}
             >
               <option value="0">Choisir un rayon</option>
-              <option value="100">100m</option>
               <option value="500">500m</option>
-              <option value="1000">1000m</option>
+              <option value="1000">1km</option>
+              <option value="2000">2km</option>
+              <option value="5000">5km</option>
+              <option value="10000">10km</option>
+              <option value="20000">20km</option>
+              <option value="30000">30km</option>
+              <option value="50000">50km</option>
+              <option value="100000">100km</option>
             </select>
           </div>
         )}

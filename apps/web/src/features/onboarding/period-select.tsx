@@ -13,6 +13,7 @@ export default function PeriodSelect({
       selected={period ? [period] : []}
       className="max-w-md w-full self-center"
       setSelected={(value) => setPeriod(value[0])}
+      maxItems={1}
       items={[
         {
           label: "Dans les 3 prochains mois",

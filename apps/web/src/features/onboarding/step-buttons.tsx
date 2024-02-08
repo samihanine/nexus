@@ -6,6 +6,7 @@ const StepButtons = (
     handlePreviousStep?: () => void;
     isNextStepDisabled?: boolean;
     isPreviousStepDisabled?: boolean;
+    isLastStep?: boolean;
   }
 ) => {
   return (
@@ -16,7 +17,7 @@ const StepButtons = (
         disabled={props.isNextStepDisabled}
         onClick={props.handleNextStep}
       >
-        Suivant
+        {props.isLastStep ? "Terminer" : "Suivant"}
       </Button>
 
       {!props.isPreviousStepDisabled && (

@@ -1,4 +1,10 @@
 import ms from "ms";
+import * as z from "zod";
+
+export const schemaError = z.object({
+  code: z.string(),
+  message: z.string(),
+});
 
 export function randomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
-import { schemaError } from "./helpers";
+import { schemaError } from "@nexus/utils";
 import { ProfileType } from "@prisma/client";
 
 export const profileSchema = z.object({
@@ -15,7 +15,7 @@ export const profileSchema = z.object({
       phone: z.string(),
       email: z.string(),
       description: z.string(),
-      centrisLink: z.string(),
+      centrisUrl: z.string(),
       websiteUrl: z.string().optional(),
       oaciqNumber: z.string(),
       latitude: z.number(),
@@ -25,16 +25,18 @@ export const profileSchema = z.object({
       createdAt: z.any(),
       updatedAt: z.any(),
       deletedAt: z.any().optional(),
-      agency: z.object({
-        id: z.string().uuid().nullish(),
-        name: z.string(),
-        phone: z.string(),
-        email: z.string(),
-        websiteUrl: z.string().optional(),
-        createdAt: z.any(),
-        updatedAt: z.any(),
-        deletedAt: z.any().nullish(),
-      }),
+      agency: z
+        .object({
+          id: z.string().uuid().nullish(),
+          name: z.string(),
+          phone: z.string(),
+          email: z.string(),
+          websiteUrl: z.string().optional(),
+          createdAt: z.any(),
+          updatedAt: z.any(),
+          deletedAt: z.any().nullish(),
+        })
+        .nullish(),
     })
     .nullish(),
 

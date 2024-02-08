@@ -77,7 +77,7 @@ model Broker {
   phone       String
   email       String
   description String    @db.Text
-  centrisLink String
+  centrisUrl  String
   websiteUrl  String?
   oaciqNumber String
   latitude    Float

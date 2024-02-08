@@ -2,6 +2,7 @@
 
 import { cn } from "@nexus/utils";
 import { Card, CardContent, CardHeader } from "./card";
+import React from "react";
 
 export type MultiSelectIconProps<T> = {
   items: {
@@ -46,7 +47,12 @@ export const MultiSelectCard = <T extends unknown>({
                 if (maxItems && selected.length >= maxItems) {
                   return;
                 }
-                setSelected([...selected, item.value]);
+
+                console.log(isSelected, selected, item.value, maxItems);
+
+                const newArray = selected.filter((i) => i !== item.value);
+                console.log([...newArray, item.value]);
+                setSelected([...newArray, item.value]);
               }
             }}
           >

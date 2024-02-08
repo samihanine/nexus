@@ -2,6 +2,7 @@ import { zodiosRouter } from "@zodios/express";
 import { profileApi } from "@nexus/schemas";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import { createProfile, updateProfile } from "../services/profile.service";
+import express from "express";
 
 export const profileRouter = zodiosRouter(profileApi, { transform: true });
 
@@ -22,6 +23,7 @@ profileRouter.post("/profiles", authMiddleware, async (request, response) => {
 
 profileRouter.patch(
   "/profiles/:profileId",
+  express.json({ limit: "50mb" }),
   authMiddleware,
   async (request, response) => {
     try {
