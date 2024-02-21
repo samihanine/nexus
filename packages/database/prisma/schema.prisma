@@ -14,22 +14,33 @@ enum UserPrivilege {
 }
 
 model User {
-  id            String        @id @default(uuid())
-  name          String
-  email         String        @unique
-  emailVerified DateTime?
-  imageUrl      String?
-  privilege     UserPrivilege @default(USER)
-  provider      String        @default("PASSWORD")
-  password      String?
-  hash          String?
-
+  id             String         @id @default(uuid())
+  name           String
+  email          String         @unique
+  emailVerified  DateTime?
+  imageUrl       String?
+  privilege      UserPrivilege  @default(USER)
+  provider       String         @default("PASSWORD")
+  password       String?
+  hash           String?
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   deletedAt      DateTime?
   loginHistories LoginHistory[]
-  profile        Profile        @relation(fields: [profileId], references: [id])
-  profileId      String         @unique
+  userProfiles   UserProfile[]
+}
+
+model UserProfile {
+  id        String  @id @default(uuid())
+  userId    String
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String
+  user      User    @relation(fields: [userId], references: [id])
+  role      String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 }
 
 enum ProfileType {
@@ -59,17 +70,19 @@ model Profile {
   lastName  String
   imageUrl  String?
 
-  broker        Broker?
-  owner         Owner?
-  seller        Seller?
-  buyer         Buyer?
-  tenant        Tenant?
-  user          User?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  deletedAt     DateTime?
-  properties    Property[]
-  brokerProfile BrokerProfile[]
+  broker               Broker?
+  owner                Owner?
+  seller               Seller?
+  buyer                Buyer?
+  tenant               Tenant?
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  propertyId           String?               @unique
+  property             Property?
+  userProfiles         UserProfile[]
+  conversationProfiles ConversationProfile[]
+  messages             Message[]
 }
 
 model Broker {
@@ -90,22 +103,8 @@ model Broker {
   agency   Agency? @relation(fields: [agencyId], references: [id])
   agencyId String?
 
-  profile        Profile         @relation(fields: [profileId], references: [id])
-  profileId      String          @unique
-  brokerProfiles BrokerProfile[]
-}
-
-model BrokerProfile {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
-
-  broker   Broker @relation(fields: [brokerId], references: [id])
-  brokerId String @unique
 }
 
 model Owner {
@@ -209,7 +208,7 @@ model Property {
   deletedAt       DateTime?
   addressId       String
   address         Address   @relation(fields: [addressId], references: [id])
-  profileId       String
+  profileId       String    @unique
   profile         Profile   @relation(fields: [profileId], references: [id])
 }
 
@@ -229,4 +228,37 @@ model Address {
   updatedAt        DateTime   @updatedAt
   deletedAt        DateTime?
   property         Property[]
+}
+
+model Conversation {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  messages             Message[]
+  conversationProfiles ConversationProfile[]
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  content        String       @db.Text
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  profileId      String
+  profile        Profile      @relation(fields: [profileId], references: [id])
+}
+
+model ConversationProfile {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  profileId      String
+  profile        Profile      @relation(fields: [profileId], references: [id])
+  lastReadAt     DateTime     @default(now())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
 }
