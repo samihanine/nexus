@@ -34,11 +34,19 @@ globalRouter.post("/contact", async (request, response, next) => {
 
 globalRouter.post("/waitlist", async (request, response, next) => {
   try {
-    await prisma.waitlist.create({
-      data: {
+    const existingWaitlist = await prisma.waitlist.findFirst({
+      where: {
         email: request.body.email,
       },
     });
+
+    if (!!existingWaitlist) {
+      await prisma.waitlist.create({
+        data: {
+          email: request.body.email,
+        },
+      });
+    }
 
     response.status(200).json({
       message: "Added to waitlist.",
