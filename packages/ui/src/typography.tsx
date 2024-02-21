@@ -4,7 +4,7 @@ export const H1 = (props: React.ComponentPropsWithoutRef<"h1">) => (
   <h1
     {...props}
     className={cn(
-      "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+      "scroll-m-20 text-4xl md:text-5xl font-extrabold tracking-tight lg:text-6xl",
       props.className
     )}
   />
@@ -14,7 +14,7 @@ export const H2 = (props: React.ComponentPropsWithoutRef<"h2">) => (
   <h2
     {...props}
     className={cn(
-      "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0",
+      "scroll-m-10 pb-1 text-4xl lg:text-5xl font-semibold tracking-tight first:mt-0",
       props.className
     )}
   />

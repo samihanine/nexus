@@ -1,11 +1,9 @@
-import "./css/style.css";
-
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Header from "../components/header";
+import "@nexus/ui/styles";
 
-import Header from "@/components/ui/header";
-
-const inter = Inter({
+const inter = DM_Sans({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
@@ -14,7 +12,7 @@ const inter = Inter({
 export const metadata = {
   title: "Immovia",
   description:
-    "Immovia is a real estate platform that helps you find the perfect home.",
+    "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins.",
 };
 
 export default function RootLayout({

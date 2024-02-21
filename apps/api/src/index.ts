@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { authRouter } from "./routes/auth.route";
-import { healthRouter } from "./routes/health.route";
+import { globalRouter } from "./routes/global.route";
 import { userRouter } from "./routes/user.route";
 import { addressRouter } from "./routes/address.route";
 import helmet from "helmet";
@@ -39,7 +39,14 @@ server
   .use(helmet())
   .use(hpp());
 
-server.use(userRouter, healthRouter, authRouter, addressRouter, profileRouter, propertyRouter);
+server.use(
+  userRouter,
+  globalRouter,
+  authRouter,
+  addressRouter,
+  profileRouter,
+  propertyRouter
+);
 
 server.get("/", (_, res) => {
   res.json({

@@ -2,7 +2,7 @@ import {
   addressApi,
   agencyApi,
   authApi,
-  healthApi,
+  globalApi,
   profileApi,
   propertyApi,
   userApi,
@@ -14,12 +14,12 @@ const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:3001";
 
 const zodios = new Zodios(API_HOST, [
   ...userApi,
-  ...healthApi,
+  ...globalApi,
   ...authApi,
   ...addressApi,
   ...profileApi,
   ...propertyApi,
-  ...agencyApi
+  ...agencyApi,
 ]);
 
 zodios.use(
