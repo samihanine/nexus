@@ -110,7 +110,12 @@ export const profileApi = apiBuilder()
       {
         name: "New Profile",
         type: "Body",
-        schema: profileSchema.omit({ id: true, userId: true, createdAt: true, updatedAt: true, deletedAt: true }),
+        schema: profileSchema.omit({
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          deletedAt: true,
+        }),
       },
     ],
     errors: [

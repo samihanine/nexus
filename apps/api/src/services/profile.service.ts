@@ -4,7 +4,10 @@ import { Prisma } from "@prisma/client";
 export const createProfile = async (props: Prisma.ProfileCreateManyInput) => {
   return await prisma.profile.create({
     data: {
-      ...props,
+      type: props.type,
+      firstName: props.firstName,
+      lastName: props.lastName,
+      imageUrl: props.imageUrl,
     },
   });
 };

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
-import { useUpdateProfile } from "./use-update-profile";
+import { useCreateProfile } from "./use-create-profile";
 import { useCurrentUser } from "../user/use-current-user";
 import PropertyTypeSelect from "./property-type-select";
 import PeriodSelect from "./period-select";
@@ -22,14 +22,12 @@ const SellerOnboarding = ({
 }) => {
   const { data: user } = useCurrentUser();
   const [price, setPrice] = useState<number | undefined>(undefined);
-  const [address, setAddress] = useState<Address | undefined>(
-    undefined
-  );
+  const [address, setAddress] = useState<Address | undefined>(undefined);
   const [propertyType, setPropertyType] = useState<string | undefined>(
     undefined
   );
   const [period, setPeriod] = useState<string | undefined>(undefined);
-  const updateProfileMutation = useUpdateProfile();
+  const createProfileMutation = useCreateProfile();
   const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,8 +48,7 @@ const SellerOnboarding = ({
     if (!user || !address) return;
 
     try {
-      await updateProfileMutation.mutateAsync({
-        id: user.profileId,
+      const profile: any = await createProfileMutation.mutateAsync({
         type: "SELLER",
         firstName,
         lastName,
@@ -69,8 +66,8 @@ const SellerOnboarding = ({
         addressId: newAddress.id as string,
         price: price as number,
         propertyType: propertyType as string,
-        profileId: user.profileId,
-        title: ""
+        profileId: profile.id,
+        title: "",
       });
 
       router.push("/dashboard");
@@ -118,10 +115,7 @@ const SellerOnboarding = ({
             percentage={25}
           />
 
-          <AddressSearch
-            address={address}
-            setAddress={setAddress}
-          />
+          <AddressSearch address={address} setAddress={setAddress} />
 
           <StepButtons
             handlePreviousStep={() => setStep(step - 1)}

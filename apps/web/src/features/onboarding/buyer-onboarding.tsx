@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
-import { useUpdateProfile } from "./use-update-profile";
-import toast from "react-hot-toast";
+import { useCreateProfile } from "./use-create-profile";
 import { useCurrentUser } from "../user/use-current-user";
 import BudgetSelect from "./budget-select";
 import PropertyTypesSelect from "./property-types-select";
@@ -24,14 +23,12 @@ const BuyerOnboarding = ({
   const [radius, setRadius] = useState(0);
   const [minimumPrice, setMinimumPrice] = useState(0);
   const [maximumPrice, setMaximumPrice] = useState(0);
-  const [address, setAddress] = useState<Address | undefined>(
-    undefined
-  );
+  const [address, setAddress] = useState<Address | undefined>(undefined);
   const [propertyTypes, setPropertyTypes] = useState<string[]>([]);
   const [buyingPeriod, setBuyingPeriod] = useState<string | undefined>(
     undefined
   );
-  const updateProfileMutation = useUpdateProfile();
+  const createProfileMutation = useCreateProfile();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -50,8 +47,7 @@ const BuyerOnboarding = ({
     if (!user) return;
 
     try {
-      await updateProfileMutation.mutateAsync({
-        id: user.profileId,
+      await createProfileMutation.mutateAsync({
         type: "BUYER",
         firstName,
         lastName,

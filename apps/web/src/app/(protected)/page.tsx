@@ -16,7 +16,5 @@ export default function Home() {
 
   if (!user) return redirect("/login");
 
-  if (user.profile?.type === "DEFAULT") return redirect("/onboarding");
-
-  return redirect("/dashboard");
+  return redirect("/onboarding");
 }

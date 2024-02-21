@@ -1,53 +1,31 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
-import { UserPrivilege } from "@prisma/client";
 
-export const userSchema = z.object({
+export const profileUserSchema = z.object({
   id: z.string(),
-  name: z.string(),
-  email: z.string(),
-  password: z.string().nullish(),
-  imageUrl: z.string().nullish(),
-  privilege: z.nativeEnum(UserPrivilege).default("USER"),
+  profileId: z.string(),
+  userId: z.string(),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullish(),
 });
 
-export type User = z.infer<typeof userSchema>;
+export type ProfileUser = z.infer<typeof profileUserSchema>;
 
-export const userApi = apiBuilder()
-  .addEndpoint({
-    method: "get",
-    path: "/users/current",
-    alias: "getCurrentUser",
-    description: "Get current user",
-    response: userSchema,
-    status: 200,
-    errors: [
-      {
-        status: 500,
-        schema: schemaError,
-      },
-      {
-        status: 404,
-        schema: schemaError,
-      },
-    ],
-  })
+export const profileUserApi = apiBuilder()
   .addEndpoint({
     method: "post",
-    path: "/users",
-    alias: "createUser",
-    description: "Create user",
-    response: userSchema,
+    path: "/profile-users",
+    alias: "createProfileUser",
+    description: "Create profile user",
+    response: profileUserSchema,
     status: 201,
     parameters: [
       {
         name: "New User",
         type: "Body",
-        schema: userSchema,
+        schema: profileUserSchema,
       },
     ],
     errors: [
@@ -59,10 +37,10 @@ export const userApi = apiBuilder()
   })
   .addEndpoint({
     method: "get",
-    alias: "getUser",
-    path: "/users/:userId",
-    description: "Get User",
-    response: userSchema,
+    alias: "getProfileUser",
+    path: "/profile-users/:userId",
+    description: "Get Profile User",
+    response: profileUserSchema,
     parameters: [
       {
         type: "Path",
@@ -79,9 +57,9 @@ export const userApi = apiBuilder()
   })
   .addEndpoint({
     method: "patch",
-    path: "/users/:userId",
-    alias: "updateUser",
-    description: "Update User",
+    path: "/profile-users/:userId",
+    alias: "updateProfileUser",
+    description: "Update Profile User",
     status: 204,
     response: z.object({}),
     parameters: [
@@ -93,7 +71,7 @@ export const userApi = apiBuilder()
       {
         type: "Body",
         name: "user",
-        schema: userSchema.partial(),
+        schema: profileUserSchema.partial(),
       },
     ],
     errors: [
@@ -109,10 +87,10 @@ export const userApi = apiBuilder()
   })
   .addEndpoint({
     method: "delete",
-    path: "/users/:userId",
-    description: "Delete User",
+    path: "/profile-users/:userId",
+    description: "Delete Profile User",
     status: 204,
-    alias: "deleteUser",
+    alias: "deleteProfileUser",
     response: z.object({}),
     parameters: [
       {

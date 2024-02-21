@@ -2,13 +2,12 @@ import { LoadingView } from "@nexus/ui";
 import { Address } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { useCurrentUser } from "../user/use-current-user";
 import AddressSearch from "../address/address-search";
 import IdentityInputs from "./identity-inputs";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
-import { useUpdateProfile } from "./use-update-profile";
+import { useCreateProfile } from "./use-create-profile";
 import BrokerInputs from "./broker-inputs";
 
 const BrokerOnboarding = ({
@@ -21,7 +20,7 @@ const BrokerOnboarding = ({
   const { data: user } = useCurrentUser();
   const [radius, setRadius] = useState(0);
   const [address, setAddress] = useState<Address | undefined>(undefined);
-  const updateProfileMutation = useUpdateProfile();
+  const createProfileMutation = useCreateProfile();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -43,8 +42,7 @@ const BrokerOnboarding = ({
     if (!user) return;
 
     try {
-      await updateProfileMutation.mutateAsync({
-        id: user.profileId,
+      await createProfileMutation.mutateAsync({
         type: "BROKER",
         firstName,
         lastName,

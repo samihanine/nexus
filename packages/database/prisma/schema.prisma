@@ -27,10 +27,10 @@ model User {
   updatedAt      DateTime       @updatedAt
   deletedAt      DateTime?
   loginHistories LoginHistory[]
-  userProfiles   UserProfile[]
+  profileUsers   ProfileUser[]
 }
 
-model UserProfile {
+model ProfileUser {
   id        String  @id @default(uuid())
   userId    String
   profile   Profile @relation(fields: [profileId], references: [id])
@@ -80,7 +80,7 @@ model Profile {
   deletedAt            DateTime?
   propertyId           String?               @unique
   property             Property?
-  userProfiles         UserProfile[]
+  profileUsers         ProfileUser[]
   conversationProfiles ConversationProfile[]
   messages             Message[]
 }

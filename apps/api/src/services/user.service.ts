@@ -1,5 +1,4 @@
 import prisma from "../lib/prisma";
-import { Prisma } from "@prisma/client";
 
 export const getUserById = async (userId: string) => {
   return await prisma.user.findUnique({
@@ -16,21 +15,11 @@ export const createUser = async (newUser: {
   provider: string;
   password?: string;
 }) => {
-  const profile = await prisma.profile.create({
-    data: {
-      imageUrl: newUser.imageUrl,
-      firstName: newUser.name,
-      lastName: "",
-      type: "DEFAULT",
-    },
-  });
-
   const user = await prisma.user.create({
     data: {
       name: newUser.name,
       email: newUser.email,
       imageUrl: newUser.imageUrl,
-      profileId: profile.id,
       provider: newUser.provider,
       password: newUser.password,
     },

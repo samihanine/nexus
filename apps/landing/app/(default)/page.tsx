@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "Home - Simple",
-  description: "Page description",
+  title: "Immovia",
+  description:
+    "Immovia is a real estate platform that helps you find the perfect home.",
 };
 
 import Hero from "@/components/hero-home";
