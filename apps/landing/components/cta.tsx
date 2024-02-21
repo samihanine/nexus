@@ -56,7 +56,7 @@ export default function Cta() {
             outil innovant afin de saisir des opportunités immobilières
             exclusives.
           </p>
-          <div className="max-w-md mx-auto">
+          <div className="max-w-xl mx-auto">
             <JoinWaitlist />
           </div>
         </div>

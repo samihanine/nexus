@@ -36,10 +36,7 @@ export default function Faqs() {
               les propriétés et les clients, augmentant ainsi leur efficacité et
               leurs ventes.
             </Accordion>
-            <Accordion
-              title="Immovia est-elle accessible partout au Canada?"
-              active
-            >
+            <Accordion title="Immovia est-elle accessible partout au Canada?">
               Actuellement, Immovia se concentre sur le marché québécois, avec
               des plans d'expansion à travers tout le Canada dans un avenir
               proche. Inscrivez-vous à notre newsletter pour être informé de
