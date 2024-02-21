@@ -18,7 +18,7 @@ export default function Contact() {
       setLoading(true);
 
       const response = await fetch(
-        process.env.NEXT_PUBLIC_API_HOST + "/contact",
+        process.env.NEXT_PUBLIC_API_URL + "/contact",
         {
           method: "POST",
           body: JSON.stringify({ email, name, phone, message }),

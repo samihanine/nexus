@@ -1,24 +1,24 @@
 "use client";
 
-import { Button, Input } from "@nexus/ui";
+import { Button, Input, Select } from "@nexus/ui";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function JoinWaitlist() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [type, setType] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       setLoading(true);
-
       const response = await fetch(
-        process.env.NEXT_PUBLIC_API_HOST + "/waitlist",
+        process.env.NEXT_PUBLIC_API_URL + "/waitlist",
         {
           method: "POST",
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email, type }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -50,6 +50,14 @@ export default function JoinWaitlist() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <Select required value={type} onChange={(e) => setType(e.target.value)}>
+        <option value="" disabled selected>
+          Vous êtes...
+        </option>
+        <option value="BUYER">Acheteur</option>
+        <option value="SELLER">Vendeur</option>
+        <option value="BROKER">Courtier</option>
+      </Select>
       <Button className="sm:h-full sm:!w-fit" type="submit" disabled={loading}>
         {loading ? "Ajout en cours..." : "Rejoindre la liste d'attente"}
       </Button>

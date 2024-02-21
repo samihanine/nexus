@@ -266,6 +266,7 @@ model ConversationProfile {
 model Waitlist {
   id        String    @id @default(uuid())
   email     String    @unique
+  type      String    @default("BUYER")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?

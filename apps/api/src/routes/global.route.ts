@@ -44,6 +44,7 @@ globalRouter.post("/waitlist", async (request, response, next) => {
       await prisma.waitlist.create({
         data: {
           email: request.body.email,
+          type: request.body.type,
         },
       });
     }

@@ -52,6 +52,7 @@ export const globalApi = apiBuilder({
         name: "body",
         schema: z.object({
           email: z.string(),
+          type: z.string(),
         }),
       },
     ],
