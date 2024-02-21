@@ -165,7 +165,7 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={"/images/features-home-bg-01.png"}
+                    src={"/images/features-home-bg-01.webp"}
                     width={500}
                     height={500}
                     alt="Features bg"
@@ -188,7 +188,7 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={"/images/features-home-bg-02.png"}
+                    src={"/images/features-home-bg-02.webp"}
                     width={500}
                     height={500}
                     alt="Features bg"
@@ -211,7 +211,7 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={"/images/features-home-bg-03.png"}
+                    src={"/images/features-home-bg-03.webp"}
                     width={500}
                     height={500}
                     alt="Features bg"

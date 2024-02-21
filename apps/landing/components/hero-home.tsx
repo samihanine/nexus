@@ -47,7 +47,7 @@ export default function HeroHome() {
             </div>
             <Image
               className="mt-12 md:mx-auto md:w-2/3 lg:mt-0 lg:ml-0 lg:w-1/2"
-              src="/images/hero-home.png"
+              src="/images/hero-home.webp"
               alt="tailus stats and login components"
               width="1865"
               height="1750"

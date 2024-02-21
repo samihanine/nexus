@@ -28,7 +28,7 @@ export default function FeaturesWorld() {
               {/* Globe image */}
               <Image
                 className="relative"
-                src={"/images/planet.png"}
+                src={"/images/planet.webp"}
                 width={600}
                 height={600}
                 alt="Planet"

@@ -14,7 +14,7 @@ export const metadata = {
   description:
     "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins au Québec.",
   openGraph: {
-    images: "/images/hero-home.png",
+    images: "/images/hero-home.webp",
   },
   keywords: [
     "Immovia",

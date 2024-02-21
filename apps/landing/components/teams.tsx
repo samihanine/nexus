@@ -18,7 +18,7 @@ export default function Teams() {
               <div className="flex flex-col items-center">
                 <Image
                   className="rounded-full mb-4"
-                  src={"/images/team-member-01.png"}
+                  src={"/images/team-member-01.webp"}
                   width={120}
                   height={120}
                   alt="Team member 01"
@@ -46,7 +46,7 @@ export default function Teams() {
               <div className="flex flex-col items-center">
                 <Image
                   className="rounded-full mb-4"
-                  src={"/images/team-member-02.png"}
+                  src={"/images/team-member-02.webp"}
                   width={120}
                   height={120}
                   alt="Team member 02"
@@ -74,7 +74,7 @@ export default function Teams() {
               <div className="flex flex-col items-center">
                 <Image
                   className="rounded-full mb-4"
-                  src={"/images/team-member-03.png"}
+                  src={"/images/team-member-03.webp"}
                   width={120}
                   height={120}
                   alt="Team member 03"

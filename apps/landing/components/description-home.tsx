@@ -11,7 +11,7 @@ export default function DescriptionHome() {
           <div className="md:w-1/2 lg:w-3/5">
             <Image
               className="h-full rounded-3xl object-cover md:-ml-8"
-              src="/images/woman.png"
+              src="/images/woman.webp"
               alt="working woman"
               loading="lazy"
               width="1399"
