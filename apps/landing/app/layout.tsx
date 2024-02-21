@@ -12,7 +12,7 @@ const inter = DM_Sans({
 export const metadata = {
   title: "Immovia",
   description:
-    "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins.",
+    "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins au Québec.",
   openGraph: {
     images: "/images/hero-home.png",
   },

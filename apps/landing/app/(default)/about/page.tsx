@@ -1,7 +1,5 @@
 export const metadata = {
-  title: "A propos | Immovia",
-  description:
-    "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins.",
+  title: "Notre équipe | Immovia",
 };
 
 import AboutIntro from "../../../components/about-intro";

@@ -20,7 +20,7 @@ export default function FeaturesHome() {
   }, []);
 
   return (
-    <section className="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0 mt-28">
+    <section className="mx-auto w-full px-4 sm:px-12 xl:max-w-6xl xl:px-0 mt-28">
       <H2 className="text-center mb-3">Nos services sur mesure</H2>
       <Muted className="text-center max-w-3xl mx-auto mb-14 !text-base">
         Immovia simplifie la complexité de l'immobilier en fournissant des
