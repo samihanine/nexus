@@ -14,7 +14,7 @@ export const metadata = {
       "nexus is a lead generation tool that helps you find and contact leads with AI.",
     creator: "Sami Hanine",
   },
-  metadataBase: process.env.NEXT_PUBLIC_BASE_URL || "",
+  metadataBase: process.env.NEXT_PUBLIC_APP_URL || "",
 };
 
 export default async function RootLayout({

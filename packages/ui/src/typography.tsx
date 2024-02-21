@@ -31,7 +31,7 @@ export const H3 = (props: React.ComponentPropsWithoutRef<"h3">) => (
 );
 
 export const Strong = (props: React.ComponentPropsWithoutRef<"strong">) => (
-  <strong {...props} className={cn("font-semibold", props.className)} />
+  <strong {...props} className={cn("font-medium", props.className)} />
 );
 
 export const H4 = (props: React.ComponentPropsWithoutRef<"h4">) => (

@@ -1,13 +1,12 @@
-import { Logo } from "@nexus/ui";
+import { Logo, P, Strong } from "@nexus/ui";
 import Link from "next/link";
-import JoinWaitlist from "./join-waitlist";
 
 export default function Footer() {
   return (
     <footer>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Top area: Blocks */}
-        <div className="flex justify-between gap-8 py-8 md:py-12 border-t border-gray-200">
+        <div className="flex flex-col justify-between sm:flex-row gap-8 py-8 md:py-12 border-t border-gray-200">
           {/* 1st block */}
           <div className="sm:col-span-12 lg:col-span-3">
             <div className="mb-2">
@@ -47,7 +46,7 @@ export default function Footer() {
                   href="/about"
                   className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out"
                 >
-                  A propos
+                  Notre équipe
                 </Link>
               </li>
               <li className="mb-2">
@@ -62,11 +61,17 @@ export default function Footer() {
           </div>
 
           {/* 5th block */}
-          <div className="sm:col-span-6 md:col-span-3 lg:col-span-3">
-            <h6 className="text-gray-800 font-medium mb-2">
-              Rejoindre notre liste d'attente
-            </h6>
-            <JoinWaitlist />
+          <div className=" flex flex-col gap-3">
+            <h6 className="text-gray-800 font-medium">Contact</h6>
+            <p className="text-sm">
+              Email:{" "}
+              <a
+                href="mailto:contact@immovia.ca"
+                className="text-primary font-medium hover:underline"
+              >
+                contact@immovia.ca
+              </a>
+            </p>
           </div>
         </div>
 

@@ -119,7 +119,7 @@ export const authWithGoogleCallback = async ({
     process.env.SECRET_KEY as string
   );
 
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/login?accessToken=${accessToken}`;
+  return `${process.env.NEXT_PUBLIC_APP_URL}/login?accessToken=${accessToken}`;
 };
 
 export const signUpWithPassword = async ({

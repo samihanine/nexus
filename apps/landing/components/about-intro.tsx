@@ -7,11 +7,13 @@ export default function AboutIntro() {
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <H1 className="mb-4">L'équipe derrière Immovia</H1>
+            <H1 className="mb-4">L’équipe d’Immovia</H1>
             <Muted>
-              We have transformed product development, making it faster,
-              simpler... better! That's why in just three years we now help more
-              developers build projects than anyone else.
+              Immovia est animée par une équipe déterminée à enrichir et à
+              simplifier chaque facette du marché immobilier. C'est la
+              persévérance, l'innovation et l'esprit collaboratif qui nous
+              guident afin de devenir une référence en matière de connexion
+              immobilière.
             </Muted>
           </div>
         </div>

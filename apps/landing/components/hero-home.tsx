@@ -41,7 +41,7 @@ export default function HeroHome() {
               <p className="mt-12 text-center text-lg text-gray-600 dark:text-gray-300 sm:text-xl lg:text-left mb-12">
                 Avec Immovia, soyez mis en relation avec les bonnes personnes au
                 bon moment pour bénéficier des meilleures conditions selon vos
-                besoins.
+                besoins au Québec.
               </p>
               <JoinWaitlist />
             </div>

@@ -10,7 +10,7 @@ import {
 import { Zodios } from "@zodios/core";
 import { pluginToken } from "@zodios/plugins";
 
-const API_HOST = process.env.NEXT_PUBLIC_API_HOST || "http://localhost:3001";
+const API_HOST = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
 
 const zodios = new Zodios(API_HOST, [
   ...userApi,

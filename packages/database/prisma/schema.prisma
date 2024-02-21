@@ -262,3 +262,11 @@ model ConversationProfile {
   updatedAt      DateTime     @updatedAt
   deletedAt      DateTime?
 }
+
+model Waitlist {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}

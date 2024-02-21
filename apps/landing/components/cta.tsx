@@ -21,8 +21,8 @@ export default function Cta() {
           <Logo className="w-14 h-14" />
         </div>
         <div className="relative -mt-12">
-          <h2 className="mb-8 text-5xl font-bold text-gray-900">
-            Improve your
+          <h2 className="mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+            Commencez l'aventure{" "}
             <span className="relative">
               <svg
                 className="absolute inset-x-0 -bottom-1 w-full opacity-50 text-primary"
@@ -47,13 +47,14 @@ export default function Cta() {
                   d="M58.1 11.1c-1 0-1.9 0-2.3.2.2.2 2.3.6 2.3-.2zM208.2 13.3c-.1 0-.3.1-.4.1.1 0 .3 0 .4-.1zM216.3 12.9c-.1-.1-.2-.2-.4-.3 0 .3.1.5.4.3zM132.6 11.5zM178.5 13.7c.7-.4 1-.7 1-1-.4.1-.7.3-1 1zM163 12.6c-.1.1-.2.1-.3.2.3-.1.3-.2.3-.2zM130.2 12c.7-.4 1.6-.3 2.4-.5-.7.2-1.9-.3-2.4.5zM226.1 11.4l-.7.6.8-.4zM218.6 12c-.3-.1-1.7.3-1.3.6.4-.3.9-.5 1.3-.6zM189.6 11.4l-.3.6.7-.5z"
                 />
               </svg>
-              <span className="relative px-2 text-primary">workflow</span>
+              <span className="relative px-2 text-primary">Immovia</span>
             </span>
           </h2>
           <p className="mb-12 mt-6 text-gray-600 dark:text-gray-300 md:mx-auto md:w-5/6 lg:w-1/2">
-            Saepe nulla ab nobis itaque corporis fuga illo doloribus sequi esse
-            aspernatur impedit nihil quisquam, voluptates placeat architecto
-            adipisci id cum enim.
+            Rejoignez notre liste d'attente pour obtenir un accès privilégié dès
+            le lancement d'Immovia. Soyez les premiers à bénéficier de notre
+            outil innovant afin de saisir des opportunités immobilières
+            exclusives.
           </p>
           <div className="max-w-md mx-auto">
             <JoinWaitlist />

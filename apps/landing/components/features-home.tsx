@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
-import { H2, Muted, P } from "@nexus/ui";
+import { H2, Muted, H3 } from "@nexus/ui";
 
 export default function FeaturesHome() {
   const [tab, setTab] = useState<number>(1);
@@ -22,7 +22,7 @@ export default function FeaturesHome() {
   return (
     <section className="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0 mt-28">
       <H2 className="text-center mb-3">Nos services sur mesure</H2>
-      <Muted className="text-center max-w-3xl mx-auto mb-14">
+      <Muted className="text-center max-w-3xl mx-auto mb-14 !text-base">
         Immovia simplifie la complexité de l'immobilier en fournissant des
         solutions pour chaque acteur du marché. Notre plateforme intuitive vous
         ouvre les portes d'une expérience sans précédent.
@@ -30,17 +30,15 @@ export default function FeaturesHome() {
       {/* Section content */}
       <div className="md:grid md:grid-cols-12 md:gap-6">
         {/* Content */}
-        <div
-          className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6 md:mt-6"
-          data-aos="fade-right"
-        >
+        <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6 md:mt-6">
           <div className="md:pr-4 lg:pr-12 xl:pr-16 mb-8">
-            <h3 className="h3 mb-3">Powerful suite of tools</h3>
-            <p className="text-xl text-gray-600">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa.
-            </p>
+            <H3 className="mb-3">
+              Pour chaque profil, nous avons la solution.
+            </H3>
+            <Muted className="!text-base">
+              Ayez accès à des fonctionnalités dédiées conçues pour répondre aux
+              besoins de chaque acteur de l’immobilier.
+            </Muted>
           </div>
           {/* Tabs buttons */}
           <div className="mb-8 md:mb-0">
@@ -57,11 +55,11 @@ export default function FeaturesHome() {
             >
               <div>
                 <div className="font-bold leading-snug tracking-tight mb-1">
-                  Building the Simple ecosystem
+                  Vous êtes un courtier immobilier
                 </div>
                 <div className="text-gray-600">
-                  Take collaboration to the next level with security and
-                  administrative features built for teams.
+                  Vente et acquisition facilitées pour les courtiers. Immovia
+                  révolutionne la gestion clientèle et la prospection.
                 </div>
               </div>
               <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow shrink-0 ml-3">
@@ -87,11 +85,11 @@ export default function FeaturesHome() {
             >
               <div>
                 <div className="font-bold leading-snug tracking-tight mb-1">
-                  Building the Simple ecosystem
+                  Vous êtes un acheteur
                 </div>
                 <div className="text-gray-600">
-                  Take collaboration to the next level with security and
-                  administrative features built for teams.
+                  Les acheteurs reçoivent des offres personnalisées, avec un
+                  accès direct aux dernières nouveautés immobilières.
                 </div>
               </div>
               <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow shrink-0 ml-3">
@@ -120,23 +118,23 @@ export default function FeaturesHome() {
             >
               <div>
                 <div className="font-bold leading-snug tracking-tight mb-1">
-                  Building the Simple ecosystem
+                  Vous êtes un vendeur
                 </div>
                 <div className="text-gray-600">
-                  Take collaboration to the next level with security and
-                  administrative features built for teams.
+                  Immovia offre aux vendeurs les outils pour présenter leurs
+                  biens et cibler directement les acheteurs.
                 </div>
               </div>
               <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow shrink-0 ml-3">
                 <svg
-                  className="w-3 h-3 fill-current"
-                  viewBox="0 0 12 12"
+                  viewBox="0 0 17 17"
+                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="w-3 h-3 fill-current"
                 >
                   <path
-                    d="M11.334 8.06a.5.5 0 00-.421-.237 6.023 6.023 0 01-5.905-6c0-.41.042-.82.125-1.221a.5.5 0 00-.614-.586 6 6 0 106.832 8.529.5.5 0 00-.017-.485z"
-                    fill="#191919"
-                    fillRule="nonzero"
+                    d="M6.75917 14.0987V12.0725C6.75917 11.5553 7.18153 11.136 7.70255 11.136H9.6071C9.8573 11.136 10.0973 11.2346 10.2742 11.4103C10.4511 11.5859 10.5505 11.8241 10.5505 12.0725V14.0987C10.5489 14.3137 10.6338 14.5205 10.7864 14.6731C10.9391 14.8257 11.1467 14.9115 11.3633 14.9115H12.6627C13.2696 14.9131 13.8521 14.6748 14.2818 14.2494C14.7114 13.824 14.9529 13.2463 14.9529 12.6438V6.87156C14.9529 6.38491 14.7356 5.9233 14.3596 5.61108L9.93936 2.10649C9.17045 1.49202 8.06877 1.51186 7.32282 2.15361L3.00346 5.61108C2.60967 5.9141 2.3743 6.37708 2.36267 6.87156V12.6379C2.36267 13.8936 3.38803 14.9115 4.65288 14.9115H5.92259C6.37248 14.9115 6.73811 14.5512 6.74137 14.1046L6.75917 14.0987Z"
+                    fill="currentColor"
                   />
                 </svg>
               </div>
@@ -149,7 +147,6 @@ export default function FeaturesHome() {
           <div className="transition-all">
             <div
               className="relative flex flex-col text-center lg:text-right"
-              data-aos="zoom-y-out"
               ref={tabs}
             >
               {/* Item 1 */}
@@ -168,34 +165,10 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={""}
+                    src={"/images/features-home-bg-01.png"}
                     width={500}
-                    height={375}
+                    height={500}
                     alt="Features bg"
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float"
-                    src={"/images/features-home-element-01.png"}
-                    width={500}
-                    height={147}
-                    alt="Element 01"
-                    style={{ top: "22%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float animation-delay-500"
-                    src={"/images/features-home-element-02.png"}
-                    width={500}
-                    height={158}
-                    alt="Element 02"
-                    style={{ top: "39%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 bottom-0 transform animate-float animation-delay-1000"
-                    src={"/images/features-home-element-03.png"}
-                    width={500}
-                    height={167}
-                    alt="Element 03"
-                    style={{ top: "77%" }}
                   />
                 </div>
               </Transition>
@@ -215,34 +188,10 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={"/images/features-home-bg-01.png"}
+                    src={"/images/features-home-bg-02.png"}
                     width={500}
-                    height={375}
+                    height={500}
                     alt="Features bg"
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 bottom-0 transform animate-float animation-delay-1000"
-                    src={"/images/features-home-element-03.png"}
-                    width={500}
-                    height={167}
-                    alt="Element 03"
-                    style={{ top: "18%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float animation-delay-500"
-                    src={"/images/features-home-element-02.png"}
-                    width={500}
-                    height={158}
-                    alt="Element 02"
-                    style={{ top: "40%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float"
-                    src={"/images/features-home-element-01.png"}
-                    width={500}
-                    height={147}
-                    alt="Element 01"
-                    style={{ top: "79%" }}
                   />
                 </div>
               </Transition>
@@ -262,34 +211,10 @@ export default function FeaturesHome() {
                 <div className="relative inline-flex flex-col">
                   <Image
                     className="md:max-w-none mx-auto rounded"
-                    src={"/images/features-home-bg-01.png"}
+                    src={"/images/features-home-bg-03.png"}
                     width={500}
-                    height={375}
+                    height={500}
                     alt="Features bg"
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float"
-                    src={"/images/features-home-element-01.png"}
-                    width={500}
-                    height={147}
-                    alt="Element 01"
-                    style={{ top: "22%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 transform animate-float animation-delay-500"
-                    src={"/images/features-home-element-02.png"}
-                    width={500}
-                    height={158}
-                    alt="Element 02"
-                    style={{ top: "39%" }}
-                  />
-                  <Image
-                    className="md:max-w-none absolute w-full left-0 bottom-0 transform animate-float animation-delay-1000"
-                    src={"/images/features-home-element-03.png"}
-                    width={500}
-                    height={167}
-                    alt="Element 03"
-                    style={{ top: "77%" }}
                   />
                 </div>
               </Transition>

@@ -13,6 +13,25 @@ export const metadata = {
   title: "Immovia",
   description:
     "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins.",
+  openGraph: {
+    images: "/images/hero-home.png",
+  },
+  keywords: [
+    "Immovia",
+    "immobilier",
+    "plateforme",
+    "québec",
+    "connecter",
+    "acheteurs",
+    "vendeurs",
+    "courtiers",
+    "canada",
+    "inscription",
+    "tarifs",
+    "abonnement",
+    "liste d'attente",
+  ],
+  metadataBase: process.env.NEXT_PUBLIC_LANDING_URL || "",
 };
 
 export default function RootLayout({

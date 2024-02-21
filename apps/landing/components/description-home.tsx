@@ -7,7 +7,7 @@ export default function DescriptionHome() {
       id="about"
     >
       <div className="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
-        <div className="items-center justify-center space-y-6 md:flex md:gap-6 md:space-y-0">
+        <div className="items-center justify-center space-y-6 md:flex-row flex-col-reverse flex md:gap-6 md:space-y-0">
           <div className="md:w-1/2 lg:w-3/5">
             <Image
               className="h-full rounded-3xl object-cover md:-ml-8"
