@@ -1,6 +1,7 @@
 import "./css/style.css";
 
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import Header from "@/components/ui/header";
 
@@ -31,6 +32,8 @@ export default function RootLayout({
           {children}
         </div>
       </body>
+
+      <GoogleAnalytics gaId="G-MBNV91Z78Q" />
     </html>
   );
 }
