@@ -49,7 +49,7 @@ export default function PropertiesDetails(props: Property) {
         stories={props.stories}
         livableAreaInSquareFeet={props.livableAreaInSquareFeet}
         landAreaInSquareFeet={props.landAreaInSquareFeet}
-        mlsNumber={props.mlsNumber}
+        mlsNumber={props.mlsNumber || undefined}
         garages={props.garages}
         rooms={props.rooms}
         createdAt={new Date(props.createdAt)}
@@ -83,7 +83,7 @@ function PropertySummary(props: {
   stories: number;
   livableAreaInSquareFeet: number;
   landAreaInSquareFeet: number;
-  mlsNumber: string;
+  mlsNumber?: string;
   garages: number;
   rooms: number;
   createdAt: Date;
