@@ -46,12 +46,9 @@ const Header = () => {
     return <></>;
   }
 
-  if (!profile || !user) {
-    return <></>;
-  }
-
   const handleSwitchProfile = async (id: string) => {
     try {
+      if (!user) return;
       await updateUserMutation.mutateAsync({
         id: user.id,
         currentProfileId: id,
@@ -69,6 +66,10 @@ const Header = () => {
     href: string;
     Icon: React.ComponentProps<any>;
   }[] = (() => {
+    if (!profile) {
+      return [];
+    }
+
     if (profile.type === "BROKER") {
       return [
         { label: "Prospection", href: "/profiles", Icon: UserGroupIcon },
@@ -97,6 +98,10 @@ const Header = () => {
   })();
 
   const PopoverContent = () => {
+    if (!profile) {
+      return <></>;
+    }
+
     return (
       <div className="flex w-full flex-col gap-3 rounded-md p-3 bg-background sm:w-56">
         {profiles.map((p) => (
@@ -139,44 +144,58 @@ const Header = () => {
     <>
       {(media.width || 0) > 768 && (
         <div className="border-b border-b-input !p-0 !w-full">
-          <div className="hidden md:flex py-3 w-full items-center justify-between bg-background max-w-7xl px-10 mx-auto">
+          <div className="flex py-3 w-full items-center justify-between bg-background max-w-7xl px-10 mx-auto">
             <Link href="/">
               <LogoText />
             </Link>
 
-            <div className="flex items-center gap-8">
-              {tabs.map((tab) => (
-                <Link key={tab.href} href={tab.href}>
-                  {tab.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <ProfileCard
-                imageUrl={profile.imageUrl || undefined}
-                type={profile.type}
-                firstName={profile.firstName}
-                lastName={profile.lastName}
-                id={profile.id}
-              />
-
-              <Popover
-                content={<PopoverContent />}
-                align="end"
-                openPopover={openPopover}
-                setOpenPopover={setOpenPopover}
-              >
-                <div>
-                  {openPopover && <IconButton Icon={ChevronUpIcon} />}
-                  {!openPopover && <IconButton Icon={ChevronDownIcon} />}
+            {user && (
+              <>
+                <div className="flex items-center gap-8">
+                  {tabs.map((tab) => (
+                    <Link key={tab.href} href={tab.href}>
+                      {tab.label}
+                    </Link>
+                  ))}
                 </div>
-              </Popover>
 
-              <Link href="/settings">
-                <IconButton Icon={Cog8ToothIcon} />
+                <div className="flex items-center gap-3">
+                  {profile && (
+                    <ProfileCard
+                      imageUrl={profile.imageUrl || undefined}
+                      type={profile.type}
+                      firstName={profile.firstName}
+                      lastName={profile.lastName}
+                      id={profile.id}
+                    />
+                  )}
+
+                  {profile && (
+                    <Popover
+                      content={<PopoverContent />}
+                      align="end"
+                      openPopover={openPopover}
+                      setOpenPopover={setOpenPopover}
+                    >
+                      <div>
+                        {openPopover && <IconButton Icon={ChevronUpIcon} />}
+                        {!openPopover && <IconButton Icon={ChevronDownIcon} />}
+                      </div>
+                    </Popover>
+                  )}
+
+                  <Link href="/settings">
+                    <IconButton Icon={Cog8ToothIcon} />
+                  </Link>
+                </div>
+              </>
+            )}
+
+            {!user && (
+              <Link href="/login">
+                <Button className="!w-fit !px-20">Se connecter</Button>
               </Link>
-            </div>
+            )}
           </div>
         </div>
       )}
@@ -193,18 +212,20 @@ const Header = () => {
             <Cog8ToothIcon className="w-10 h-10" />
           </Link>
 
-          <Popover
-            content={<PopoverContent />}
-            align="end"
-            openPopover={openPopover}
-            setOpenPopover={setOpenPopover}
-          >
-            <Avatar
-              src={profile.imageUrl || undefined}
-              className="w-10 h-10 cursor-pointer"
-              onClick={() => setOpenPopover(!openPopover)}
-            />
-          </Popover>
+          {profile && (
+            <Popover
+              content={<PopoverContent />}
+              align="end"
+              openPopover={openPopover}
+              setOpenPopover={setOpenPopover}
+            >
+              <Avatar
+                src={profile.imageUrl || undefined}
+                className="w-10 h-10 cursor-pointer"
+                onClick={() => setOpenPopover(!openPopover)}
+              />
+            </Popover>
+          )}
         </nav>
       )}
     </>
