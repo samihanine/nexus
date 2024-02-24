@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
-import { useCreateProfile } from "./use-create-profile";
+import { useCreateProfile } from "../profile/use-create-profile";
 import { useCurrentUser } from "../user/use-current-user";
 import BudgetSelect from "./budget-select";
 import PropertyTypesSelect from "./property-types-select";

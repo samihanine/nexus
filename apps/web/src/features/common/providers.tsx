@@ -17,7 +17,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         mutations: {
           onError: (error) => {
             console.error(error);
-            toast.error("Une erreur est survenue. Veuillez réessayer plus tard.");
+            toast.error(
+              "Une erreur est survenue. Veuillez réessayer plus tard."
+            );
           },
         },
       },
@@ -25,7 +27,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <Toaster />
       <QueryClientProvider client={client}>{children}</QueryClientProvider>
     </ThemeProvider>

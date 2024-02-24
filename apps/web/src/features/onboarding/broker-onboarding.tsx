@@ -7,7 +7,7 @@ import AddressSearch from "../address/address-search";
 import IdentityInputs from "./identity-inputs";
 import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
-import { useCreateProfile } from "./use-create-profile";
+import { useCreateProfile } from "../profile/use-create-profile";
 import BrokerInputs from "./broker-inputs";
 
 const BrokerOnboarding = ({
