@@ -5,3 +5,5 @@ export * from "./gmail";
 export * from "./quote";
 export * from "./rounded-arrow-left";
 export * from "./rounded-arrow-right";
+export * from "./bed";
+export * from "./bathroom";

@@ -47,7 +47,7 @@ const BuyerOnboarding = ({
     if (!user) return;
 
     try {
-      await createProfileMutation.mutateAsync({
+      const profile = await createProfileMutation.mutateAsync({
         type: "BUYER",
         firstName,
         lastName,
@@ -63,7 +63,7 @@ const BuyerOnboarding = ({
         },
       });
 
-      router.push("/dashboard");
+      router.push(`/conversations`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

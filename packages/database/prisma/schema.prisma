@@ -14,29 +14,34 @@ enum UserPrivilege {
 }
 
 model User {
-  id             String         @id @default(uuid())
-  name           String
-  email          String         @unique
-  emailVerified  DateTime?
-  imageUrl       String?
-  privilege      UserPrivilege  @default(USER)
-  provider       String         @default("PASSWORD")
-  password       String?
-  hash           String?
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  deletedAt      DateTime?
-  loginHistories LoginHistory[]
-  profileUsers   ProfileUser[]
+  id               String         @id @default(uuid())
+  name             String
+  email            String         @unique
+  emailVerified    DateTime?
+  imageUrl         String?
+  privilege        UserPrivilege  @default(USER)
+  provider         String         @default("PASSWORD")
+  password         String?
+  hash             String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  deletedAt        DateTime?
+  currentProfileId String?
+  loginHistories   LoginHistory[]
+  profileUsers     ProfileUser[]
+}
+
+enum ProfileUserRole {
+  ADMINISTRATOR
 }
 
 model ProfileUser {
-  id        String  @id @default(uuid())
+  id        String          @id @default(uuid())
   userId    String
-  profile   Profile @relation(fields: [profileId], references: [id])
+  profile   Profile         @relation(fields: [profileId], references: [id])
   profileId String
-  user      User    @relation(fields: [userId], references: [id])
-  role      String
+  user      User            @relation(fields: [userId], references: [id])
+  role      ProfileUserRole @default(ADMINISTRATOR)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -130,16 +135,16 @@ model Seller {
 }
 
 model Buyer {
-  id            String    @id @default(uuid())
+  id            String         @id @default(uuid())
   minimumPrice  Float
   maximumPrice  Float
   buyingPeriod  String
   latitude      Float
   longitude     Float
   radius        Float
-  propertyTypes String[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  propertyTypes PropertyType[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   deletedAt     DateTime?
 
   brokerId  String?
@@ -180,36 +185,48 @@ model Agency {
   brokers   Broker[]
 }
 
+enum PropertyType {
+  HOUSE
+  CONDO
+  LAND
+  MULTIFAMILY
+  TOWNHOUSE
+}
+
 model Property {
-  id              String    @id @default(uuid())
-  title           String
-  description     String    @db.Text
-  imageUrl        String?   @db.Text
-  price           Float     @default(0)
-  currency        String
-  rent            Float     @default(0)
-  parkingSpots    Int
-  yearBuilt       Int
-  stories         Int
-  mlsNumber       String
-  garages         Int
-  landSize        Int
-  rooms           Int
-  bedrooms        Int
-  bathrooms       Int
-  squareFeet      Int
-  propertyType    String
-  hasRefrigerator Boolean
-  hasDishwasher   Boolean
-  hasSauna        Boolean
-  hasPool         Boolean
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  deletedAt       DateTime?
-  addressId       String
-  address         Address   @relation(fields: [addressId], references: [id])
-  profileId       String    @unique
-  profile         Profile   @relation(fields: [profileId], references: [id])
+  id                      String       @id @default(uuid())
+  type                    PropertyType @default(HOUSE)
+  description             String       @db.Text
+  mainImageUrl            String?      @db.Text
+  imageUrls               String[]
+  price                   Float        @default(0)
+  currency                String
+  rent                    Float        @default(0)
+  parkingSpots            Int
+  yearBuilt               Int
+  stories                 Int
+  mlsNumber               String?
+  garages                 Int
+  rooms                   Int
+  bedrooms                Int
+  bathrooms               Int
+  livableAreaInSquareFeet Int          @default(0)
+  landAreaInSquareFeet    Int          @default(0)
+  hasRefrigerator         Boolean
+  hasDishwasher           Boolean
+  hasSauna                Boolean
+  hasPool                 Boolean
+
+  isSold    Boolean @default(false)
+  isVisible Boolean @default(false)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  addressId String
+  address   Address   @relation(fields: [addressId], references: [id])
+  profileId String    @unique
+  profile   Profile   @relation(fields: [profileId], references: [id])
 }
 
 model Address {

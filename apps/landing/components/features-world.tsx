@@ -14,7 +14,7 @@ export default function FeaturesWorld() {
             </H2>
             <Muted className="text-center max-w-3xl mx-auto mb-14">
               Grâce à notre plateforme, initiez des connexions aisées au Québec,
-              avant de tisser votre toile à travers tout le Canada, facilitant
+              avant de tisser votre toile à travers tout le Québec, facilitant
               ainsi l'accès à un réseau national de particuliers et de
               professionnels immobiliers.
             </Muted>

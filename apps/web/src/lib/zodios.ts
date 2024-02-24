@@ -5,6 +5,8 @@ import {
   globalApi,
   profileApi,
   propertyApi,
+  uploadApi,
+  profileUserApi,
   userApi,
 } from "@nexus/schemas";
 import { Zodios } from "@zodios/core";
@@ -20,6 +22,8 @@ const zodios = new Zodios(API_HOST, [
   ...profileApi,
   ...propertyApi,
   ...agencyApi,
+  ...uploadApi,
+  ...profileUserApi,
 ]);
 
 zodios.use(

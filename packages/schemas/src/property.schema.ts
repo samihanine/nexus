@@ -3,26 +3,28 @@ import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { profileSchema } from "./profile.schema";
 import { addressSchema } from "./address.schema";
+import { PropertyType } from "@prisma/client";
 
 export const propertySchema = z.object({
   id: z.string().uuid(),
-  title: z.string(),
+  type: z.nativeEnum(PropertyType),
   description: z.string().default(""),
-  imageUrl: z.string().nullish(),
+  mainImageUrl: z.string().nullish(),
+  imageUrls: z.array(z.string()).default([]),
   price: z.number().default(0),
   currency: z.string().default("CAD"),
   rent: z.number().default(0),
   parkingSpots: z.number().default(0),
   yearBuilt: z.number().default(0),
   stories: z.number().default(0),
-  mlsNumber: z.string().default(""),
+  mlsNumber: z.string().nullish(),
   garages: z.number().default(0),
-  landSize: z.number().default(0),
+  livableAreaInSquareFeet: z.number().default(0),
+  landAreaInSquareFeet: z.number().default(0),
   rooms: z.number().default(1),
   bedrooms: z.number().default(1),
   bathrooms: z.number().default(1),
   squareFeet: z.number().default(0),
-  propertyType: z.string(),
   hasRefrigerator: z.boolean().default(false),
   hasDishwasher: z.boolean().default(false),
   hasSauna: z.boolean().default(false),
@@ -50,7 +52,12 @@ export const propertyApi = apiBuilder()
       {
         name: "New Property",
         type: "Body",
-        schema: propertySchema.omit({ id: true, createdAt: true, updatedAt: true, deletedAt: true }),
+        schema: propertySchema.omit({
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          deletedAt: true,
+        }),
       },
     ],
     errors: [
@@ -62,7 +69,7 @@ export const propertyApi = apiBuilder()
   })
   .addEndpoint({
     method: "get",
-    alias: "getProperty",
+    alias: "getPropertyById",
     path: "/properties/:propertyId",
     description: "Get Property",
     response: propertySchema,
@@ -70,7 +77,41 @@ export const propertyApi = apiBuilder()
       {
         type: "Path",
         name: "propertyId",
-        schema: z.number(),
+        schema: z.string(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "searchProperties",
+    path: "/properties/search",
+    description: "Search Properties",
+    response: z.array(propertySchema),
+    parameters: [
+      {
+        type: "Query",
+        name: "profileId",
+        schema: z.string(),
+      },
+      {
+        type: "Query",
+        name: "limit",
+        schema: z.number().optional(),
+      },
+      {
+        type: "Query",
+        name: "offset",
+        schema: z.number().optional(),
       },
     ],
     errors: [

@@ -1,4 +1,4 @@
-import { H2, H3 } from "@nexus/ui";
+import { H2 } from "@nexus/ui";
 import Accordion from "./accordion";
 
 export default function Faqs() {
@@ -8,7 +8,7 @@ export default function Faqs() {
         <div className="py-12 md:py-20">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-10">
-            <H2>Questions féquentes</H2>
+            <H2>Questions fréquentes</H2>
           </div>
 
           {/* Faqs */}

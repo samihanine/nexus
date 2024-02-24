@@ -24,7 +24,7 @@ export const H3 = (props: React.ComponentPropsWithoutRef<"h3">) => (
   <h3
     {...props}
     className={cn(
-      "scroll-m-20 text-2xl font-medium tracking-tight",
+      "scroll-m-20 text-xl font-medium tracking-tight",
       props.className
     )}
   />
@@ -35,20 +35,17 @@ export const Strong = (props: React.ComponentPropsWithoutRef<"strong">) => (
 );
 
 export const H4 = (props: React.ComponentPropsWithoutRef<"h4">) => (
-  <h3
+  <h4
     {...props}
     className={cn(
-      "scroll-m-20 text-xl font-semibold tracking-tight",
+      "scroll-m-20 text-lg font-semibold tracking-tight",
       props.className
     )}
   />
 );
 
 export const P = (props: React.ComponentPropsWithoutRef<"p">) => (
-  <p
-    {...props}
-    className={cn("leading-7 [&:not(:first-child)]:mt-6", props.className)}
-  />
+  <p {...props} className={cn("leading-7", props.className)} />
 );
 
 export const Small = (props: React.ComponentPropsWithoutRef<"small">) => (

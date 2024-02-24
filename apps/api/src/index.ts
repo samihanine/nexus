@@ -12,6 +12,7 @@ import hpp from "hpp";
 import express from "express";
 import { profileRouter } from "./routes/profile.route";
 import { propertyRouter } from "./routes/property.route";
+import { uploadRouter } from "./routes/upload.route";
 
 dotenv.config();
 
@@ -45,7 +46,8 @@ server.use(
   authRouter,
   addressRouter,
   profileRouter,
-  propertyRouter
+  propertyRouter,
+  uploadRouter
 );
 
 server.get("/", (_, res) => {

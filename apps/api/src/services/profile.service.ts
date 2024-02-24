@@ -1,8 +1,8 @@
 import prisma from "../lib/prisma";
 import { Prisma } from "@prisma/client";
 
-export const createProfile = async (props: Prisma.ProfileCreateManyInput) => {
-  return await prisma.profile.create({
+export const createProfile = async (props: Prisma.ProfileCreateInput) => {
+  const profile = await prisma.profile.create({
     data: {
       type: props.type,
       firstName: props.firstName,
@@ -10,6 +10,35 @@ export const createProfile = async (props: Prisma.ProfileCreateManyInput) => {
       imageUrl: props.imageUrl,
     },
   });
+
+  if (props.buyer) {
+    await prisma.buyer.create({
+      data: {
+        ...props.buyer,
+        profileId: profile.id,
+      } as any,
+    });
+  }
+
+  if (props.seller) {
+    await prisma.seller.create({
+      data: {
+        ...props.seller,
+        profileId: profile.id,
+      } as any,
+    });
+  }
+
+  if (props.broker) {
+    await prisma.broker.create({
+      data: {
+        ...props.broker,
+        profileId: profile.id,
+      } as any,
+    });
+  }
+
+  return await getProfileById(profile.id);
 };
 
 export const updateProfile = async (
@@ -76,6 +105,69 @@ export const updateProfile = async (
       firstName: data.firstName,
       lastName: data.lastName,
       imageUrl: data.imageUrl,
+    },
+  });
+};
+
+export const getProfileById = async (id: string) => {
+  return await prisma.profile.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      buyer: true,
+      seller: true,
+      broker: {
+        include: {
+          agency: true,
+        },
+      },
+    },
+  });
+};
+
+export const getProfilesByUserId = async (userId: string) => {
+  return await prisma.profile.findMany({
+    where: {
+      profileUsers: {
+        some: {
+          userId,
+        },
+      },
+    },
+    include: {
+      buyer: true,
+      seller: true,
+      broker: {
+        include: {
+          agency: true,
+        },
+      },
+    },
+  });
+};
+
+export const getCurrentProfile = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user?.currentProfileId) return null;
+
+  return await prisma.profile.findFirst({
+    where: {
+      id: user.currentProfileId,
+    },
+    include: {
+      buyer: true,
+      seller: true,
+      broker: {
+        include: {
+          agency: true,
+        },
+      },
     },
   });
 };

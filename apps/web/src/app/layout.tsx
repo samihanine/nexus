@@ -1,19 +1,36 @@
 import Providers from "@/features/common/providers";
-import { GeistSans } from "geist/font/sans";
+import { DM_Sans } from "next/font/google";
 import "@nexus/ui/styles";
 import "leaflet/dist/leaflet.css";
 
+const inter = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export const metadata = {
-  title: "Nexus - Find and contact leads with AI",
+  title: "Immovia",
   description:
-    "Nexus is a lead generation tool that helps you find and contact leads with AI.",
-  twitter: {
-    card: "summary_large_image",
-    title: "nexus - Find and contact leads with AI",
-    description:
-      "nexus is a lead generation tool that helps you find and contact leads with AI.",
-    creator: "Sami Hanine",
+    "Avec Immovia, soyez mis en relation avec les bonnes personnes au bon moment pour bénéficier des meilleures conditions selon vos besoins au Québec.",
+  openGraph: {
+    images: "/images/hero-home.webp",
   },
+  keywords: [
+    "Immovia",
+    "immobilier",
+    "plateforme",
+    "québec",
+    "connecter",
+    "acheteurs",
+    "vendeurs",
+    "courtiers",
+    "canada",
+    "inscription",
+    "tarifs",
+    "abonnement",
+    "liste d'attente",
+  ],
   metadataBase: process.env.NEXT_PUBLIC_APP_URL || "",
 };
 
@@ -23,10 +40,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={"en"}>
-      <body className={GeistSans.className}>
+    <html lang={"fr"}>
+      <body className={inter.className}>
         <Providers>
-          <main className="flex h-full min-h-screen w-full flex-col items-center">
+          <main className="flex overflow-y-auto h-screen w-full flex-col items-center pb-16 md:pb-0">
             {children}
           </main>
         </Providers>

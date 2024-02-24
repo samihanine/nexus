@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
+import { profileSchema } from "./profile.schema";
+import { userSchema } from "./user.schema";
 
 export const profileUserSchema = z.object({
   id: z.string(),
@@ -9,6 +11,8 @@ export const profileUserSchema = z.object({
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullish(),
+  profile: profileSchema.nullish(),
+  user: userSchema.nullish(),
 });
 
 export type ProfileUser = z.infer<typeof profileUserSchema>;
@@ -37,15 +41,16 @@ export const profileUserApi = apiBuilder()
   })
   .addEndpoint({
     method: "get",
-    alias: "getProfileUser",
-    path: "/profile-users/:userId",
-    description: "Get Profile User",
+    path: "/users/:userId/profiles",
+    alias: "getProfileUsersByUserId",
+    description: "Get Profile Users by User Id",
     response: profileUserSchema,
+    status: 200,
     parameters: [
       {
-        type: "Path",
         name: "userId",
-        schema: z.number(),
+        type: "Path",
+        schema: z.string(),
       },
     ],
     errors: [
@@ -53,11 +58,39 @@ export const profileUserApi = apiBuilder()
         status: 500,
         schema: schemaError,
       },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getProfileUserById",
+    path: "/profile-users/:profileUserId",
+    description: "Get Profile User",
+    response: profileUserSchema,
+    parameters: [
+      {
+        type: "Path",
+        name: "profileUserId",
+        schema: z.string(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
     ],
   })
   .addEndpoint({
     method: "patch",
-    path: "/profile-users/:userId",
+    path: "/profile-users/:profileUserId",
     alias: "updateProfileUser",
     description: "Update Profile User",
     status: 204,
@@ -65,8 +98,8 @@ export const profileUserApi = apiBuilder()
     parameters: [
       {
         type: "Path",
-        name: "userId",
-        schema: z.number(),
+        name: "profileUserId",
+        schema: z.string(),
       },
       {
         type: "Body",
@@ -87,7 +120,7 @@ export const profileUserApi = apiBuilder()
   })
   .addEndpoint({
     method: "delete",
-    path: "/profile-users/:userId",
+    path: "/profile-users/:profileUserId",
     description: "Delete Profile User",
     status: 204,
     alias: "deleteProfileUser",
@@ -95,8 +128,8 @@ export const profileUserApi = apiBuilder()
     parameters: [
       {
         type: "Path",
-        name: "userId",
-        schema: z.number(),
+        name: "profileUserId",
+        schema: z.string(),
       },
     ],
     errors: [

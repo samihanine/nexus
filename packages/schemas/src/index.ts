@@ -5,3 +5,5 @@ export * from "./address.schema";
 export * from "./profile.schema";
 export * from "./property.schema";
 export * from "./agency.schema";
+export * from "./upload.schema";
+export * from "./profile-user.schema";

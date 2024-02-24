@@ -9,6 +9,7 @@ export const userSchema = z.object({
   email: z.string(),
   password: z.string().nullish(),
   imageUrl: z.string().nullish(),
+  currentProfileId: z.string().nullish(),
   privilege: z.nativeEnum(UserPrivilege).default("USER"),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
@@ -67,7 +68,7 @@ export const userApi = apiBuilder()
       {
         type: "Path",
         name: "userId",
-        schema: z.number(),
+        schema: z.string(),
       },
     ],
     errors: [
@@ -88,7 +89,7 @@ export const userApi = apiBuilder()
       {
         type: "Path",
         name: "userId",
-        schema: z.number(),
+        schema: z.string(),
       },
       {
         type: "Body",
@@ -118,7 +119,7 @@ export const userApi = apiBuilder()
       {
         type: "Path",
         name: "userId",
-        schema: z.number(),
+        schema: z.string(),
       },
     ],
     errors: [

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Logo } from "@nexus/ui";
+import { LogoText } from "@nexus/ui";
 import Link from "next/link";
-import JoinWaitlist from "./join-waitlist";
 
 export default function Header() {
   const [top, setTop] = useState<boolean>(true);
@@ -23,18 +22,13 @@ export default function Header() {
     <header>
       <nav
         id="navbar"
-        className="fixed inset-x-0 z-20 w-full border-b border-gray-100 bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80"
+        className="fixed inset-x-0 z-20 w-full border-b border-input bg-white/80 backdrop-blur dark:border-gray-700/30 dark:bg-gray-900/80"
       >
         <div className="mx-auto px-4 sm:px-12 xl:max-w-6xl xl:px-0">
           <div className="relative flex md:flex-row flex-col gap-5 items-center justify-between py-4">
             <div className="relative z-20 flex justify-between w-max">
-              <Link
-                href="/"
-                aria-label="logo"
-                className="flex items-center space-x-4"
-              >
-                <Logo className="w-8 h-8 text-primary" />
-                <p className="text-2xl font-medium text-foreground">Immovia</p>
+              <Link href="/">
+                <LogoText />
               </Link>
             </div>
             <div id="navlinks" className="">

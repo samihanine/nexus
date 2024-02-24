@@ -35,7 +35,10 @@ export default function HeroHome() {
                       d="M58.1 11.1c-1 0-1.9 0-2.3.2.2.2 2.3.6 2.3-.2zM208.2 13.3c-.1 0-.3.1-.4.1.1 0 .3 0 .4-.1zM216.3 12.9c-.1-.1-.2-.2-.4-.3 0 .3.1.5.4.3zM132.6 11.5zM178.5 13.7c.7-.4 1-.7 1-1-.4.1-.7.3-1 1zM163 12.6c-.1.1-.2.1-.3.2.3-.1.3-.2.3-.2zM130.2 12c.7-.4 1.6-.3 2.4-.5-.7.2-1.9-.3-2.4.5zM226.1 11.4l-.7.6.8-.4zM218.6 12c-.3-.1-1.7.3-1.3.6.4-.3.9-.5 1.3-.6zM189.6 11.4l-.3.6.7-.5z"
                     />
                   </svg>
-                  <span className="text-primary"> le monde immobilier.</span>
+                  <span className="text-primary">
+                    {" "}
+                    le monde de l'immobilier.
+                  </span>
                 </span>
               </h1>
               <p className="mt-12 text-center text-lg text-gray-600 dark:text-gray-300 sm:text-xl lg:text-left mb-12">

@@ -24,10 +24,10 @@ const BrokerOnboarding = ({
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const router = useRouter();
   const [phone, setPhone] = useState("");
   const [oaciqNumber, setOaciqNumber] = useState("");
   const [centrisUrl, setCentrisUrl] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -59,7 +59,7 @@ const BrokerOnboarding = ({
         },
       });
 
-      router.push("/dashboard");
+      router.push(`/conversations`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

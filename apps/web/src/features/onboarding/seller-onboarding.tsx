@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import IdentityInputs from "./identity-inputs";
 import { useCreateProperty } from "../property/use-create-property";
 import { useCreateAddress } from "../address/use-create-address";
+import { Property } from "@nexus/schemas";
 
 const SellerOnboarding = ({
   step,
@@ -23,9 +24,9 @@ const SellerOnboarding = ({
   const { data: user } = useCurrentUser();
   const [price, setPrice] = useState<number | undefined>(undefined);
   const [address, setAddress] = useState<Address | undefined>(undefined);
-  const [propertyType, setPropertyType] = useState<string | undefined>(
-    undefined
-  );
+  const [propertyType, setPropertyType] = useState<
+    Property["type"] | undefined
+  >(undefined);
   const [period, setPeriod] = useState<string | undefined>(undefined);
   const createProfileMutation = useCreateProfile();
   const router = useRouter();
@@ -48,7 +49,7 @@ const SellerOnboarding = ({
     if (!user || !address) return;
 
     try {
-      const profile: any = await createProfileMutation.mutateAsync({
+      const profile = await createProfileMutation.mutateAsync({
         type: "SELLER",
         firstName,
         lastName,
@@ -65,12 +66,11 @@ const SellerOnboarding = ({
       await createPropertyMutation.mutateAsync({
         addressId: newAddress.id as string,
         price: price as number,
-        propertyType: propertyType as string,
         profileId: profile.id,
-        title: "",
+        type: propertyType as Property["type"],
       });
 
-      router.push("/dashboard");
+      router.push(`/conversations`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

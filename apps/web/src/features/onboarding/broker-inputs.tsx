@@ -1,4 +1,4 @@
-import { Avatar, Input, Muted } from "@nexus/ui";
+import { Input, Muted } from "@nexus/ui";
 import React from "react";
 
 export default function BrokerInputs({

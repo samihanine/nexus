@@ -35,14 +35,14 @@ export const Chip: React.FC<ChipProps> = ({ variant, children, ...props }) => {
       break;
     case "gray":
     default:
-      colorClasses = "bg-slate-200 dark:bg-grey-200 text-slate-800";
+      colorClasses = "bg-slate-100 dark:bg-grey-200 text-slate-800";
       break;
   }
 
   return (
     <div
       {...props}
-      className={`${colorClasses} inline-flex w-max items-center justify-center gap-2 whitespace-nowrap rounded-full bg-background px-3 py-[4px] text-center text-xs font-medium ${props.className}`}
+      className={`${colorClasses} inline-flex w-max items-center justify-center gap-2 whitespace-nowrap rounded-full bg-background px-3 py-[5px] text-center text-xs font-medium ${props.className}`}
     >
       {children}
     </div>

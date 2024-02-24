@@ -1,13 +1,7 @@
 import { Avatar, Input } from "@nexus/ui";
 import React from "react";
-
-const fileToBase64 = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
+import { useUploadImage } from "../upload/useUploadImage";
+import toast from "react-hot-toast";
 
 export default function IdentityInputs({
   imageUrl,
@@ -24,6 +18,8 @@ export default function IdentityInputs({
   lastName: string;
   setLastName: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const uploadImage = useUploadImage();
+
   return (
     <>
       <Avatar src={imageUrl} className="w-20 h-20" />
@@ -33,10 +29,19 @@ export default function IdentityInputs({
         accept="image/*"
         className="!w-fit"
         onChange={async (e) => {
-          const file = e.target.files?.[0];
-          if (!file) return;
-          const base64Url = await fileToBase64(file as File);
-          setImageUrl(base64Url);
+          const formData = new FormData();
+          if (!e.target.files) return;
+          formData.append("file", e.target.files[0]);
+          const idToast = toast.loading("Chargement de l'image...");
+          try {
+            const data = await uploadImage.mutateAsync(formData);
+            setImageUrl(data.fileUrl);
+            toast.success("Image chargée avec succès");
+          } catch (error) {
+            console.error(error);
+          } finally {
+            toast.dismiss(idToast);
+          }
         }}
       />
 

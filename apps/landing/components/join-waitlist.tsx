@@ -57,6 +57,7 @@ export default function JoinWaitlist() {
         <option value="BUYER">Acheteur</option>
         <option value="SELLER">Vendeur</option>
         <option value="BROKER">Courtier</option>
+        <option value="OTHER">Autre</option>
       </Select>
       <Button className="sm:h-full sm:!w-fit" type="submit" disabled={loading}>
         {loading ? "Ajout en cours..." : "Rejoindre la liste d'attente"}

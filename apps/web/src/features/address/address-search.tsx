@@ -14,7 +14,7 @@ type AddressSearchProps = {
   setRadius?: (radius: number) => void;
 };
 
-const Map = dynamic(() => import("../onboarding/map"), { ssr: false });
+const Map = dynamic(() => import("./map"), { ssr: false });
 
 const AddressSearch: React.FC<AddressSearchProps> = ({
   address,

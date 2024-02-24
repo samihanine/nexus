@@ -127,7 +127,7 @@ export const profileApi = apiBuilder()
   })
   .addEndpoint({
     method: "get",
-    alias: "getProfile",
+    alias: "getProfileById",
     path: "/profiles/:profileId",
     description: "Get Profile",
     response: profileSchema,
@@ -135,12 +135,52 @@ export const profileApi = apiBuilder()
       {
         type: "Path",
         name: "profileId",
-        schema: z.number(),
+        schema: z.string(),
       },
     ],
     errors: [
       {
         status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getProfiles",
+    path: "/profiles",
+    description: "Get Profiles",
+    response: z.array(profileSchema),
+    parameters: [],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getCurrentProfile",
+    path: "/profiles/current",
+    description: "Get Profiles",
+    response: profileSchema,
+    parameters: [],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
         schema: schemaError,
       },
     ],
@@ -186,7 +226,7 @@ export const profileApi = apiBuilder()
       {
         type: "Path",
         name: "profileId",
-        schema: z.number(),
+        schema: z.string(),
       },
     ],
     errors: [
