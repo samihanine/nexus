@@ -3,9 +3,7 @@ import type { Address } from "@prisma/client";
 import prisma from "../lib/prisma";
 import type { Prisma } from "@prisma/client";
 
-export async function autocompleteAddress(
-  query: string
-): Promise<Address[]> {
+export async function autocompleteAddress(query: string): Promise<Address[]> {
   const apiKey = process.env.GEOAPIFY_API_KEY;
   const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
     query
@@ -34,6 +32,13 @@ export async function autocompleteAddress(
 
 export async function createAddress(address: Prisma.AddressCreateInput) {
   return await prisma.address.create({
+    data: address,
+  });
+}
+
+export async function updateAddress(address: Prisma.AddressUpdateInput) {
+  return await prisma.address.update({
+    where: { id: address.id as string },
     data: address,
   });
 }

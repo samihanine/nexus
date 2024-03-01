@@ -2,7 +2,7 @@
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Card, Muted } from "@nexus/ui";
-import type { Address } from "@prisma/client";
+import type { Address } from "@nexus/schemas";
 import dynamic from "next/dynamic";
 import React from "react";
 import AddressAutocomplete from "./address-autocomplete";
@@ -24,11 +24,12 @@ const AddressSearch: React.FC<AddressSearchProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-10 max-w-2xl w-full self-center">
-      <Card className="flex gap-5 items-center px-5 h-16 rounded-md">
+      <div className="flex gap-5 items-center px-5 h-14 rounded-md border border-input">
         <div className="flex-1 flex items-center gap-3">
           <MagnifyingGlassIcon className="w-5 h-5 text-foreground" />
           <AddressAutocomplete
             setAddress={setAddress}
+            query={address?.formattedAddress}
             className="w-full h-full"
           />
         </div>
@@ -54,7 +55,7 @@ const AddressSearch: React.FC<AddressSearchProps> = ({
             </select>
           </div>
         )}
-      </Card>
+      </div>
 
       <Map
         radius={radius}

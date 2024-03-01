@@ -26,7 +26,7 @@ export default function Page(props: {
 
   return (
     <Section>
-      <PropertiesDetails {...property} />
+      <PropertiesDetails property={property} />
     </Section>
   );
 }

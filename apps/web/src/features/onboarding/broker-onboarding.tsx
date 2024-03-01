@@ -1,5 +1,5 @@
 import { LoadingView } from "@nexus/ui";
-import { Address } from "@prisma/client";
+import { Address } from "@nexus/schemas";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../user/use-current-user";
@@ -59,7 +59,7 @@ const BrokerOnboarding = ({
         },
       });
 
-      router.push(`/conversations`);
+      router.push(`/my-profile`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

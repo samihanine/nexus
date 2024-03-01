@@ -1,17 +1,17 @@
 import zodios from "@/lib/zodios";
 import { useQuery } from "@tanstack/react-query";
 
-export const usePropertyById = (propertyId?: string) => {
+export const usePropertyByProfileId = (profileId?: string) => {
   return useQuery({
-    queryKey: ["properties", propertyId],
+    queryKey: ["properties", profileId],
     queryFn: () => {
-      if (!propertyId) {
+      if (!profileId) {
         return Promise.resolve(null);
       }
 
-      return zodios.getPropertyById({
+      return zodios.getPropertyByProfileId({
         params: {
-          propertyId,
+          profileId,
         },
       });
     },

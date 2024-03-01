@@ -22,8 +22,8 @@ const Map = (props: {
   radius?: number;
 }) => {
   const [isMounted, setIsMounted] = React.useState(false);
-  const latitude = props.latitude || 51.505;
-  const longitude = props.longitude || -0.09;
+  const latitude = props.latitude || 45.5019;
+  const longitude = props.longitude || -73.5674;
   const radius = props.radius || 0;
   const isDefault = !props.latitude || !props.longitude;
 

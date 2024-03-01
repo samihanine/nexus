@@ -1,5 +1,5 @@
 import { LoadingView } from "@nexus/ui";
-import { Address } from "@prisma/client";
+import { Address } from "@nexus/schemas";
 import React, { useEffect, useState } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
@@ -47,7 +47,7 @@ const BuyerOnboarding = ({
     if (!user) return;
 
     try {
-      const profile = await createProfileMutation.mutateAsync({
+      await createProfileMutation.mutateAsync({
         type: "BUYER",
         firstName,
         lastName,
@@ -63,7 +63,7 @@ const BuyerOnboarding = ({
         },
       });
 
-      router.push(`/conversations`);
+      router.push(`/my-criteria`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

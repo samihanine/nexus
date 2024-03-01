@@ -1,5 +1,5 @@
 import { Input, LoadingView } from "@nexus/ui";
-import { Address } from "@prisma/client";
+import { Address } from "@nexus/schemas";
 import React, { useState, useEffect } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
@@ -54,9 +54,7 @@ const SellerOnboarding = ({
         firstName,
         lastName,
         imageUrl,
-        seller: {
-          sellingPeriod: period as string,
-        },
+        seller: {},
       });
 
       const newAddress = await createAddressMutation.mutateAsync({
@@ -68,9 +66,10 @@ const SellerOnboarding = ({
         price: price as number,
         profileId: profile.id,
         type: propertyType as Property["type"],
+        sellingPeriod: period,
       });
 
-      router.push(`/conversations`);
+      router.push(`/my-property`);
     } catch (error) {
       setStep((oldStep) => oldStep - 1);
     }

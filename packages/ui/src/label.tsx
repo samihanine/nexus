@@ -10,7 +10,7 @@ export const Label: React.FC<LabelProps> = ({
   ...props
 }) => (
   <label
-    className={`flex w-full flex-col gap-3 self-start text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`}
+    className={`flex w-full flex-col gap-3 self-start text-base leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`}
     {...props}
   >
     {children}

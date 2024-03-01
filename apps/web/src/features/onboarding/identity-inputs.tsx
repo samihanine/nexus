@@ -1,6 +1,6 @@
 import { Avatar, Input } from "@nexus/ui";
 import React from "react";
-import { useUploadImage } from "../upload/useUploadImage";
+import { useUploadImage } from "../upload/use-upload-image";
 import toast from "react-hot-toast";
 
 export default function IdentityInputs({
@@ -32,9 +32,10 @@ export default function IdentityInputs({
           const formData = new FormData();
           if (!e.target.files) return;
           formData.append("file", e.target.files[0]);
+          formData.append("folder", "PROFILE_PICTURES");
           const idToast = toast.loading("Chargement de l'image...");
           try {
-            const data = await uploadImage.mutateAsync(formData);
+            const data = await uploadImage.mutateAsync(formData as any);
             setImageUrl(data.fileUrl);
             toast.success("Image chargée avec succès");
           } catch (error) {

@@ -1,7 +1,7 @@
 import { cn } from "@nexus/utils";
 import type { Address } from "@prisma/client";
 import { debounce } from "lodash";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useAutocompleteAddress } from "./use-autocomplete-address";
 import { P } from "@nexus/ui";
 import { MapPin } from "lucide-react";
@@ -12,12 +12,19 @@ const AddressAutocomplete = ({
   ...props
 }: React.ComponentPropsWithoutRef<"input"> & {
   setAddress: (address: Address) => void;
+  query?: string;
 }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Address[]>([]);
   const autocompleteAddressMutation = useAutocompleteAddress();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (props.query) {
+      setQuery(props.query);
+    }
+  }, [props.query]);
 
   const debouncedQueryChange = useCallback(
     debounce(async (query) => {

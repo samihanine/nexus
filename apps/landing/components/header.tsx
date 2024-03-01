@@ -9,13 +9,15 @@ export default function Header() {
 
   // detect whether user has scrolled the page down by 10px
   const scrollHandler = () => {
-    window.pageYOffset > 10 ? setTop(false) : setTop(true);
+    window?.pageYOffset > 10 ? setTop(false) : setTop(true);
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     scrollHandler();
-    window.addEventListener("scroll", scrollHandler);
-    return () => window.removeEventListener("scroll", scrollHandler);
+    window?.addEventListener("scroll", scrollHandler);
+    return () => window?.removeEventListener("scroll", scrollHandler);
   }, [top]);
 
   return (

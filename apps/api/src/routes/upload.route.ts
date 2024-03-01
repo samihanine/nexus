@@ -18,7 +18,9 @@ uploadRouter.post(
     try {
       const file = request.file as Express.Multer.File;
 
-      response.status(200).json(await uploadImage(file));
+      response
+        .status(200)
+        .json(await uploadImage({ file, folder: request.body.folder }));
     } catch (error) {
       console.error(error);
       response.status(500).json({

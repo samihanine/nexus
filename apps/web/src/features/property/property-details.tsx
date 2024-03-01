@@ -20,63 +20,66 @@ import {
   ShareIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import Map from "../address/map";
+import dynamic from "next/dynamic";
 
-export default function PropertiesDetails(props: Property) {
+const Map = dynamic(() => import("../address/map"), { ssr: false });
+
+export default function PropertiesDetails({
+  property,
+}: {
+  property: Property;
+}) {
   return (
     <div className="flex flex-col gap-10 w-full">
-      <PropertyImages
-        mainImageUrl={props.mainImageUrl || undefined}
-        imageUrls={props.imageUrls}
-      />
+      <PropertyImages imageUrls={property.imageUrls} />
 
       <PropertyHeader
-        price={props.price}
-        formattedAddress={props.address?.formattedAddress || ""}
-        bedrooms={props.bedrooms}
-        bathrooms={props.bathrooms}
-        squareFeet={props.squareFeet}
+        price={property.price}
+        formattedAddress={property.address?.formattedAddress || ""}
+        bedrooms={property.bedrooms}
+        bathrooms={property.bathrooms}
+        livableAreaInSquareFeet={property.livableAreaInSquareFeet}
       />
 
-      {Boolean(props.description?.length) && (
-        <PropertyDescription description={props.description} />
+      {Boolean(property.description?.length) && (
+        <PropertyDescription description={property.description} />
       )}
 
       <PropertySummary
-        type={props.type}
-        yearBuilt={props.yearBuilt}
-        parkingSpots={props.parkingSpots}
-        stories={props.stories}
-        livableAreaInSquareFeet={props.livableAreaInSquareFeet}
-        landAreaInSquareFeet={props.landAreaInSquareFeet}
-        mlsNumber={props.mlsNumber || undefined}
-        garages={props.garages}
-        rooms={props.rooms}
-        createdAt={new Date(props.createdAt)}
+        type={property.type}
+        yearBuilt={property.yearBuilt}
+        parkingSpots={property.parkingSpots}
+        stories={property.stories}
+        livableAreaInSquareFeet={property.livableAreaInSquareFeet}
+        landAreaInSquareFeet={property.landAreaInSquareFeet}
+        mlsNumber={property.mlsNumber || undefined}
+        garages={property.garages}
+        rooms={property.rooms}
+        createdAt={new Date(property.createdAt)}
       />
 
       <div className="my-3" />
 
       <PropertyMap
-        latitude={props.address?.latitude || 0}
-        longitude={props.address?.longitude || 0}
-        porfileImageUrl={props.profile?.imageUrl || undefined}
-        profileFullName={`${props.profile?.firstName} ${props.profile?.lastName}`}
+        latitude={property.address?.latitude || 0}
+        longitude={property.address?.longitude || 0}
+        porfileImageUrl={property.profile?.imageUrl || undefined}
+        profileFullName={`${property.profile?.firstName} ${property.profile?.lastName}`}
       />
     </div>
   );
 }
 
-function PropertyDescription(props: { description: string }) {
+function PropertyDescription(property: { description: string }) {
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-base font-medium">Description de la propriété</h2>
-      <p className="text-foreground">{props.description}</p>
+      <p className="text-foreground">{property.description}</p>
     </div>
   );
 }
 
-function PropertySummary(props: {
+function PropertySummary(property: {
   type: Property["type"];
   yearBuilt: number;
   parkingSpots: number;
@@ -92,46 +95,44 @@ function PropertySummary(props: {
     <div className="flex flex-col gap-5">
       <H4>Informations général</H4>
       <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        <Detail label="Type" value={props.type} />
-        <Detail label="Année de construction" value={props.yearBuilt} />
-        <Detail label="Nombre de stationnement" value={props.parkingSpots} />
-        <Detail label="Nombre d'étages" value={props.stories} />
+        <Detail label="Type" value={property.type} />
+        <Detail label="Année de construction" value={property.yearBuilt} />
+        <Detail label="Nombre de stationnement" value={property.parkingSpots} />
+        <Detail label="Nombre d'étages" value={property.stories} />
         <Detail
           label="Superficie habitable"
-          value={props.livableAreaInSquareFeet}
+          value={property.livableAreaInSquareFeet}
         />
         <Detail
           label="Superficie du terrain"
-          value={props.landAreaInSquareFeet}
+          value={property.landAreaInSquareFeet}
         />
-        {props.mlsNumber && (
-          <Detail label="Numéro MLS" value={props.mlsNumber} />
+        {property.mlsNumber && (
+          <Detail label="Numéro MLS" value={property.mlsNumber} />
         )}
-        <Detail label="Nombre de garages" value={props.garages} />
-        <Detail label="Nombre de pièces" value={props.rooms} />
+        <Detail label="Nombre de garages" value={property.garages} />
+        <Detail label="Nombre de pièces" value={property.rooms} />
         <Detail
           label="Date de création"
-          value={props.createdAt.toLocaleDateString()}
+          value={property.createdAt.toLocaleDateString()}
         />
       </div>
     </div>
   );
 }
 
-function Detail(props: { label: string; value: string | number }) {
+function Detail(property: { label: string; value: string | number }) {
   return (
     <div className="flex flex-col gap-1">
-      <p className="text-sm text-muted-foreground">{props.label}</p>
-      <p className="text-base font-medium">{props.value}</p>
+      <p className="text-sm text-muted-foreground">{property.label}</p>
+      <p className="text-base font-medium">{property.value}</p>
     </div>
   );
 }
 
-function PropertyImages(props: { mainImageUrl?: string; imageUrls: string[] }) {
+function PropertyImages(property: { imageUrls: string[] }) {
   const images: string[] = useMemo(() => {
-    let array = props.mainImageUrl
-      ? [props.mainImageUrl, ...props.imageUrls]
-      : props.imageUrls;
+    let array = property.imageUrls;
 
     if (!array.length) {
       return [housePlaceholder, housePlaceholder, housePlaceholder];
@@ -146,62 +147,72 @@ function PropertyImages(props: { mainImageUrl?: string; imageUrls: string[] }) {
     }
 
     return array;
-  }, [props.mainImageUrl, props.imageUrls]);
+  }, [property.imageUrls]);
 
   return (
-    <div className="flex gap-8">
-      <div className="flex-[2]">
+    <div className="flex gap-8 items-stretch h-96">
+      <div className="flex flex-[2]">
         <Image
           src={images[0]}
-          className="rounded-2xl max-h-[32rem] object-cover w-auto h-full mx-auto"
+          className="rounded-2xl max-h-full object-cover w-full h-full"
           alt="property"
+          width={800}
+          height={600}
         />
       </div>
 
-      <div className="flex-1 grid-rows-2 gap-8 hidden sm:grid">
+      <div className="flex-[1] grid-rows-2 gap-8 hidden sm:grid">
         <Image
           src={images[1]}
-          className="rounded-2xl object-contain"
+          className="rounded-2xl object-cover h-full w-full"
           alt="property"
+          width={800}
+          height={600}
         />
 
-        <Image src={images[2]} className="rounded-2xl" alt="property" />
+        <Image
+          src={images[2]}
+          className="rounded-2xl object-cover h-full w-full"
+          alt="property"
+          width={800}
+          height={600}
+        />
       </div>
     </div>
   );
 }
 
-function PropertyHeader(props: {
+function PropertyHeader(property: {
   price: number;
   formattedAddress: string;
   bedrooms: number;
   bathrooms: number;
-  squareFeet: number;
+  livableAreaInSquareFeet: number;
 }) {
   return (
     <div className="flex flex-col sm:flex-row justify-between gap-5">
       <div className="flex flex-col gap-3">
         <p className="text-3xl font-medium text-primary">
-          {props.price.toLocaleString("fr-Fr", {
+          {property.price.toLocaleString("fr-Fr", {
             style: "currency",
             currency: "CAD",
           })}
         </p>
 
         <p className="text-xl text-foreground font-medium">
-          {props.formattedAddress}
+          {property.formattedAddress}
         </p>
 
         <div className="flex gap-3 flex-wrap">
           <Chip>
             <Bed className="w-4 h-4" />
-            {props.bedrooms} chambres
+            {property.bedrooms} chambres
           </Chip>
           <Chip>
             <Bathroom className="w-4 h-4" />
-            {props.bathrooms} salles de bain
+            {property.bathrooms} salles de bain
           </Chip>
-          <Chip>{props.squareFeet} pi²</Chip>
+          <Chip>{property.livableAreaInSquareFeet} pi²</Chip>
         </div>
       </div>
 

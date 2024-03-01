@@ -63,3 +63,20 @@ export const getPropertyById = async (id: string) => {
     },
   });
 };
+
+export const getPropertyByProfileId = async (profileId: string) => {
+  return await prisma.property.findUnique({
+    where: {
+      profileId,
+    },
+    include: {
+      profile: {
+        include: {
+          seller: true,
+          owner: true,
+        },
+      },
+      address: true,
+    },
+  });
+};

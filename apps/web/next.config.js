@@ -9,4 +9,14 @@ module.exports = {
     outputFileTracingRoot: path.join(__dirname, "../../"),
   },
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "upcdn.io",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };

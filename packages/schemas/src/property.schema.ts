@@ -8,6 +8,7 @@ import { PropertyType } from "@prisma/client";
 export const propertySchema = z.object({
   id: z.string().uuid(),
   type: z.nativeEnum(PropertyType),
+  sellingPeriod: z.string().default("0-6"),
   description: z.string().default(""),
   mainImageUrl: z.string().nullish(),
   imageUrls: z.array(z.string()).default([]),
@@ -24,7 +25,6 @@ export const propertySchema = z.object({
   rooms: z.number().default(1),
   bedrooms: z.number().default(1),
   bathrooms: z.number().default(1),
-  squareFeet: z.number().default(0),
   hasRefrigerator: z.boolean().default(false),
   hasDishwasher: z.boolean().default(false),
   hasSauna: z.boolean().default(false),
@@ -63,6 +63,30 @@ export const propertyApi = apiBuilder()
     errors: [
       {
         status: 500,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getPropertyByProfileId",
+    path: "/profiles/:profileId/property",
+    description: "Get Property",
+    response: propertySchema,
+    parameters: [
+      {
+        type: "Path",
+        name: "profileId",
+        schema: z.string(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
         schema: schemaError,
       },
     ],

@@ -22,10 +22,9 @@ import {
   UserIcon,
   UserGroupIcon,
   HomeModernIcon,
-  GlobeAltIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import { useProfiles } from "../profile/use-profiles";
 import { Profile } from "@nexus/schemas";
 import { cn } from "@nexus/utils";
@@ -192,9 +191,11 @@ const Header = () => {
             )}
 
             {!user && (
-              <Link href="/login">
-                <Button className="!w-fit !px-20">Se connecter</Button>
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link href="/login">
+                  <Button className="!w-fit !px-12">Se connecter</Button>
+                </Link>
+              </div>
             )}
           </div>
         </div>

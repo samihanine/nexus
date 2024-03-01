@@ -1,6 +1,9 @@
 import { zodiosRouter } from "@zodios/express";
 import { addressApi } from "@nexus/schemas";
-import { autocompleteAddress } from "../services/address.service";
+import {
+  autocompleteAddress,
+  updateAddress,
+} from "../services/address.service";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import { createAddress } from "../services/address.service";
 
@@ -33,3 +36,19 @@ addressRouter.post("/addresses", authMiddleware, async (request, response) => {
     });
   }
 });
+
+addressRouter.put(
+  "/addresses/:addressId",
+  authMiddleware as any,
+  async (request, response) => {
+    try {
+      const address = await updateAddress(request.body);
+      response.status(201).json(address);
+    } catch (error) {
+      response.status(500).json({
+        message: "Internal Server Error",
+        code: "INTERNAL_SERVER_ERROR",
+      });
+    }
+  }
+);

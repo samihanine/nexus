@@ -129,9 +129,8 @@ model Seller {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  sellingPeriod String
-  profile       Profile @relation(fields: [profileId], references: [id])
-  profileId     String  @unique
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId String  @unique
 }
 
 model Buyer {
@@ -216,9 +215,9 @@ model Property {
   hasDishwasher           Boolean
   hasSauna                Boolean
   hasPool                 Boolean
-
-  isSold    Boolean @default(false)
-  isVisible Boolean @default(false)
+  sellingPeriod           String       @default("0-6")
+  isSold                  Boolean      @default(false)
+  isVisible               Boolean      @default(false)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

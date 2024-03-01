@@ -9,7 +9,7 @@ import {
   Strong,
 } from "@nexus/ui";
 import Image, { StaticImageData } from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function AuthCarousel({
   testimonials,
@@ -39,6 +39,16 @@ export default function AuthCarousel({
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonialIndex((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <div className="relative hidden w-0 flex-1 lg:block">

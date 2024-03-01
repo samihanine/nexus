@@ -52,7 +52,6 @@ export const profileSchema = z.object({
   seller: z
     .object({
       id: z.string().uuid().nullish(),
-      sellingPeriod: z.string(),
       createdAt: z.string().or(z.date()).nullish(),
       updatedAt: z.string().or(z.date()).nullish(),
       deletedAt: z.string().or(z.date()).nullish(),

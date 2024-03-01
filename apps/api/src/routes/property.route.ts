@@ -6,6 +6,7 @@ import {
   updateProperty,
   searchProperties,
   getPropertyById,
+  getPropertyByProfileId,
 } from "../services/property.service";
 
 export const propertyRouter = zodiosRouter(propertyApi, { transform: true });
@@ -20,6 +21,7 @@ propertyRouter.post(
       });
       response.status(200).json(property);
     } catch (error) {
+      console.log("Error creating property", error);
       response.status(500).json({
         message: "Internal Server Error",
         code: "INTERNAL_SERVER_ERROR",
@@ -34,6 +36,29 @@ propertyRouter.get(
   async (request, response) => {
     try {
       response.status(200).json(await searchProperties(request.query));
+    } catch (error) {
+      response.status(500).json({
+        message: "Internal Server Error",
+        code: "INTERNAL_SERVER_ERROR",
+      });
+    }
+  }
+);
+propertyRouter.get(
+  "/profiles/:profileId/property",
+  authMiddleware as any,
+  async (request, response) => {
+    try {
+      const property = await getPropertyByProfileId(request.params.profileId);
+
+      if (!property) {
+        return response.status(404).json({
+          message: "Property not found",
+          code: "PROPERTY_NOT_FOUND",
+        });
+      }
+
+      response.status(200).json(property);
     } catch (error) {
       response.status(500).json({
         message: "Internal Server Error",

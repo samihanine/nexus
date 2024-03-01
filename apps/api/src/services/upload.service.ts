@@ -1,9 +1,30 @@
 import axios from "axios";
+import { randomUUID } from "crypto";
 
-export const uploadImage = async (file: Express.Multer.File) => {
+export const uploadImage = async ({
+  file,
+  folder,
+}: {
+  file: Express.Multer.File;
+  folder: "PROFILE_PICTURES" | "PROPERTY_IMAGES" | "OTHER";
+}) => {
   try {
     const baseUrl = "https://api.bytescale.com";
-    const path = `/v2/accounts/${process.env.UPLOADTHING_APP_ID}/uploads/binary?fileName=${file.originalname}&folderPath=/images/profile-pictures`;
+    const randomId = randomUUID().split("-")[0];
+
+    const folderName = (() => {
+      switch (folder) {
+        case "PROFILE_PICTURES":
+          return "/images/profile-pictures";
+        case "PROPERTY_IMAGES":
+          return "/images/property-images";
+        case "OTHER":
+        default:
+          return "/images/other";
+      }
+    })();
+
+    const path = `/v2/accounts/${process.env.UPLOADTHING_APP_ID}/uploads/binary?fileName=${randomId}-${file.originalname}&folderPath=${folderName}`;
     const blob = new Blob([file.buffer], { type: file.mimetype });
 
     const result = await axios.post(`${baseUrl}${path}`, blob, {
