@@ -49,6 +49,14 @@ globalRouter.post("/waitlist", async (request, response, next) => {
       });
     }
 
+    try {
+      await axios.post(process.env.DISCORD_WEBHOOK_URL || "", {
+        content: `-----------------------------\n\nNew waitlist submission:\n\nEmail: ${request.body.email}\nType: ${request.body.type}\n\n@everyone\n\n-----------------------------`,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
     response.status(200).json({
       message: "Added to waitlist.",
     });
