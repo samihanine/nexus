@@ -13,6 +13,7 @@ import PropertyImageList from "./property-image-list";
 import ImageDropZone from "./image-drop-zone";
 import { useUploadImage } from "../upload/use-upload-image";
 import PropertiesDetails from "./property-details";
+import SelectPropertyType from "./select-property-type";
 
 export default function EditProperty(props: { property: Property }) {
   const [property, setProperty] = useState<Property>(props.property);
@@ -43,6 +44,16 @@ export default function EditProperty(props: { property: Property }) {
         price: property.price,
         sellingPeriod: property.sellingPeriod,
         imageUrls: property.imageUrls,
+        type: property.type,
+        bedrooms: property.bedrooms,
+        bathrooms: property.bathrooms,
+        rooms: property.rooms,
+        livableAreaInSquareFeet: property.livableAreaInSquareFeet,
+        landAreaInSquareFeet: property.landAreaInSquareFeet,
+        yearBuilt: property.yearBuilt,
+        stories: property.stories,
+        garages: property.garages,
+        parkingSpots: property.parkingSpots,
       });
     } catch (error) {
       toast.error("Une erreur est survenue");
@@ -106,7 +117,7 @@ export default function EditProperty(props: { property: Property }) {
       {!preview && (
         <Section>
           <div className="flex flex-col gap-12">
-            <div className="flex gap-5 flex-col">
+            <div className="flex gap-10 flex-col">
               <H3>Général</H3>
               <div className="flex gap-5 flex-col sm:flex-row">
                 <div className="flex-1">
@@ -143,6 +154,144 @@ export default function EditProperty(props: { property: Property }) {
                     </Select>
                   </Label>
                 </div>
+              </div>
+
+              <div className="flex-1 flex flex-col gap-5">
+                <Label>Type de propriété</Label>
+                <SelectPropertyType
+                  propertyType={property.type}
+                  setPropertyType={(type) => setProperty({ ...property, type })}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <H3>Informations supplémentaires</H3>
+              <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                <Label>
+                  Chambres
+                  <Input
+                    value={property.bedrooms}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        bedrooms: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Salles de bain
+                  <Input
+                    value={property.bathrooms}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        bathrooms: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Pièces
+                  <Input
+                    value={property.rooms}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        rooms: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Surface habitable (sqft)
+                  <Input
+                    value={property.livableAreaInSquareFeet}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        livableAreaInSquareFeet: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Surface du terrain (sqft)
+                  <Input
+                    value={property.landAreaInSquareFeet}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        landAreaInSquareFeet: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Année de construction
+                  <Input
+                    value={property.yearBuilt}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        yearBuilt: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Étage
+                  <Input
+                    value={property.stories}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        stories: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Garages
+                  <Input
+                    value={property.garages}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        garages: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
+
+                <Label>
+                  Place de parking
+                  <Input
+                    value={property.parkingSpots}
+                    onChange={(e) =>
+                      setProperty({
+                        ...property,
+                        parkingSpots: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                  />
+                </Label>
               </div>
             </div>
 

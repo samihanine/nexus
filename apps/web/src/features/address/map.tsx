@@ -6,7 +6,7 @@ import { Circle, MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 const MapUpdater: React.FC<{ center: [number, number]; zoom?: number }> = ({
   center,
-  zoom = 13,
+  zoom = 10,
 }) => {
   const map = useMap();
   useEffect(() => {
@@ -41,7 +41,7 @@ const Map = (props: {
     <MapContainer
       key={`${latitude}-${longitude}`}
       center={[latitude, longitude]}
-      zoom={13}
+      zoom={10}
       style={{ height: "400px", width: "100%", borderRadius: "10px" }}
     >
       <MapUpdater center={[latitude, longitude]} />

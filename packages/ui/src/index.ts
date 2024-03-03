@@ -35,3 +35,4 @@ export * from "./icon";
 export * from "./logo-text";
 export * from "./progress-bar";
 export * from "./icon-button";
+export * from "./detail";

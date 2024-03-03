@@ -7,3 +7,6 @@ export * from "./property.schema";
 export * from "./agency.schema";
 export * from "./upload.schema";
 export * from "./profile-user.schema";
+export * from "./buyer.schema";
+export * from "./seller.schema";
+export * from "./broker.schema";

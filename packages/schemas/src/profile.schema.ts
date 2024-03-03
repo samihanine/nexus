@@ -2,6 +2,8 @@ import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { ProfileType } from "@prisma/client";
+import { brokerSchema } from "./broker.schema";
+import { buyerSchema } from "./buyer.schema";
 
 export const profileSchema = z.object({
   id: z.string().uuid(),
@@ -9,37 +11,7 @@ export const profileSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   imageUrl: z.string().nullish(),
-  broker: z
-    .object({
-      id: z.string().uuid().nullish(),
-      phone: z.string(),
-      email: z.string(),
-      description: z.string(),
-      centrisUrl: z.string(),
-      websiteUrl: z.string().nullish(),
-      oaciqNumber: z.string(),
-      latitude: z.number(),
-      longitude: z.number(),
-      radius: z.number(),
-      agencyId: z.string().uuid().nullish(),
-      createdAt: z.string().or(z.date()).nullish(),
-      updatedAt: z.string().or(z.date()).nullish(),
-      deletedAt: z.string().or(z.date()).nullish(),
-      agency: z
-        .object({
-          id: z.string().uuid().nullish(),
-          name: z.string(),
-          phone: z.string(),
-          email: z.string(),
-          websiteUrl: z.string().nullish(),
-          createdAt: z.string().or(z.date()).nullish(),
-          updatedAt: z.string().or(z.date()).nullish(),
-          deletedAt: z.string().or(z.date()).nullish(),
-        })
-        .nullish(),
-    })
-    .nullish(),
-
+  broker: brokerSchema.nullish(),
   owner: z
     .object({
       id: z.string().uuid().nullish(),
@@ -58,22 +30,7 @@ export const profileSchema = z.object({
     })
     .nullish(),
 
-  buyer: z
-    .object({
-      id: z.string().uuid().nullish(),
-      minimumPrice: z.number(),
-      maximumPrice: z.number(),
-      buyingPeriod: z.string(),
-      latitude: z.number(),
-      longitude: z.number(),
-      radius: z.number(),
-      propertyTypes: z.array(z.string()),
-      createdAt: z.string().or(z.date()).nullish(),
-      updatedAt: z.string().or(z.date()).nullish(),
-      deletedAt: z.string().or(z.date()).nullish(),
-    })
-    .nullish(),
-
+  buyer: buyerSchema.nullish(),
   tenant: z
     .object({
       id: z.string().uuid().nullish(),

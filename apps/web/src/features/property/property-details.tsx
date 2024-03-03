@@ -13,6 +13,7 @@ import {
   Input,
   Muted,
   P,
+  Detail,
 } from "@nexus/ui";
 import {
   EnvelopeIcon,
@@ -117,15 +118,6 @@ function PropertySummary(property: {
           value={property.createdAt.toLocaleDateString()}
         />
       </div>
-    </div>
-  );
-}
-
-function Detail(property: { label: string; value: string | number }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <p className="text-sm text-muted-foreground">{property.label}</p>
-      <p className="text-base font-medium">{property.value}</p>
     </div>
   );
 }

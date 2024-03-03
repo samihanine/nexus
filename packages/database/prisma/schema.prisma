@@ -134,19 +134,31 @@ model Seller {
 }
 
 model Buyer {
-  id            String         @id @default(uuid())
-  minimumPrice  Float
-  maximumPrice  Float
-  buyingPeriod  String
-  latitude      Float
-  longitude     Float
-  radius        Float
-  propertyTypes PropertyType[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  deletedAt     DateTime?
+  id                             String         @id @default(uuid())
+  minimumPrice                   Float
+  maximumPrice                   Float
+  buyingPeriod                   String
+  latitude                       Float
+  longitude                      Float
+  radius                         Float
+  minimumParkingSpots            Int            @default(0)
+  minimumBathrooms               Int            @default(0)
+  minimumRooms                   Int            @default(0)
+  minimumLivableAreaInSquareFeet Int            @default(0)
+  minimumLandAreaInSquareFeet    Int            @default(0)
+  minimumYearBuilt               Int            @default(0)
+  minimumStories                 Int            @default(0)
+  hasBasement                    Boolean        @default(false)
+  hasElevator                    Boolean        @default(false)
+  hasSauna                       Boolean        @default(false)
+  hasPool                        Boolean        @default(false)
+  hasFireplace                   Boolean        @default(false)
+  hasGym                         Boolean        @default(false)
+  propertyTypes                  PropertyType[]
+  createdAt                      DateTime       @default(now())
+  updatedAt                      DateTime       @updatedAt
+  deletedAt                      DateTime?
 
-  brokerId  String?
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
 }
@@ -203,18 +215,21 @@ model Property {
   rent                    Float        @default(0)
   parkingSpots            Int
   yearBuilt               Int
-  stories                 Int
+  stories                 Int          @default(0)
   mlsNumber               String?
-  garages                 Int
-  rooms                   Int
-  bedrooms                Int
-  bathrooms               Int
+  garages                 Int          @default(0)
+  rooms                   Int          @default(1)
+  bedrooms                Int          @default(1)
+  bathrooms               Int          @default(1)
   livableAreaInSquareFeet Int          @default(0)
   landAreaInSquareFeet    Int          @default(0)
-  hasRefrigerator         Boolean
-  hasDishwasher           Boolean
-  hasSauna                Boolean
-  hasPool                 Boolean
+  hasRefrigerator         Boolean      @default(false)
+  hasDishwasher           Boolean      @default(false)
+  hasSauna                Boolean      @default(false)
+  hasPool                 Boolean      @default(false)
+  hasFireplace            Boolean      @default(false)
+  hasGym                  Boolean      @default(false)
+  hasElevator             Boolean      @default(false)
   sellingPeriod           String       @default("0-6")
   isSold                  Boolean      @default(false)
   isVisible               Boolean      @default(false)
@@ -286,4 +301,15 @@ model Waitlist {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+}
+
+model PropertyImage {
+  id           String    @id @default(uuid())
+  propertyId   String
+  imageUrl     String
+  description  String
+  displayOrder Int       @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
 }

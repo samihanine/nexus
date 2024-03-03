@@ -1,33 +1,29 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
-import { addressSchema } from "./address.schema";
 
-export const agencySchema = z.object({
-  id: z.string().uuid(),
-  name: z.string(),
-  createdAt: z.string().or(z.date()),
-  updatedAt: z.string().or(z.date()),
+export const sellerSchema = z.object({
+  id: z.string().uuid().nullish(),
+  createdAt: z.string().or(z.date()).nullish(),
+  updatedAt: z.string().or(z.date()).nullish(),
   deletedAt: z.string().or(z.date()).nullish(),
-  addressId: z.string().uuid(),
-  address: addressSchema.nullish(),
 });
 
-export type Agency = z.infer<typeof agencySchema>;
+export type Seller = z.infer<typeof sellerSchema>;
 
-export const agencyApi = apiBuilder()
+export const sellerApi = apiBuilder()
   .addEndpoint({
     method: "post",
-    path: "/agencies",
-    alias: "createAgency",
-    description: "Create agency",
-    response: agencySchema,
+    path: "/sellers",
+    alias: "createSeller",
+    description: "Create seller",
+    response: sellerSchema,
     status: 201,
     parameters: [
       {
-        name: "New Agency",
+        name: "New Seller",
         type: "Body",
-        schema: agencySchema.omit({
+        schema: sellerSchema.omit({
           id: true,
           createdAt: true,
           updatedAt: true,
@@ -44,15 +40,15 @@ export const agencyApi = apiBuilder()
   })
   .addEndpoint({
     method: "get",
-    alias: "getAgency",
-    path: "/agencies/:agencyId",
-    description: "Get Agency",
-    response: agencySchema,
+    alias: "getSellerById",
+    path: "/sellers/:sellerId",
+    description: "Get Seller",
+    response: sellerSchema,
     parameters: [
       {
         type: "Path",
-        name: "agencyId",
-        schema: z.number(),
+        name: "sellerId",
+        schema: z.string(),
       },
     ],
     errors: [
@@ -60,25 +56,47 @@ export const agencyApi = apiBuilder()
         status: 500,
         schema: schemaError,
       },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getSellers",
+    path: "/sellers",
+    description: "Get Sellers",
+    response: z.array(sellerSchema),
+    parameters: [],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
     ],
   })
   .addEndpoint({
     method: "patch",
-    path: "/agencies/:agencyId",
-    alias: "updateAgency",
-    description: "Update Agency",
+    path: "/sellers/:sellerId",
+    alias: "updateSeller",
+    description: "Update Seller",
     status: 204,
     response: z.object({}),
     parameters: [
       {
         type: "Path",
-        name: "agencyId",
+        name: "sellerId",
         schema: z.string(),
       },
       {
         type: "Body",
-        name: "agency",
-        schema: agencySchema.partial(),
+        name: "seller",
+        schema: sellerSchema.partial(),
       },
     ],
     errors: [
@@ -94,16 +112,16 @@ export const agencyApi = apiBuilder()
   })
   .addEndpoint({
     method: "delete",
-    path: "/agencies/:agencyId",
-    description: "Delete Agency",
+    path: "/sellers/:sellerId",
+    description: "Delete Seller",
     status: 204,
-    alias: "deleteAgency",
+    alias: "deleteSeller",
     response: z.object({}),
     parameters: [
       {
         type: "Path",
-        name: "agencyId",
-        schema: z.number(),
+        name: "sellerId",
+        schema: z.string(),
       },
     ],
     errors: [

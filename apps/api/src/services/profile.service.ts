@@ -11,33 +11,6 @@ export const createProfile = async (props: Prisma.ProfileCreateInput) => {
     },
   });
 
-  if (props.buyer) {
-    await prisma.buyer.create({
-      data: {
-        ...props.buyer,
-        profileId: profile.id,
-      } as any,
-    });
-  }
-
-  if (props.seller) {
-    await prisma.seller.create({
-      data: {
-        ...props.seller,
-        profileId: profile.id,
-      } as any,
-    });
-  }
-
-  if (props.broker) {
-    await prisma.broker.create({
-      data: {
-        ...props.broker,
-        profileId: profile.id,
-      } as any,
-    });
-  }
-
   return await getProfileById(profile.id);
 };
 
