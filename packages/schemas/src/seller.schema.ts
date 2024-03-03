@@ -4,6 +4,7 @@ import { schemaError } from "@nexus/utils";
 
 export const sellerSchema = z.object({
   id: z.string().uuid().nullish(),
+  profileId: z.string().uuid(),
   createdAt: z.string().or(z.date()).nullish(),
   updatedAt: z.string().or(z.date()).nullish(),
   deletedAt: z.string().or(z.date()).nullish(),
@@ -86,7 +87,7 @@ export const sellerApi = apiBuilder()
     alias: "updateSeller",
     description: "Update Seller",
     status: 204,
-    response: z.object({}),
+    response: sellerSchema,
     parameters: [
       {
         type: "Path",
@@ -96,7 +97,14 @@ export const sellerApi = apiBuilder()
       {
         type: "Body",
         name: "seller",
-        schema: sellerSchema.partial(),
+        schema: sellerSchema
+          .omit({
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            deletedAt: true,
+          })
+          .partial(),
       },
     ],
     errors: [

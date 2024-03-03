@@ -1,5 +1,5 @@
 import { LoadingView } from "@nexus/ui";
-import { Address } from "@nexus/schemas";
+import { Address, Property } from "@nexus/schemas";
 import React, { useEffect, useState } from "react";
 import AddressSearch from "../address/address-search";
 import StepButtons from "./step-buttons";
@@ -11,6 +11,8 @@ import PropertyTypesSelect from "./property-types-select";
 import PeriodSelect from "./period-select";
 import { useRouter } from "next/navigation";
 import IdentityInputs from "./identity-inputs";
+import { useCreateBuyer } from "../buyer/use-create-buyer";
+import { useCreateAddress } from "../address/use-create-address";
 
 const BuyerOnboarding = ({
   step,
@@ -33,6 +35,8 @@ const BuyerOnboarding = ({
   const [lastName, setLastName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
+  const createBuyerMutation = useCreateBuyer();
+  const createAddressMutation = useCreateAddress();
 
   useEffect(() => {
     if (user) {
@@ -47,20 +51,25 @@ const BuyerOnboarding = ({
     if (!user) return;
 
     try {
-      await createProfileMutation.mutateAsync({
+      const newProfile = await createProfileMutation.mutateAsync({
         type: "BUYER",
         firstName,
         lastName,
         imageUrl,
-        buyer: {
-          radius,
-          minimumPrice,
-          maximumPrice,
-          longitude: address?.longitude || 0,
-          latitude: address?.latitude || 0,
-          propertyTypes,
-          buyingPeriod: buyingPeriod as string,
-        },
+      });
+
+      const newAddress = await createAddressMutation.mutateAsync({
+        ...(address as Address),
+      });
+
+      await createBuyerMutation.mutateAsync({
+        profileId: newProfile.id,
+        radius,
+        minimumPrice,
+        maximumPrice,
+        propertyTypes: propertyTypes as Property["type"][],
+        buyingPeriod,
+        addressId: newAddress.id,
       });
 
       router.push(`/my-criteria`);

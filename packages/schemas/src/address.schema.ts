@@ -77,7 +77,7 @@ export const addressApi = apiBuilder()
     status: 201,
   })
   .addEndpoint({
-    method: "put",
+    method: "patch",
     path: "/addresses/:addressId",
     alias: "updateAddress",
     description: "Update an address",

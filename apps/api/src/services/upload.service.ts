@@ -39,9 +39,7 @@ export const uploadImage = async ({
       filePath: result.data.filePath,
     };
   } catch (error: any) {
-    console.log(error);
     if (error.response) {
-      console.log(error.response.data);
       throw new Error(error.response.data.message);
     }
     throw new Error("An error occurred while uploading the image");

@@ -37,7 +37,7 @@ addressRouter.post("/addresses", authMiddleware, async (request, response) => {
   }
 });
 
-addressRouter.put(
+addressRouter.patch(
   "/addresses/:addressId",
   authMiddleware as any,
   async (request, response) => {

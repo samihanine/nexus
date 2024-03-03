@@ -41,7 +41,6 @@ export const Primary: Story = {
       {...props}
       onClick={(): void => {
         // eslint-disable-next-line no-alert -- alert for demo
-        console.log("Hello from Turborepo!");
       }}
     />
   ),

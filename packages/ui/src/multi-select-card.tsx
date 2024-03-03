@@ -48,10 +48,7 @@ export const MultiSelectCard = <T extends unknown>({
                   return;
                 }
 
-                console.log(isSelected, selected, item.value, maxItems);
-
                 const newArray = selected.filter((i) => i !== item.value);
-                console.log([...newArray, item.value]);
                 setSelected([...newArray, item.value]);
               }
             }}

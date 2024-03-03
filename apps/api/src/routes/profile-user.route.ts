@@ -17,7 +17,7 @@ profileUserRouter.post(
     try {
       const profile = await createProfileUser({
         ...request.body,
-      } as any);
+      });
 
       if (!profile) {
         throw new Error("Error creating profile");

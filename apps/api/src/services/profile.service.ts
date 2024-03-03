@@ -1,7 +1,7 @@
 import prisma from "../lib/prisma";
 import { Prisma } from "@prisma/client";
 
-export const createProfile = async (props: Prisma.ProfileCreateInput) => {
+export const createProfile = async (props: Prisma.ProfileCreateManyInput) => {
   const profile = await prisma.profile.create({
     data: {
       type: props.type,
@@ -11,64 +11,13 @@ export const createProfile = async (props: Prisma.ProfileCreateInput) => {
     },
   });
 
-  return await getProfileById(profile.id);
+  return profile;
 };
 
 export const updateProfile = async (
   id: string,
-  data: Prisma.ProfileUpdateInput
+  data: Prisma.ProfileUpdateManyMutationInput
 ) => {
-  if (data.buyer) {
-    await prisma.buyer.upsert({
-      // @ts-ignore
-      update: {
-        ...data.buyer,
-      },
-      // @ts-ignore
-      create: {
-        ...data.buyer,
-        profileId: id,
-      },
-      where: {
-        profileId: id,
-      },
-    });
-  }
-
-  if (data.seller) {
-    await prisma.seller.upsert({
-      // @ts-ignore
-      update: {
-        ...data.seller,
-      },
-      // @ts-ignore
-      create: {
-        ...data.seller,
-        profileId: id,
-      },
-      where: {
-        profileId: id,
-      },
-    });
-  }
-
-  if (data.broker) {
-    await prisma.broker.upsert({
-      // @ts-ignore
-      update: {
-        ...data.broker,
-      },
-      // @ts-ignore
-      create: {
-        ...data.broker,
-        profileId: id,
-      },
-      where: {
-        profileId: id,
-      },
-    });
-  }
-
   return await prisma.profile.update({
     where: {
       id,
@@ -88,7 +37,11 @@ export const getProfileById = async (id: string) => {
       id,
     },
     include: {
-      buyer: true,
+      buyer: {
+        include: {
+          address: true,
+        },
+      },
       seller: true,
       broker: {
         include: {

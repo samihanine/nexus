@@ -4,6 +4,7 @@ import { schemaError } from "@nexus/utils";
 import { ProfileType } from "@prisma/client";
 import { brokerSchema } from "./broker.schema";
 import { buyerSchema } from "./buyer.schema";
+import { sellerSchema } from "./seller.schema";
 
 export const profileSchema = z.object({
   id: z.string().uuid(),
@@ -12,41 +13,8 @@ export const profileSchema = z.object({
   lastName: z.string(),
   imageUrl: z.string().nullish(),
   broker: brokerSchema.nullish(),
-  owner: z
-    .object({
-      id: z.string().uuid().nullish(),
-      createdAt: z.string().or(z.date()).nullish(),
-      updatedAt: z.string().or(z.date()).nullish(),
-      deletedAt: z.string().or(z.date()).nullish(),
-    })
-    .nullish(),
-
-  seller: z
-    .object({
-      id: z.string().uuid().nullish(),
-      createdAt: z.string().or(z.date()).nullish(),
-      updatedAt: z.string().or(z.date()).nullish(),
-      deletedAt: z.string().or(z.date()).nullish(),
-    })
-    .nullish(),
-
+  seller: sellerSchema.nullish(),
   buyer: buyerSchema.nullish(),
-  tenant: z
-    .object({
-      id: z.string().uuid().nullish(),
-      minimumPrice: z.number(),
-      maximumPrice: z.number(),
-      buyingPeriod: z.string(),
-      latitude: z.number(),
-      longitude: z.number(),
-      radius: z.number(),
-      imageUrl: z.string().nullish(),
-      createdAt: z.string().or(z.date()).nullish(),
-      updatedAt: z.string().or(z.date()).nullish(),
-      deletedAt: z.string().or(z.date()).nullish(),
-    })
-    .nullish(),
-
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullish(),

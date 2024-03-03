@@ -12,7 +12,6 @@ type PropertyCardProps = {
   price: string;
   type: Property["type"];
   formattedAddress: string;
-  mainImageUrl?: string;
   imageUrls: string[];
   id: string;
 };
@@ -21,11 +20,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   price,
   type,
   formattedAddress,
-  mainImageUrl,
   imageUrls,
   id,
 }) => {
-  const images = [mainImageUrl, ...imageUrls];
+  const images = [...imageUrls];
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const title = useMemo(() => {

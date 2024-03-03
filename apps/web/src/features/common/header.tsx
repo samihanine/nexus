@@ -24,7 +24,7 @@ import {
   HomeModernIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import {  useState } from "react";
+import { useState } from "react";
 import { useProfiles } from "../profile/use-profiles";
 import { Profile } from "@nexus/schemas";
 import { cn } from "@nexus/utils";
@@ -89,7 +89,7 @@ const Header = () => {
       return [
         { label: "Propriétés", href: "/properties", Icon: MagnifyingGlassIcon },
         { label: "Conversations", href: "/conversations", Icon: EnvelopeIcon },
-        { label: "Mes critères", href: "/criteria", Icon: UserIcon },
+        { label: "Mes critères", href: "/my-criteria", Icon: UserIcon },
       ];
     }
 

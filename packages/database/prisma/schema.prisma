@@ -98,15 +98,14 @@ model Broker {
   centrisUrl  String
   websiteUrl  String?
   oaciqNumber String
-  latitude    Float
-  longitude   Float
   radius      Float
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
-
-  agency   Agency? @relation(fields: [agencyId], references: [id])
-  agencyId String?
+  address     Address   @relation(fields: [addressId], references: [id])
+  addressId   String
+  agency      Agency?   @relation(fields: [agencyId], references: [id])
+  agencyId    String?
 
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
@@ -135,12 +134,11 @@ model Seller {
 
 model Buyer {
   id                             String         @id @default(uuid())
-  minimumPrice                   Float
-  maximumPrice                   Float
-  buyingPeriod                   String
-  latitude                       Float
-  longitude                      Float
-  radius                         Float
+  minimumPrice                   Float          @default(0)
+  maximumPrice                   Float?
+  buyingPeriod                   String         @default("0-6")
+  description                    String         @default("") @db.Text
+  addressId                      String
   minimumParkingSpots            Int            @default(0)
   minimumBathrooms               Int            @default(0)
   minimumRooms                   Int            @default(0)
@@ -148,6 +146,8 @@ model Buyer {
   minimumLandAreaInSquareFeet    Int            @default(0)
   minimumYearBuilt               Int            @default(0)
   minimumStories                 Int            @default(0)
+  minimumBedrooms                Int            @default(0)
+  radius                         Float          @default(0)
   hasBasement                    Boolean        @default(false)
   hasElevator                    Boolean        @default(false)
   hasSauna                       Boolean        @default(false)
@@ -161,6 +161,8 @@ model Buyer {
 
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId String  @unique
+
+  address Address @relation(fields: [addressId], references: [id])
 }
 
 model Tenant {
@@ -208,7 +210,6 @@ model Property {
   id                      String       @id @default(uuid())
   type                    PropertyType @default(HOUSE)
   description             String       @db.Text
-  mainImageUrl            String?      @db.Text
   imageUrls               String[]
   price                   Float        @default(0)
   currency                String
@@ -230,9 +231,10 @@ model Property {
   hasFireplace            Boolean      @default(false)
   hasGym                  Boolean      @default(false)
   hasElevator             Boolean      @default(false)
+  hasBasement             Boolean      @default(false)
   sellingPeriod           String       @default("0-6")
   isSold                  Boolean      @default(false)
-  isVisible               Boolean      @default(false)
+  isVisible               Boolean      @default(true)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -258,7 +260,9 @@ model Address {
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   deletedAt        DateTime?
-  property         Property[]
+  properties       Property[]
+  buyers           Buyer[]
+  brokers          Broker[]
 }
 
 model Conversation {

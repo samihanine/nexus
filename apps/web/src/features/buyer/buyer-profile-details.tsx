@@ -1,39 +1,157 @@
 "use client";
-import { Profile, Property, Buyer } from "@nexus/schemas";
-import { Avatar, Card, Chip, Detail, H3, H4, Input, Switch } from "@nexus/ui";
+import { Buyer, Profile, Property } from "@nexus/schemas";
+import { Avatar, Card, H3, H4 } from "@nexus/ui";
 import dynamic from "next/dynamic";
-import React from "react";
+import FeatureTable from "../common/feature-table";
 
 const Map = dynamic(() => import("../address/map"), { ssr: false });
 
 export default function BuyerProfileDetails({
   profile,
   buyer,
+  property,
 }: {
   profile: Profile;
   buyer: Buyer;
+  property?: Property;
 }) {
   const features = [
     {
       label: "Looking for",
-      value: "House",
-      percentage: 100,
+      value: buyer.propertyTypes.join(", "),
+      percentage: property
+        ? buyer.propertyTypes.includes(property.type)
+          ? 100
+          : 0
+        : undefined,
     },
     {
-      label: "Buying period",
-      value: "Now",
+      label: "Parking spots",
+      value: buyer.minimumParkingSpots,
+      percentage: property
+        ? (buyer.minimumParkingSpots / property.parkingSpots) * 100
+        : undefined,
+    },
+    {
+      label: "Bedrooms",
+      value: buyer.minimumBedrooms,
+      percentage: property
+        ? (buyer.minimumBedrooms / property.bedrooms) * 100
+        : undefined,
+    },
+    {
+      label: "Bathrooms",
+      value: buyer.minimumBathrooms,
+      percentage: property
+        ? (buyer.minimumBathrooms / property.bathrooms) * 100
+        : undefined,
+    },
+    {
+      label: "Rooms",
+      value: buyer.minimumRooms,
+      percentage: property
+        ? (buyer.minimumRooms / property.rooms) * 100
+        : undefined,
+    },
+    {
+      label: "Livable area in square feet",
+      value: buyer.minimumLivableAreaInSquareFeet,
+      percentage: property
+        ? (buyer.minimumLivableAreaInSquareFeet /
+            property.livableAreaInSquareFeet) *
+          100
+        : undefined,
+    },
+    {
+      label: "Land area in square feet",
+      value: buyer.minimumLandAreaInSquareFeet,
+      percentage: property
+        ? (buyer.minimumLandAreaInSquareFeet / property.landAreaInSquareFeet) *
+          100
+        : undefined,
+    },
+    {
+      label: "Year built",
+      value: buyer.minimumYearBuilt,
+      percentage: property
+        ? (buyer.minimumYearBuilt / property.yearBuilt) * 100
+        : undefined,
+    },
+    {
+      label: "Has basement",
+      value: buyer.hasBasement ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasBasement === property.hasBasement
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has elevator",
+      value: buyer.hasElevator ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasElevator === property.hasElevator
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has sauna",
+      value: buyer.hasSauna ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasSauna === property.hasSauna
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has pool",
+      value: buyer.hasPool ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasPool === property.hasPool
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has fireplace",
+      value: buyer.hasFireplace ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasFireplace === property.hasFireplace
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has gym",
+      value: buyer.hasGym ? "Yes" : undefined,
+      percentage: property
+        ? buyer.hasGym === property.hasGym
+          ? 100
+          : 0
+        : undefined,
     },
   ];
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <ProfileHeader
-        firstName={profile.firstName}
-        lastName={profile.lastName}
-        imageUrl={profile.imageUrl || undefined}
-        propertyTypes={buyer?.propertyTypes || []}
-        buyingPeriod={buyer.buyingPeriod}
-      />
+      <Card className="bg-secondary flex items-center px-10 py-5 gap-10 !border-0">
+        <Avatar
+          src={profile.imageUrl || undefined}
+          alt={`${profile.firstName} ${profile.lastName}`}
+          className="w-24 h-24"
+        />
+
+        <div className="flex flex-col gap-1">
+          <H3 className="!text-3xl">
+            {profile.firstName} {profile.lastName.charAt(0)}.
+          </H3>
+          <p>Looking for a house for sale</p>
+          <p>Ready to buy now</p>
+        </div>
+
+        <div className="flex gap-5"></div>
+      </Card>
 
       {Boolean(buyer.description?.length) && (
         <>
@@ -47,133 +165,10 @@ export default function BuyerProfileDetails({
 
       <H4 className="mt-5">Zone de recherches</H4>
       <Map
-        latitude={buyer.latitude}
-        longitude={buyer.longitude}
+        latitude={buyer.address?.latitude}
+        longitude={buyer.address?.longitude}
         radius={buyer.radius}
       />
-    </div>
-  );
-}
-
-function ProfileDescription(props: { description: string }) {
-  return (
-    <div className="flex flex-col gap-5">
-      <p>{props.description}</p>
-    </div>
-  );
-}
-
-function ProfileHeader(props: {
-  firstName: string;
-  lastName: string;
-  imageUrl?: string;
-  propertyTypes: Property["type"][];
-  buyingPeriod: Buyer["buyingPeriod"];
-}) {
-  return (
-    <Card className="bg-secondary flex items-center px-10 py-5 gap-10 !border-0">
-      <Avatar
-        src={props.imageUrl}
-        alt={`${props.firstName} ${props.lastName}`}
-        className="w-24 h-24"
-      />
-
-      <div className="flex flex-col gap-1">
-        <H3 className="!text-3xl">
-          {props.firstName} {props.lastName.charAt(0)}.
-        </H3>
-        <p>Looking for a house for sale</p>
-        <p>Ready to buy now</p>
-      </div>
-
-      <div className="flex gap-5"></div>
-    </Card>
-  );
-}
-
-function FeatureTable(props: {
-  features: {
-    label: string;
-    value?: string;
-    percentage?: number;
-  }[];
-}) {
-  return (
-    <div className="flex flex-col">
-      {props.features.map((feature, index) => {
-        if (!feature.value) return <></>;
-
-        return (
-          <div key={index} className="border-t border-t-border flex">
-            <div className="flex-1 bg-gray-100 border-r border-r-border p-3">
-              {feature.label}
-            </div>
-            <div className="flex-1 py-2 px-4 flex items-center gap-3">
-              <p className="font-medium">{feature.value}</p>
-              {feature.percentage && (
-                <Chip
-                  variant={
-                    feature.percentage > 0
-                      ? feature.percentage === 100
-                        ? "green"
-                        : "yellow"
-                      : "red"
-                  }
-                >
-                  {feature.percentage}%
-                </Chip>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function EditTable(props: {
-  features: {
-    label: string;
-    value: number | boolean;
-    type: "NUMBER" | "PRICE" | "BOOLEAN";
-    onChange: (value: number | boolean) => void;
-  }[];
-}) {
-  return (
-    <div className="flex flex-col">
-      {props.features.map((feature, index) => (
-        <div key={index} className="border-t border-t-border flex">
-          <div className="flex-1 bg-gray-100 border-r border-r-border">
-            {feature.label}
-          </div>
-          <div className="flex-1">
-            {feature.type === "NUMBER" && (
-              <Input
-                type="number"
-                value={feature.value as number}
-                onChange={(e) => feature.onChange(Number(e.target.value))}
-              />
-            )}
-
-            {feature.type === "PRICE" && (
-              <Input
-                type="number"
-                value={feature.value as number}
-                onChange={(e) => feature.onChange(Number(e.target.value))}
-              />
-            )}
-
-            {feature.type === "BOOLEAN" && (
-              <Switch
-                checked={feature.value as boolean}
-                onChange={(e) =>
-                  feature.onChange(e.currentTarget.value === "true")
-                }
-              />
-            )}
-          </div>
-        </div>
-      ))}
     </div>
   );
 }

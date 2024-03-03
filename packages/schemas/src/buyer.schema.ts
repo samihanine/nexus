@@ -2,6 +2,7 @@ import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { PropertyType } from "@prisma/client";
+import { addressSchema } from "./address.schema";
 
 export const buyerSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -14,12 +15,19 @@ export const buyerSchema = z.object({
   minimumLivableAreaInSquareFeet: z.number().default(0),
   minimumLandAreaInSquareFeet: z.number().default(0),
   minimumYearBuilt: z.number().default(0),
-  buyingPeriod: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
+  hasBasement: z.boolean().default(false),
+  hasElevator: z.boolean().default(false),
+  hasSauna: z.boolean().default(false),
+  hasPool: z.boolean().default(false),
+  hasFireplace: z.boolean().default(false),
+  hasGym: z.boolean().default(false),
+  buyingPeriod: z.string().default("0-6"),
   radius: z.number(),
   description: z.string().default(""),
   propertyTypes: z.array(z.nativeEnum(PropertyType)),
+  addressId: z.string().uuid(),
+  address: addressSchema.nullish(),
+  profileId: z.string().uuid(),
   createdAt: z.string().or(z.date()).nullish(),
   updatedAt: z.string().or(z.date()).nullish(),
   deletedAt: z.string().or(z.date()).nullish(),
@@ -102,7 +110,7 @@ export const buyerApi = apiBuilder()
     alias: "updateBuyer",
     description: "Update Buyer",
     status: 204,
-    response: z.object({}),
+    response: buyerSchema,
     parameters: [
       {
         type: "Path",
@@ -112,7 +120,15 @@ export const buyerApi = apiBuilder()
       {
         type: "Body",
         name: "buyer",
-        schema: buyerSchema.partial(),
+        schema: buyerSchema
+          .omit({
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            deletedAt: true,
+            address: true,
+          })
+          .partial(),
       },
     ],
     errors: [

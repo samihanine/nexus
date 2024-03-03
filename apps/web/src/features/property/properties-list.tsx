@@ -12,7 +12,6 @@ export default function PropertiesList({
       {properties.map((property) => (
         <PropertyCard
           key={property.id}
-          mainImageUrl={property.mainImageUrl || undefined}
           type={property.type}
           formattedAddress={property.address?.formattedAddress || ""}
           price={String(property.price)}

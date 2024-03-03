@@ -2,6 +2,7 @@ import { z } from "zod";
 import { agencySchema } from "./agency.schema";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
+import { addressSchema } from "./address.schema";
 
 export const brokerSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -11,8 +12,9 @@ export const brokerSchema = z.object({
   centrisUrl: z.string(),
   websiteUrl: z.string().nullish(),
   oaciqNumber: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
+  addressId: z.string().uuid(),
+  address: addressSchema.nullish(),
+  profileId: z.string().uuid(),
   radius: z.number(),
   agencyId: z.string().uuid().nullish(),
   createdAt: z.string().or(z.date()).nullish(),
@@ -40,6 +42,8 @@ export const brokerApi = apiBuilder()
           createdAt: true,
           updatedAt: true,
           deletedAt: true,
+          address: true,
+          agency: true,
         }),
       },
     ],
@@ -98,7 +102,7 @@ export const brokerApi = apiBuilder()
     alias: "updateBroker",
     description: "Update Broker",
     status: 204,
-    response: z.object({}),
+    response: brokerSchema,
     parameters: [
       {
         type: "Path",
@@ -108,7 +112,16 @@ export const brokerApi = apiBuilder()
       {
         type: "Body",
         name: "broker",
-        schema: brokerSchema.partial(),
+        schema: brokerSchema
+          .omit({
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+            deletedAt: true,
+            address: true,
+            agency: true,
+          })
+          .partial(),
       },
     ],
     errors: [

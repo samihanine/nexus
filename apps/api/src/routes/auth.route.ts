@@ -31,7 +31,6 @@ authRouter.get("/auth/google/callback", async (request, response) => {
 
     response.redirect(redirectUrl);
   } catch (error) {
-    console.log(error);
     response.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/login`);
   }
 });

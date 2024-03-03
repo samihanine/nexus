@@ -9,6 +9,8 @@ import StepButtons from "./step-buttons";
 import StepTitle from "./step-title";
 import { useCreateProfile } from "../profile/use-create-profile";
 import BrokerInputs from "./broker-inputs";
+import { useCreateBroker } from "../broker/use-create-broker";
+import { useCreateAddress } from "../address/use-create-address";
 
 const BrokerOnboarding = ({
   step,
@@ -28,6 +30,8 @@ const BrokerOnboarding = ({
   const [oaciqNumber, setOaciqNumber] = useState("");
   const [centrisUrl, setCentrisUrl] = useState("");
   const router = useRouter();
+  const createBrokerMutation = useCreateBroker();
+  const createAddressMutation = useCreateAddress();
 
   useEffect(() => {
     if (user) {
@@ -42,21 +46,26 @@ const BrokerOnboarding = ({
     if (!user) return;
 
     try {
-      await createProfileMutation.mutateAsync({
+      const newProfile = await createProfileMutation.mutateAsync({
         type: "BROKER",
         firstName,
         lastName,
         imageUrl,
-        broker: {
-          phone,
-          oaciqNumber,
-          centrisUrl,
-          latitude: address?.latitude || 0,
-          longitude: address?.longitude || 0,
-          description: "",
-          email: "",
-          radius,
-        },
+      });
+
+      const newAddress = await createAddressMutation.mutateAsync({
+        ...(address as Address),
+      });
+
+      await createBrokerMutation.mutateAsync({
+        phone,
+        oaciqNumber,
+        centrisUrl,
+        addressId: newAddress.id,
+        description: "",
+        email: "",
+        radius,
+        profileId: newProfile.id,
       });
 
       router.push(`/my-profile`);

@@ -75,7 +75,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M25.4633 41.127H22.9326V48.2125H25.4633V41.127Z"
@@ -83,7 +83,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M27.1236 48.2148H29.6543V41.1293H27.1236V48.2148Z"
@@ -91,7 +91,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M25.4633 50.6016H22.9326V57.6871H25.4633V50.6016Z"
@@ -99,7 +99,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M27.1236 57.6855H29.6543V50.6H27.1236V57.6855Z"
@@ -107,7 +107,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M31.428 49.4059C31.428 49.905 31.0232 50.3098 30.5241 50.3098C30.0249 50.3098 29.6201 49.905 29.6201 49.4059C29.6201 48.9068 30.0249 48.502 30.5241 48.502C31.0237 48.502 31.428 48.9068 31.428 49.4059Z"
@@ -115,7 +115,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M36.2772 48.2148H49.6582V38.9818H36.2772V48.2148Z"
@@ -123,7 +123,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M42.9688 38.9805V48.2135"
@@ -131,7 +131,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M36.2773 43.5957H49.6589"
@@ -139,7 +139,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M35.2034 50.6016H50.7314V48.2158H35.2034V50.6016Z"
@@ -147,7 +147,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M31.0181 26.9629H23.8623V33.3316H31.0181V26.9629Z"
@@ -155,7 +155,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M31.0181 30.1113H23.8623"
@@ -163,7 +163,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M32.0918 33.332H22.7891V35.7183H32.0918V33.332Z"
@@ -171,7 +171,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.7827 15.168H31.627V21.5367H38.7827V15.168Z"
@@ -179,7 +179,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.7827 18.3164H31.627"
@@ -187,7 +187,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M39.856 21.5371H30.5537V23.9229H39.856V21.5371Z"
@@ -195,7 +195,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M47.6909 26.9629H40.5352V33.3316H47.6909V26.9629Z"
@@ -203,7 +203,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M47.6909 30.1113H40.5352"
@@ -211,7 +211,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M48.7642 33.332H39.4619V35.7183H48.7642V33.332Z"
@@ -219,7 +219,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M35.2038 6.47656L54.3631 25.6358V58.9832H35.2038H16.0439V25.6358L35.2038 6.47656Z"
@@ -227,7 +227,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M35.2044 0.464844L9.81934 25.8498H16.0446L35.2044 6.47588L54.3637 25.8498H60.5889L35.2044 0.464844Z"
@@ -235,7 +235,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M54.3643 53.2734H31.9062"
@@ -243,7 +243,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M20.682 53.2734H16.0439"
@@ -251,7 +251,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.721 46.666C12.7714 46.666 13.6227 47.5173 13.6227 48.5677V58.9815H9.81934V48.5677C9.81934 47.5173 10.6706 46.666 11.721 46.666Z"
@@ -259,7 +259,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M5.79181 46.666C6.84222 46.666 7.69349 47.5173 7.69349 48.5677V58.9815H3.89063V48.5677C3.89012 47.5173 4.74189 46.666 5.79181 46.666Z"
@@ -267,7 +267,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.81975 50.6016H7.69434V54.1446H9.81975V50.6016Z"
@@ -275,7 +275,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M15.7475 50.6016H13.6221V54.1446H15.7475V50.6016Z"
@@ -283,7 +283,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M58.6878 46.666C57.6374 46.666 56.7861 47.5173 56.7861 48.5677V58.9815H60.589V48.5677C60.589 47.5173 59.7377 46.666 58.6878 46.666Z"
@@ -291,7 +291,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M64.6156 46.666C63.5651 46.666 62.7139 47.5173 62.7139 48.5677V58.9815H66.5167V48.5677C66.5172 47.5173 65.666 46.666 64.6156 46.666Z"
@@ -299,7 +299,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M60.5894 54.1426H62.7148V50.5996H60.5894V54.1426Z"
@@ -307,7 +307,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M54.6607 54.1426H56.7861V50.5996H54.6607V54.1426Z"
@@ -315,7 +315,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M0.432617 58.9824H69.9763"
@@ -323,7 +323,7 @@ const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.758658"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -343,7 +343,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.9304 47.2441H30.7949V49.2781H38.9304V47.2441Z"
@@ -351,7 +351,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.9304 34.7793H30.7949V47.2451H38.9304V34.7793Z"
@@ -359,7 +359,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M30.7946 42.5859H12.8174V51.3119H30.7946V42.5859Z"
@@ -367,7 +367,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M56.9074 42.5859H38.9307V51.3119H56.9074V42.5859Z"
@@ -375,7 +375,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M27.4971 33.334H16.0156V40.0917H27.4971V33.334Z"
@@ -383,7 +383,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M21.6583 19.2559H16.0488V26.0136H21.6583V19.2559Z"
@@ -391,7 +391,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.6105 19.2559H48.001V26.0136H53.6105V19.2559Z"
@@ -399,7 +399,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M42.9601 19.2559H37.3506V26.0136H42.9601V19.2559Z"
@@ -407,7 +407,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M32.3097 19.2559H26.7002V26.0136H32.3097V19.2559Z"
@@ -415,7 +415,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M21.6583 5.14844H16.0488V11.9061H21.6583V5.14844Z"
@@ -423,7 +423,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.6105 5.14844H48.001V11.9061H53.6105V5.14844Z"
@@ -431,7 +431,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M42.9601 5.14844H37.3506V11.9061H42.9601V5.14844Z"
@@ -439,7 +439,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M32.3097 5.14844H26.7002V11.9061H32.3097V5.14844Z"
@@ -447,7 +447,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M21.7559 33.334V40.0921"
@@ -455,7 +455,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.708 33.334H42.2266V40.0917H53.708V33.334Z"
@@ -463,7 +463,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M47.9668 33.334V40.0921"
@@ -471,7 +471,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.2673 2.80664H12.4561V51.312H57.2673V2.80664Z"
@@ -479,7 +479,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.2672 28.5449H12.3906V30.907H57.2672V28.5449Z"
@@ -487,7 +487,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.2672 14.5723H12.3906V16.9344H57.2672V14.5723Z"
@@ -495,7 +495,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M60.0887 0.464844H9.56934V2.82693H60.0887V0.464844Z"
@@ -503,7 +503,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12.5918 18.1807C12.0532 17.9431 11.4587 17.8086 10.8322 17.8086C8.52561 17.8086 6.64127 19.5988 6.48187 21.8645C3.29616 22.0812 0.777344 24.727 0.777344 27.9678C0.777344 30.6806 2.5427 32.9774 4.98604 33.7824C5.68445 36.41 8.07273 38.3494 10.9201 38.3494C11.5004 38.3494 12.0599 38.2633 12.5918 38.1132V18.1807Z"
@@ -511,7 +511,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.0127 37.6172V51.3133"
@@ -519,7 +519,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.92285 38.3496V51.3122"
@@ -527,7 +527,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.1318 18.1807C57.6704 17.9431 58.2649 17.8086 58.8914 17.8086C61.198 17.8086 63.0824 19.5988 63.2417 21.8645C66.4275 22.0812 68.9463 24.727 68.9463 27.9678C68.9463 30.6806 67.1809 32.9774 64.7376 33.7824C64.0392 36.41 61.6509 38.3494 58.8035 38.3494C58.2232 38.3494 57.6642 38.2633 57.1318 38.1132V18.1807Z"
@@ -535,7 +535,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M61.7109 37.6172V51.3133"
@@ -543,7 +543,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M59.8008 38.3496V51.3122"
@@ -551,7 +551,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M4.20801 51.3125H65.5171"
@@ -559,7 +559,7 @@ const CondoIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -579,7 +579,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M43.5114 29.0566H41.0811V35.861H43.5114V29.0566Z"
@@ -587,7 +587,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M45.1082 35.8594H47.5381V29.055H45.1082V35.8594Z"
@@ -595,7 +595,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M43.5114 38.1523H41.0811V44.9567H43.5114V38.1523Z"
@@ -603,7 +603,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M45.1082 44.957H47.5381V38.1527H45.1082V44.957Z"
@@ -611,7 +611,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M48.3729 37.8746C48.8522 37.8746 49.2408 37.486 49.2408 37.0067C49.2408 36.5273 48.8522 36.1387 48.3729 36.1387C47.8935 36.1387 47.5049 36.5273 47.5049 37.0067C47.5049 37.486 47.8935 37.8746 48.3729 37.8746Z"
@@ -619,7 +619,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.3786 8.19141H15.9988L12.9258 19.8043H56.4512L53.3786 8.19141Z"
@@ -627,7 +627,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M59.9104 19.8027H9.46582L10.695 22.7062H58.6812L59.9104 19.8027Z"
@@ -635,7 +635,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.4613 22.707H11.916V50.8326H57.4613V22.707Z"
@@ -643,7 +643,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M35.4098 26.9941H17.1777V38.2443H35.4098V26.9941Z"
@@ -651,7 +651,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M26.2939 26.9941V34.0709"
@@ -659,7 +659,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M17.1777 34.0703H35.4093"
@@ -667,7 +667,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M49.6974 46.2012H38.9199V48.3937H49.6974V46.2012Z"
@@ -675,7 +675,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M49.6974 48.3945H38.9199V50.5871H49.6974V48.3945Z"
@@ -683,7 +683,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.9198 40.6152H35.2598V50.586H38.9198V40.6152Z"
@@ -691,7 +691,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.3573 40.6152H49.6973V50.586H53.3573V40.6152Z"
@@ -699,7 +699,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M35.2606 40.6152H11.916"
@@ -707,7 +707,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M53.3584 40.6152H57.461"
@@ -715,7 +715,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M24.049 3.63672H19.5752V8.19085H24.049V3.63672Z"
@@ -723,7 +723,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M25.635 0.464844H17.9902V3.63573H25.635V0.464844Z"
@@ -731,7 +731,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M0.604492 50.832H68.7729"
@@ -739,7 +739,7 @@ const TownhouseIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.722998"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -759,7 +759,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M26.7527 18.3095L21.8574 18.3184L21.8688 24.6236L26.7641 24.6148L26.7527 18.3095Z"
@@ -767,7 +767,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M26.7635 22.208L21.8682 22.2168L21.8725 24.6227L26.7678 24.6139L26.7635 22.208Z"
@@ -775,7 +775,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M25.3498 19.8398L23.2754 19.8438L23.2799 22.2081L25.3543 22.2041L25.3498 19.8398Z"
@@ -783,7 +783,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M26.7752 27.3174L21.8799 27.3262L21.8912 33.6314L26.7865 33.6226L26.7752 27.3174Z"
@@ -791,7 +791,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M26.7859 31.2178L21.8906 31.2266L21.895 33.6325L26.7902 33.6237L26.7859 31.2178Z"
@@ -799,7 +799,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M25.3606 28.8556L23.2861 28.8594L23.2904 31.2237L25.3648 31.22L25.3606 28.8556Z"
@@ -807,7 +807,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M50.6638 27.2763L45.7686 27.2852L45.7799 33.5904L50.6752 33.5816L50.6638 27.2763Z"
@@ -815,7 +815,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M50.6707 31.1748L45.7754 31.1836L45.7797 33.5895L50.675 33.5807L50.6707 31.1748Z"
@@ -823,7 +823,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M49.2727 28.8086L47.1982 28.8125L47.2027 31.1768L49.2771 31.1729L49.2727 28.8086Z"
@@ -831,7 +831,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M19.9473 15.4551L19.9858 36.4011"
@@ -839,7 +839,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M27.3783 15.4442L16.1358 15.4648L16.1318 13.2664L30.3243 13.2402"
@@ -847,7 +847,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M36.2534 14.5755L43.2854 14.5625L36.2376 5.98828L29.2217 14.5883L36.2534 14.5755Z"
@@ -855,7 +855,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M43.2859 14.5619L45.1318 14.5586L45.1355 16.5702L36.2576 16.5866L27.3799 16.603L27.376 14.5914L29.2222 14.5878"
@@ -863,7 +863,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M43.843 16.5742L43.8798 36.3588L41.432 36.3634L41.3955 16.5788"
@@ -871,7 +871,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M36.2876 31.6035L39.8036 31.5969L39.7827 20.3555L36.2667 20.3618L32.751 20.3685L32.7716 31.6099L36.2876 31.6035Z"
@@ -879,7 +879,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M45.7824 24.5713L50.6777 24.5625L50.6664 18.2572L45.7711 18.266L45.7824 24.5713Z"
@@ -887,7 +887,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M44.7134 11.8665L49.6086 11.8574L49.6017 7.99965C49.5992 6.64813 48.5013 5.55421 47.1493 5.55664C45.7977 5.55907 44.7036 6.65694 44.7061 8.00846L44.7134 11.8665Z"
@@ -895,7 +895,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M27.7812 11.8942L22.8859 11.9033L22.8789 8.04557C22.8765 6.69405 23.9702 5.59618 25.3218 5.59375C26.6738 5.59132 27.7715 6.68494 27.7742 8.03676L27.7812 11.8942Z"
@@ -903,7 +903,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M45.7824 24.5713L50.6777 24.5625L50.6734 22.1566L45.7781 22.1654L45.7824 24.5713Z"
@@ -911,7 +911,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M47.1766 22.168L49.251 22.1641L49.2465 19.7997L47.1721 19.8037L47.1766 22.168Z"
@@ -919,7 +919,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M52.5557 15.3965L52.5942 36.3425"
@@ -927,7 +927,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M45.1275 15.4089L56.3703 15.3879L56.366 13.1895L42.3467 13.2153"
@@ -935,7 +935,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M55.4166 13.1919L51.2049 1.33594L36.2286 1.36358L21.2523 1.39123L17.084 13.2627"
@@ -943,7 +943,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M39.8032 31.6006L32.7715 31.6133L32.7743 33.2027L39.806 33.19L39.8032 31.6006Z"
@@ -951,7 +951,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M39.8051 33.1885L32.7734 33.2012L32.7763 34.7905L39.808 34.7779L39.8051 33.1885Z"
@@ -959,7 +959,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M39.8061 34.7784L32.7744 34.791L32.7773 36.3804L39.809 36.3677L39.8061 34.7784Z"
@@ -967,7 +967,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.3598 22.164L34.1934 22.1719L34.1987 24.9982L38.3652 24.9903L38.3598 22.164Z"
@@ -975,7 +975,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M38.3696 27.2948L34.2031 27.3027L34.2085 30.1291L38.3749 30.1212L38.3696 27.2948Z"
@@ -983,7 +983,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M52.5918 32.1869L69.2053 32.1562"
@@ -991,7 +991,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M62.6396 25.9965L66.9521 25.9883L66.9416 20.4337L62.629 20.4418L62.6396 25.9965Z"
@@ -999,7 +999,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M62.6396 25.9965L66.9521 25.9883L66.9481 23.8688L62.6355 23.877L62.6396 25.9965Z"
@@ -1007,7 +1007,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M63.8894 23.8666L65.7168 23.8633L65.713 21.7803L63.8856 21.7835L63.8894 23.8666Z"
@@ -1015,7 +1015,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M56.0722 26.0062L60.3848 25.998L60.3742 20.4434L56.0616 20.4516L56.0722 26.0062Z"
@@ -1023,7 +1023,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M56.0722 26.0062L60.3848 25.998L60.3807 23.8786L56.0681 23.8868L56.0722 26.0062Z"
@@ -1031,7 +1031,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M57.3269 23.8783L59.1543 23.875L59.1505 21.792L57.3231 21.7953L57.3269 23.8783Z"
@@ -1039,7 +1039,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M69.168 16.5254L69.2044 36.31"
@@ -1047,7 +1047,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M52.7969 16.5185L70.5224 16.4857L70.519 14.5488L56.3691 14.5753"
@@ -1055,7 +1055,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M69.1703 14.5158L65.9751 5.52148L52.7812 5.54579"
@@ -1063,7 +1063,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M19.9856 32.2461L3.37207 32.2768"
@@ -1071,7 +1071,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.87509 20.5328L5.5625 20.541L5.57305 26.0956L9.88564 26.0874L9.87509 20.5328Z"
@@ -1079,7 +1079,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.87509 23.9688L5.5625 23.9766L5.56632 26.096L9.8789 26.0883L9.87509 23.9688Z"
@@ -1087,7 +1087,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M8.63406 21.8872L6.80664 21.8906L6.8106 23.9736L8.63802 23.9702L8.63406 21.8872Z"
@@ -1095,7 +1095,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16.4483 20.5192L12.1357 20.5273L12.1463 26.082L16.4589 26.0738L16.4483 20.5192Z"
@@ -1103,7 +1103,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16.4483 23.959L12.1357 23.9668L12.1396 26.0863L16.4521 26.0785L16.4483 23.959Z"
@@ -1111,7 +1111,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M15.2132 21.8754L13.3857 21.8789L13.3897 23.9619L15.2171 23.9585L15.2132 21.8754Z"
@@ -1119,7 +1119,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M3.33203 16.6484L3.36879 36.4331"
@@ -1127,7 +1127,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M19.7067 16.5806L1.98119 16.6131L1.97754 14.6765L16.1275 14.6504"
@@ -1135,7 +1135,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M3.3252 14.6363L6.48725 5.63007L19.6811 5.60547"
@@ -1143,7 +1143,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M1.28711 36.438L71.2871 36.3086"
@@ -1151,7 +1151,7 @@ export const MultifamilyIcon = (props: React.SVGProps<SVGSVGElement>) => {
         stroke-width="0.7"
         stroke-miterlimit="10"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

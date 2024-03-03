@@ -18,7 +18,7 @@ profileRouter.post("/profiles", authMiddleware, async (request, response) => {
   try {
     const profile = await createProfile({
       ...request.body,
-    } as any);
+    });
 
     if (!profile) {
       throw new Error("Error creating profile");
@@ -51,7 +51,6 @@ profileRouter.patch(
     try {
       response
         .status(200)
-        // @ts-ignore
         .json(await updateProfile(request.params.profileId, request.body));
     } catch (error) {
       console.error("Error getting current profile", error);

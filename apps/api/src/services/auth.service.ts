@@ -18,12 +18,10 @@ export async function signIn({
       },
     })
     .catch((err) => {
-      console.log(err);
       return null;
     });
 
   if (!user) {
-    console.log("Email not found");
     throw new Error("Email not found");
   }
 
@@ -64,7 +62,6 @@ export const authWithGoogleCallback = async ({
     code: code,
     redirect_uri: process.env.GOOGLE_REDIRECT_URL,
   });
-  //console.log(tokens);
   googleClient.setCredentials(tokens);
 
   const ticket = await googleClient.verifyIdToken({

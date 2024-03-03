@@ -26,7 +26,6 @@ export const completionFunction = async <T>(
 
     return json;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -43,7 +42,6 @@ export const completion = async (props: CompletionProps): Promise<string> => {
 
     return text;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

@@ -8,6 +8,9 @@ import {
   uploadApi,
   profileUserApi,
   userApi,
+  buyerApi,
+  brokerApi,
+  sellerApi,
 } from "@nexus/schemas";
 import { Zodios } from "@zodios/core";
 import { pluginToken } from "@zodios/plugins";
@@ -24,6 +27,9 @@ const zodios = new Zodios(API_HOST, [
   ...agencyApi,
   ...uploadApi,
   ...profileUserApi,
+  ...buyerApi,
+  ...brokerApi,
+  ...sellerApi,
 ]);
 
 zodios.use(

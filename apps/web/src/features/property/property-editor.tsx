@@ -15,7 +15,7 @@ import { useUploadImage } from "../upload/use-upload-image";
 import PropertiesDetails from "./property-details";
 import SelectPropertyType from "./select-property-type";
 
-export default function EditProperty(props: { property: Property }) {
+export default function PropertyEditor(props: { property: Property }) {
   const [property, setProperty] = useState<Property>(props.property);
   const updatePropertyMutation = useUpdateProperty();
   const updateAddressMutation = useUpdateAddress();

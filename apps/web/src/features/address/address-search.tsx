@@ -35,7 +35,7 @@ const AddressSearch: React.FC<AddressSearchProps> = ({
         </div>
 
         {Boolean(setRadius && radius !== undefined) && (
-          <div className="w-fit border-border border-l gap-1 h-full flex flex-col justify-center px-3">
+          <div className="w-fit border-input border-l gap-1 h-full flex flex-col justify-center px-3">
             <Muted className="text-xs">Rayon</Muted>
             <select
               className="focus:ring-0 focus:outline-none border-none text-base"

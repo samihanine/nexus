@@ -13,6 +13,7 @@ import IdentityInputs from "./identity-inputs";
 import { useCreateProperty } from "../property/use-create-property";
 import { useCreateAddress } from "../address/use-create-address";
 import { Property } from "@nexus/schemas";
+import { useCreateSeller } from "../seller/use-create-seller";
 
 const SellerOnboarding = ({
   step,
@@ -35,6 +36,7 @@ const SellerOnboarding = ({
   const [imageUrl, setImageUrl] = useState("");
   const createPropertyMutation = useCreateProperty();
   const createAddressMutation = useCreateAddress();
+  const createSellerMutation = useCreateSeller();
 
   useEffect(() => {
     if (user) {
@@ -54,7 +56,6 @@ const SellerOnboarding = ({
         firstName,
         lastName,
         imageUrl,
-        seller: {},
       });
 
       const newAddress = await createAddressMutation.mutateAsync({
@@ -62,11 +63,15 @@ const SellerOnboarding = ({
       });
 
       await createPropertyMutation.mutateAsync({
-        addressId: newAddress.id as string,
+        addressId: newAddress.id,
         price: price as number,
         profileId: profile.id,
         type: propertyType as Property["type"],
         sellingPeriod: period,
+      });
+
+      await createSellerMutation.mutateAsync({
+        profileId: profile.id,
       });
 
       router.push(`/my-property`);

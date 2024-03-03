@@ -21,7 +21,6 @@ propertyRouter.post(
       });
       response.status(200).json(property);
     } catch (error) {
-      console.log("Error creating property", error);
       response.status(500).json({
         message: "Internal Server Error",
         code: "INTERNAL_SERVER_ERROR",

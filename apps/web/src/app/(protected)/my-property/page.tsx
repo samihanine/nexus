@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentProfile } from "@/features/profile/use-current-profile";
-import EditProperty from "@/features/property/edit-property";
+import PropertyEditor from "@/features/property/property-editor";
 import { usePropertyByProfileId } from "@/features/property/use-property-by-profile-id";
 import { LoadingView, Section } from "@nexus/ui";
 
@@ -19,7 +19,7 @@ export default function Page() {
 
   return (
     <>
-      <EditProperty property={property} />
+      <PropertyEditor property={property} />
     </>
   );
 }

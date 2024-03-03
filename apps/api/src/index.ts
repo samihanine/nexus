@@ -13,6 +13,9 @@ import express from "express";
 import { profileRouter } from "./routes/profile.route";
 import { propertyRouter } from "./routes/property.route";
 import { uploadRouter } from "./routes/upload.route";
+import { brokerRouter } from "./routes/broker.route";
+import { sellerRouter } from "./routes/seller.route";
+import { buyerRouter } from "./routes/buyer.route";
 
 dotenv.config();
 
@@ -47,7 +50,10 @@ server.use(
   addressRouter,
   profileRouter,
   propertyRouter,
-  uploadRouter
+  uploadRouter,
+  brokerRouter,
+  sellerRouter,
+  buyerRouter
 );
 
 server.get("/", (_, res) => {
