@@ -133,30 +133,31 @@ model Seller {
 }
 
 model Buyer {
-  id                             String         @id @default(uuid())
-  minimumPrice                   Float          @default(0)
+  id                             String       @id @default(uuid())
+  minimumPrice                   Float        @default(0)
   maximumPrice                   Float?
-  buyingPeriod                   String         @default("0-6")
-  description                    String         @default("") @db.Text
+  buyingPeriod                   String       @default("0-6")
+  description                    String       @default("") @db.Text
   addressId                      String
-  minimumParkingSpots            Int            @default(0)
-  minimumBathrooms               Int            @default(0)
-  minimumRooms                   Int            @default(0)
-  minimumLivableAreaInSquareFeet Int            @default(0)
-  minimumLandAreaInSquareFeet    Int            @default(0)
-  minimumYearBuilt               Int            @default(0)
-  minimumStories                 Int            @default(0)
-  minimumBedrooms                Int            @default(0)
-  radius                         Float          @default(0)
-  hasBasement                    Boolean        @default(false)
-  hasElevator                    Boolean        @default(false)
-  hasSauna                       Boolean        @default(false)
-  hasPool                        Boolean        @default(false)
-  hasFireplace                   Boolean        @default(false)
-  hasGym                         Boolean        @default(false)
-  propertyTypes                  PropertyType[]
-  createdAt                      DateTime       @default(now())
-  updatedAt                      DateTime       @updatedAt
+  minimumParkingSpots            Int          @default(0)
+  minimumBathrooms               Int          @default(0)
+  minimumRooms                   Int          @default(0)
+  minimumLivableAreaInSquareFeet Int          @default(0)
+  minimumLandAreaInSquareFeet    Int          @default(0)
+  minimumYearBuilt               Int          @default(0)
+  minimumStories                 Int          @default(0)
+  minimumBedrooms                Int          @default(0)
+  radius                         Float        @default(0)
+  hasBasement                    Boolean      @default(false)
+  hasElevator                    Boolean      @default(false)
+  hasSauna                       Boolean      @default(false)
+  hasPool                        Boolean      @default(false)
+  hasFireplace                   Boolean      @default(false)
+  hasGym                         Boolean      @default(false)
+  hasAirConditioning             Boolean      @default(false)
+  propertyType                   PropertyType @default(HOUSE)
+  createdAt                      DateTime     @default(now())
+  updatedAt                      DateTime     @updatedAt
   deletedAt                      DateTime?
 
   profile   Profile @relation(fields: [profileId], references: [id])
@@ -232,6 +233,7 @@ model Property {
   hasGym                  Boolean      @default(false)
   hasElevator             Boolean      @default(false)
   hasBasement             Boolean      @default(false)
+  hasAirConditioning      Boolean      @default(false)
   sellingPeriod           String       @default("0-6")
   isSold                  Boolean      @default(false)
   isVisible               Boolean      @default(true)

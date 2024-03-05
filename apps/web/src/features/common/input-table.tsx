@@ -13,10 +13,10 @@ export default function InputTable(props: {
     <div className="flex flex-col">
       {props.inputs.map((input, index) => (
         <div key={index} className="border-t border-t-border flex">
-          <div className="flex-1 text-sm font-medium bg-gray-100 border-r border-r-border py-2 px-4 flex items-center">
+          <div className="w-32 sm:flex-1 font-medium border-r border-r-border py-2 px-4 flex items-center">
             {input.label}
           </div>
-          <div className="flex-1 py-2 px-4">
+          <div className="flex-[2] py-2 px-4">
             {input.type === "SHORT_NUMBER" && (
               <SelectNumber
                 value={input.value}
@@ -81,15 +81,15 @@ const SelectNumber = ({
   ];
 
   return (
-    <div className="flex">
+    <div className="flex flex-col py-2 sm:py-0 sm:flex-row">
       {options.map((option, index) => (
         <div
           className={cn(
-            "px-5 h-10 flex items-center border-y border-input border-r cursor-pointer",
-            index === 0 && "border-l rounded-l-lg",
-            index === options.length - 1 && "rounded-r-lg",
+            "px-3 sm:px-5 h-8 sm:h-10 flex items-center border-l sm:border-l-0 border-y border-input border-r cursor-pointer",
+            index === 0 && "sm:!border-l sm:rounded-l-lg",
+            index === options.length - 1 && "sm:rounded-r-lg",
             value === option.value &&
-              "border-primary bg-secondary bg-opacity-15 border-l border-r"
+              "border-primary bg-secondary bg-opacity-15 !border-l border-r"
           )}
           onClick={() => onSelect(option.value)}
           key={index}

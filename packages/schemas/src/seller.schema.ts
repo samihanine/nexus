@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
+import { profileSchema } from "./profile.schema";
 
 export const sellerSchema = z.object({
   id: z.string().uuid().nullish(),
   profileId: z.string().uuid(),
+  profile: profileSchema.nullish(),
   createdAt: z.string().or(z.date()).nullish(),
   updatedAt: z.string().or(z.date()).nullish(),
   deletedAt: z.string().or(z.date()).nullish(),

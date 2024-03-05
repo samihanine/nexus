@@ -1,7 +1,11 @@
 import { brokerApi } from "@nexus/schemas";
 import { zodiosRouter } from "@zodios/express";
 import { authMiddleware } from "../middlewares/auth.middleware";
-import { createBroker, updateBroker } from "../services/broker.service";
+import {
+  createBroker,
+  updateBroker,
+  getBrokerByProfileId,
+} from "../services/broker.service";
 
 export const brokerRouter = zodiosRouter(brokerApi, { transform: true });
 
@@ -34,6 +38,32 @@ brokerRouter.patch(
       const broker = await updateBroker(request.params.brokerId, request.body);
 
       response.status(200).json(broker);
+    } catch (error) {
+      console.error("Error getting current broker", error);
+      response.status(500).json({
+        message: "Internal Server Error",
+        code: "INTERNAL_SERVER_ERROR",
+      });
+    }
+  }
+);
+
+brokerRouter.get(
+  "/profiles/:profileId/broker",
+  authMiddleware as any,
+  async (request, response) => {
+    try {
+      const profile = await getBrokerByProfileId(
+        request.params.profileId as string
+      );
+
+      if (!profile) {
+        return response
+          .status(404)
+          .json({ message: "Broker not found", code: "BROKER_NOT_FOUND" });
+      }
+
+      response.status(200).json(profile);
     } catch (error) {
       console.error("Error getting current broker", error);
       response.status(500).json({

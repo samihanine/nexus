@@ -1,4 +1,4 @@
-import { Property } from "@nexus/schemas";
+import { Property, Buyer } from "@nexus/schemas";
 import Image from "next/image";
 import React, { useMemo } from "react";
 import housePlaceholder from "../../public/images/property/house-placeholder.svg";
@@ -22,14 +22,124 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import FeatureTable from "../common/feature-table";
+import BedroomsChip from "./bedrooms-chip";
+import BathroomsChip from "./bathrooms-chip";
 
 const Map = dynamic(() => import("../address/map"), { ssr: false });
 
 export default function PropertiesDetails({
   property,
+  buyer,
 }: {
   property: Property;
+  buyer?: Buyer;
 }) {
+  const features = [
+    {
+      label: "Type de propriété",
+      value: property.type,
+      percentage: buyer
+        ? buyer.propertyType === property.type
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Parking spots",
+      value: property.parkingSpots,
+      percentage: buyer?.minimumParkingSpots
+        ? (property.parkingSpots / buyer.minimumParkingSpots) * 100
+        : undefined,
+    },
+    {
+      label: "Bedrooms",
+      value: property.bedrooms,
+      percentage: buyer?.minimumBedrooms
+        ? (property.bedrooms / buyer.minimumBedrooms) * 100
+        : undefined,
+    },
+    {
+      label: "Bathrooms",
+      value: property.bathrooms,
+      percentage: buyer?.minimumBathrooms
+        ? (property.bathrooms / buyer.minimumBathrooms) * 100
+        : undefined,
+    },
+    {
+      label: "Rooms",
+      value: property.rooms,
+      percentage: buyer?.minimumRooms
+        ? (property.rooms / buyer.minimumRooms) * 100
+        : undefined,
+    },
+    {
+      label: "Livable area in square feet",
+      value: property.livableAreaInSquareFeet,
+      percentage: buyer?.minimumLivableAreaInSquareFeet
+        ? (property.livableAreaInSquareFeet /
+            buyer.minimumLivableAreaInSquareFeet) *
+          100
+        : undefined,
+    },
+    {
+      label: "Year built",
+      value: property.yearBuilt,
+      percentage: buyer?.minimumYearBuilt
+        ? (property.yearBuilt / buyer.minimumYearBuilt) * 100
+        : undefined,
+    },
+  ];
+
+  const secondaryFeatures = [
+    {
+      label: "Has basement",
+      value: property.hasBasement,
+      percentage: buyer?.hasBasement
+        ? property.hasBasement
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has pool",
+      value: property.hasPool,
+      percentage: buyer?.hasPool ? (property.hasPool ? 100 : 0) : undefined,
+    },
+    {
+      label: "Has elevator",
+      value: property.hasElevator,
+      percentage: buyer?.hasElevator
+        ? property.hasElevator
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has sauna",
+      value: property.hasSauna,
+      percentage: buyer?.hasSauna ? (property.hasSauna ? 100 : 0) : undefined,
+    },
+    {
+      label: "Has fireplace",
+      value: property.hasFireplace,
+      percentage: buyer?.hasFireplace
+        ? property.hasFireplace
+          ? 100
+          : 0
+        : undefined,
+    },
+    {
+      label: "Has air conditioning",
+      value: property.hasAirConditioning,
+      percentage: buyer?.hasAirConditioning
+        ? property.hasAirConditioning
+          ? 100
+          : 0
+        : undefined,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-10 w-full">
       <PropertyImages imageUrls={property.imageUrls} />
@@ -46,18 +156,17 @@ export default function PropertiesDetails({
         <PropertyDescription description={property.description} />
       )}
 
-      <PropertySummary
-        type={property.type}
-        yearBuilt={property.yearBuilt}
-        parkingSpots={property.parkingSpots}
-        stories={property.stories}
-        livableAreaInSquareFeet={property.livableAreaInSquareFeet}
-        landAreaInSquareFeet={property.landAreaInSquareFeet}
-        mlsNumber={property.mlsNumber || undefined}
-        garages={property.garages}
-        rooms={property.rooms}
-        createdAt={new Date(property.createdAt)}
-      />
+      <div className="flex flex-col gap-5">
+        <H4>Caractéristiques généraux</H4>
+        <FeatureTable features={features} />
+      </div>
+
+      {secondaryFeatures.filter((item) => item.value).length > 0 && (
+        <div className="flex flex-col gap-5">
+          <H4>Caractéristiques secondaires</H4>
+          <FeatureTable features={secondaryFeatures} />
+        </div>
+      )}
 
       <div className="my-3" />
 
@@ -76,48 +185,6 @@ function PropertyDescription(property: { description: string }) {
     <div className="flex flex-col gap-5">
       <h2 className="text-base font-medium">Description de la propriété</h2>
       <p className="text-foreground">{property.description}</p>
-    </div>
-  );
-}
-
-function PropertySummary(property: {
-  type: Property["type"];
-  yearBuilt: number;
-  parkingSpots: number;
-  stories: number;
-  livableAreaInSquareFeet: number;
-  landAreaInSquareFeet: number;
-  mlsNumber?: string;
-  garages: number;
-  rooms: number;
-  createdAt: Date;
-}) {
-  return (
-    <div className="flex flex-col gap-5">
-      <H4>Informations général</H4>
-      <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        <Detail label="Type" value={property.type} />
-        <Detail label="Année de construction" value={property.yearBuilt} />
-        <Detail label="Nombre de stationnement" value={property.parkingSpots} />
-        <Detail label="Nombre d'étages" value={property.stories} />
-        <Detail
-          label="Superficie habitable"
-          value={property.livableAreaInSquareFeet}
-        />
-        <Detail
-          label="Superficie du terrain"
-          value={property.landAreaInSquareFeet}
-        />
-        {property.mlsNumber && (
-          <Detail label="Numéro MLS" value={property.mlsNumber} />
-        )}
-        <Detail label="Nombre de garages" value={property.garages} />
-        <Detail label="Nombre de pièces" value={property.rooms} />
-        <Detail
-          label="Date de création"
-          value={property.createdAt.toLocaleDateString()}
-        />
-      </div>
     </div>
   );
 }
@@ -196,14 +263,8 @@ function PropertyHeader(property: {
         </p>
 
         <div className="flex gap-3 flex-wrap">
-          <Chip>
-            <Bed className="w-4 h-4" />
-            {property.bedrooms} chambres
-          </Chip>
-          <Chip>
-            <Bathroom className="w-4 h-4" />
-            {property.bathrooms} salles de bain
-          </Chip>
+          <BedroomsChip bedrooms={property.bedrooms} />
+          <BathroomsChip bathrooms={property.bathrooms} />
           <Chip>{property.livableAreaInSquareFeet} pi²</Chip>
         </div>
       </div>

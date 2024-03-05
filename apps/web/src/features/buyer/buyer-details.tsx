@@ -6,21 +6,19 @@ import FeatureTable from "../common/feature-table";
 
 const Map = dynamic(() => import("../address/map"), { ssr: false });
 
-export default function BuyerProfileDetails({
-  profile,
+export default function BuyerDetails({
   buyer,
   property,
 }: {
-  profile: Profile;
   buyer: Buyer;
   property?: Property;
 }) {
   const features = [
     {
       label: "Looking for",
-      value: buyer.propertyTypes.join(", "),
+      value: buyer.propertyType,
       percentage: property
-        ? buyer.propertyTypes.includes(property.type)
+        ? buyer.propertyType === property.type
           ? 100
           : 0
         : undefined,
@@ -77,6 +75,9 @@ export default function BuyerProfileDetails({
         ? (buyer.minimumYearBuilt / property.yearBuilt) * 100
         : undefined,
     },
+  ];
+
+  const secondaryFeatures = [
     {
       label: "Has basement",
       value: buyer.hasBasement ? "Yes" : undefined,
@@ -135,16 +136,16 @@ export default function BuyerProfileDetails({
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <Card className="bg-secondary flex items-center px-10 py-5 gap-10 !border-0">
+      <Card className="bg-secondary flex flex-col sm:flex-row items-center px-10 py-5 gap-10 !border-0">
         <Avatar
-          src={profile.imageUrl || undefined}
-          alt={`${profile.firstName} ${profile.lastName}`}
+          src={buyer.profile?.imageUrl || undefined}
+          alt={`${buyer?.profile?.firstName} ${buyer?.profile?.lastName}`}
           className="w-24 h-24"
         />
 
         <div className="flex flex-col gap-1">
           <H3 className="!text-3xl">
-            {profile.firstName} {profile.lastName.charAt(0)}.
+            {buyer?.profile?.firstName} {buyer?.profile?.firstName?.charAt(0)}.
           </H3>
           <p>Looking for a house for sale</p>
           <p>Ready to buy now</p>
@@ -154,14 +155,21 @@ export default function BuyerProfileDetails({
       </Card>
 
       {Boolean(buyer.description?.length) && (
-        <>
+        <div className="flex flex-col gap-3 mt-5">
           <H4>Description</H4>
           <p className="text-muted-foreground">{buyer.description}</p>
-        </>
+        </div>
       )}
 
       <H4 className="mt-5">Critères de recherches</H4>
       <FeatureTable features={features} />
+
+      {secondaryFeatures.filter((item) => item.value).length > 0 && (
+        <>
+          <H4 className="mt-5">Critères de recherches secondaires</H4>
+          <FeatureTable features={secondaryFeatures} />
+        </>
+      )}
 
       <H4 className="mt-5">Zone de recherches</H4>
       <Map

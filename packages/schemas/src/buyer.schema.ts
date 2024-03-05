@@ -3,6 +3,7 @@ import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { PropertyType } from "@prisma/client";
 import { addressSchema } from "./address.schema";
+import { profileSchema } from "./profile.schema";
 
 export const buyerSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -21,13 +22,15 @@ export const buyerSchema = z.object({
   hasPool: z.boolean().default(false),
   hasFireplace: z.boolean().default(false),
   hasGym: z.boolean().default(false),
+  hasAirConditioning: z.boolean().default(false),
   buyingPeriod: z.string().default("0-6"),
   radius: z.number(),
   description: z.string().default(""),
-  propertyTypes: z.array(z.nativeEnum(PropertyType)),
+  propertyType: z.nativeEnum(PropertyType),
   addressId: z.string().uuid(),
   address: addressSchema.nullish(),
   profileId: z.string().uuid(),
+  profile: profileSchema.nullish(),
   createdAt: z.string().or(z.date()).nullish(),
   updatedAt: z.string().or(z.date()).nullish(),
   deletedAt: z.string().or(z.date()).nullish(),
@@ -127,6 +130,7 @@ export const buyerApi = apiBuilder()
             updatedAt: true,
             deletedAt: true,
             address: true,
+            profile: true,
           })
           .partial(),
       },
@@ -153,6 +157,60 @@ export const buyerApi = apiBuilder()
       {
         type: "Path",
         name: "buyerId",
+        schema: z.string(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "searchBuyers",
+    path: "/buyers/search",
+    description: "Search Properties",
+    response: z.array(buyerSchema),
+    parameters: [
+      {
+        type: "Query",
+        name: "profileId",
+        schema: z.string(),
+      },
+      {
+        type: "Query",
+        name: "limit",
+        schema: z.number().optional(),
+      },
+      {
+        type: "Query",
+        name: "offset",
+        schema: z.number().optional(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getBuyerByProfileId",
+    path: "/profiles/:profileId/buyer",
+    description: "Get Buyer by Profile",
+    response: buyerSchema,
+    parameters: [
+      {
+        type: "Path",
+        name: "profileId",
         schema: z.string(),
       },
     ],

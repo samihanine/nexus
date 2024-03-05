@@ -32,6 +32,7 @@ export const propertySchema = z.object({
   hasFireplace: z.boolean().default(false),
   hasGym: z.boolean().default(false),
   hasBasement: z.boolean().default(false),
+  hasAirConditioning: z.boolean().default(false),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullish(),

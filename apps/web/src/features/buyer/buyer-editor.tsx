@@ -1,5 +1,5 @@
 import { Buyer, Profile } from "@nexus/schemas";
-import BuyerProfileDetails from "./buyer-profile-details";
+import BuyerProfileDetails from "./buyer-details";
 import { useEffect, useMemo, useState } from "react";
 import EditHeader from "../common/edit-header";
 import {
@@ -20,10 +20,7 @@ import AddressSearch from "../address/address-search";
 import { useUpdateAddress } from "../address/use-update-address";
 import SelectPropertyType from "../property/select-property-type";
 
-export default function BuyerProfileEditor(props: {
-  buyer: Buyer;
-  profile: Profile;
-}) {
+export default function BuyerEditor(props: { buyer: Buyer }) {
   const [preview, setPreview] = useState(false);
   const [buyer, setBuyer] = useState(props.buyer);
   const updateBuyerMutation = useUpdateBuyer();
@@ -61,7 +58,7 @@ export default function BuyerProfileEditor(props: {
         hasFireplace: buyer.hasFireplace,
         hasGym: buyer.hasGym,
         id: props.buyer.id as string,
-        propertyTypes: buyer.propertyTypes,
+        propertyType: buyer.propertyType,
         description: buyer.description,
         minimumPrice: buyer.minimumPrice,
         maximumPrice: buyer.maximumPrice,
@@ -176,21 +173,21 @@ export default function BuyerProfileEditor(props: {
     <>
       <EditHeader>
         <div className="flex flex-col gap-2 my-4">
-          <Strong className="text-2xl">
+          <Strong className="text-2xl text-center">
             Modifier vos critères de recherches
           </Strong>
         </div>
 
-        <div className="flex gap-5 flex-col sm:flex-row">
+        <div className="flex gap-5 flex-row">
           <Button
             variant={preview ? "destructive" : "outline"}
-            className="!w-fit !px-14"
+            className="!w-fit sm:!px-14"
             onClick={() => setPreview(!preview)}
           >
             {preview ? "Quitter l'apperçu" : "Voir l'aperçu"}
           </Button>
           <Button
-            className="!w-fit !px-14"
+            className="!w-fit sm:!px-14"
             disabled={!isEdited || updateBuyerMutation.isPending}
             onClick={save}
             variant={"secondary"}
@@ -205,7 +202,7 @@ export default function BuyerProfileEditor(props: {
           <div className="flex flex-col gap-5 w-full">
             <H3>Général</H3>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col sm:flex-row gap-5">
               <Label className="flex-1">
                 Prix minimum
                 <Input
@@ -255,9 +252,9 @@ export default function BuyerProfileEditor(props: {
 
             <Label>Types de propriétés</Label>
             <SelectPropertyType
-              propertyType={buyer.propertyTypes[0]}
-              setPropertyType={(propertyType) =>
-                setBuyer({ ...buyer, propertyTypes: [propertyType] })
+              propertyType={buyer.propertyType}
+              setPropertyType={(value) =>
+                setBuyer({ ...buyer, propertyType: value })
               }
             />
 
@@ -286,9 +283,7 @@ export default function BuyerProfileEditor(props: {
           </div>
         )}
 
-        {preview && (
-          <BuyerProfileDetails buyer={buyer} profile={props.profile} />
-        )}
+        {preview && <BuyerProfileDetails buyer={buyer} />}
       </Section>
     </>
   );

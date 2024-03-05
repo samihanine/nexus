@@ -1,7 +1,7 @@
 "use client";
 
 import { Property } from "@nexus/schemas";
-import { Strong, Section, Button, H3, Input, Label, Select } from "@nexus/ui";
+import { Strong, Section, Button, H4, Input, Label, Select } from "@nexus/ui";
 import { useEffect, useMemo, useState } from "react";
 import AddressSearch from "../address/address-search";
 import { isObjectsEqual } from "@nexus/utils";
@@ -14,6 +14,7 @@ import ImageDropZone from "./image-drop-zone";
 import { useUploadImage } from "../upload/use-upload-image";
 import PropertiesDetails from "./property-details";
 import SelectPropertyType from "./select-property-type";
+import InputTable from "../common/input-table";
 
 export default function PropertyEditor(props: { property: Property }) {
   const [property, setProperty] = useState<Property>(props.property);
@@ -54,6 +55,12 @@ export default function PropertyEditor(props: { property: Property }) {
         stories: property.stories,
         garages: property.garages,
         parkingSpots: property.parkingSpots,
+        hasBasement: property.hasBasement,
+        hasElevator: property.hasElevator,
+        hasSauna: property.hasSauna,
+        hasPool: property.hasPool,
+        hasFireplace: property.hasFireplace,
+        hasGym: property.hasGym,
       });
     } catch (error) {
       toast.error("Une erreur est survenue");
@@ -80,6 +87,101 @@ export default function PropertyEditor(props: { property: Property }) {
       toast.dismiss(idToast);
     }
   };
+
+  const inputs = [
+    {
+      label: "Parking spots",
+      value: property.parkingSpots,
+      type: "SHORT_NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, parkingSpots: value }),
+    },
+    {
+      label: "Bedrooms",
+      value: property.bedrooms,
+      type: "SHORT_NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, bedrooms: value }),
+    },
+    {
+      label: "Bathrooms",
+      value: property.bathrooms,
+      type: "SHORT_NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, bathrooms: value }),
+    },
+    {
+      label: "Rooms",
+      value: property.rooms,
+      type: "NUMBER",
+      onChange: (value: number) => setProperty({ ...property, rooms: value }),
+    },
+    {
+      label: "Livable area in square feet",
+      value: property.livableAreaInSquareFeet,
+      type: "NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, livableAreaInSquareFeet: value }),
+    },
+    {
+      label: "Land area in square feet",
+      value: property.landAreaInSquareFeet,
+      type: "NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, landAreaInSquareFeet: value }),
+    },
+    {
+      label: "Year built",
+      value: property.yearBuilt,
+      type: "NUMBER",
+      onChange: (value: number) =>
+        setProperty({ ...property, yearBuilt: value }),
+    },
+  ];
+
+  const secondaryInputs = [
+    {
+      label: "Has basement",
+      value: property.hasBasement,
+      type: "BOOLEAN",
+      onChange: (value: boolean) =>
+        setProperty({ ...property, hasBasement: value }),
+    },
+    {
+      label: "Has elevator",
+      value: property.hasElevator,
+      type: "BOOLEAN",
+      onChange: (value: boolean) =>
+        setProperty({ ...property, hasElevator: value }),
+    },
+    {
+      label: "Has sauna",
+      value: property.hasSauna,
+      type: "BOOLEAN",
+      onChange: (value: boolean) =>
+        setProperty({ ...property, hasSauna: value }),
+    },
+    {
+      label: "Has pool",
+      value: property.hasPool,
+      type: "BOOLEAN",
+      onChange: (value: boolean) =>
+        setProperty({ ...property, hasPool: value }),
+    },
+    {
+      label: "Has fireplace",
+      value: property.hasFireplace,
+      type: "BOOLEAN",
+      onChange: (value: boolean) =>
+        setProperty({ ...property, hasFireplace: value }),
+    },
+    {
+      label: "Has gym",
+      value: property.hasGym,
+      type: "BOOLEAN",
+      onChange: (value: boolean) => setProperty({ ...property, hasGym: value }),
+    },
+  ];
 
   return (
     <>
@@ -118,7 +220,7 @@ export default function PropertyEditor(props: { property: Property }) {
         <Section>
           <div className="flex flex-col gap-12">
             <div className="flex gap-10 flex-col">
-              <H3>Général</H3>
+              <H4>Général</H4>
               <div className="flex gap-5 flex-col sm:flex-row">
                 <div className="flex-1">
                   <Label>
@@ -164,139 +266,9 @@ export default function PropertyEditor(props: { property: Property }) {
                 />
               </div>
             </div>
-            <div className="flex flex-col gap-5">
-              <H3>Informations supplémentaires</H3>
-              <div className="grid gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                <Label>
-                  Chambres
-                  <Input
-                    value={property.bedrooms}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        bedrooms: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Salles de bain
-                  <Input
-                    value={property.bathrooms}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        bathrooms: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Pièces
-                  <Input
-                    value={property.rooms}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        rooms: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Surface habitable (sqft)
-                  <Input
-                    value={property.livableAreaInSquareFeet}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        livableAreaInSquareFeet: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Surface du terrain (sqft)
-                  <Input
-                    value={property.landAreaInSquareFeet}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        landAreaInSquareFeet: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Année de construction
-                  <Input
-                    value={property.yearBuilt}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        yearBuilt: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Étage
-                  <Input
-                    value={property.stories}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        stories: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Garages
-                  <Input
-                    value={property.garages}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        garages: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-
-                <Label>
-                  Place de parking
-                  <Input
-                    value={property.parkingSpots}
-                    onChange={(e) =>
-                      setProperty({
-                        ...property,
-                        parkingSpots: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                  />
-                </Label>
-              </div>
-            </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Images</H3>
+              <H4>Images</H4>
               <ImageDropZone onUpload={onUpload} />
               <PropertyImageList
                 images={property.imageUrls}
@@ -307,7 +279,17 @@ export default function PropertyEditor(props: { property: Property }) {
             </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Adresse</H3>
+              <H4>Caractéristiques généraux</H4>
+              <InputTable inputs={inputs} />
+            </div>
+
+            <div className="flex flex-col gap-5">
+              <H4>Caractéristiques secondaires</H4>
+              <InputTable inputs={secondaryInputs} />
+            </div>
+
+            <div className="flex flex-col gap-5">
+              <H4>Adresse</H4>
               <AddressSearch
                 address={property.address || undefined}
                 setAddress={(address) => setProperty({ ...property, address })}

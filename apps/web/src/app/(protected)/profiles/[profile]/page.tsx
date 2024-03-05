@@ -1,16 +1,18 @@
-import BuyerProfileDetails from "@/features/buyer/buyer-profile-details";
-import { useProfileById } from "@/features/profile/use-profile-by-id";
+"use client";
+
+import BuyerProfileDetails from "@/features/buyer/buyer-details";
 import { LoadingView, Section } from "@nexus/ui";
 import { notFound } from "next/navigation";
+import { useBuyerByProfileId } from "@/features/buyer/use-buyer-by-profile-id";
 
 export default function Page(props: {
   params: {
     profile: string;
   };
 }) {
-  const { data: profile, isPending } = useProfileById(props.params.profile);
+  const { data: buyer, isPending } = useBuyerByProfileId(props.params.profile);
 
-  if (isPending) {
+  if (isPending || isPending) {
     return (
       <Section>
         <LoadingView />
@@ -18,10 +20,10 @@ export default function Page(props: {
     );
   }
 
-  if (profile?.buyer) {
+  if (buyer) {
     return (
       <Section>
-        <BuyerProfileDetails profile={profile} buyer={profile.buyer} />
+        <BuyerProfileDetails buyer={buyer} />
       </Section>
     );
   }

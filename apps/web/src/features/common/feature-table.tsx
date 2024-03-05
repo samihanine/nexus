@@ -3,7 +3,7 @@ import { Chip } from "@nexus/ui";
 export default function FeatureTable(props: {
   features: {
     label: string;
-    value?: string | number;
+    value?: string | number | boolean;
     percentage?: number;
   }[];
 }) {
@@ -14,11 +14,15 @@ export default function FeatureTable(props: {
 
         return (
           <div key={index} className="border-t border-t-border flex">
-            <div className="flex-1 bg-gray-100 border-r border-r-border text-sm font-medium py-2 px-4">
+            <div className="w-32 sm:flex-1 border-r border-r-border font-medium py-2 px-4">
               {feature.label}
             </div>
-            <div className="flex-1 py-2 px-4 flex items-center gap-3">
-              <p className="font-medium text-sm">{feature.value}</p>
+            <div className="flex-[2] py-2 px-4 flex items-center gap-3">
+              <p className="">
+                {typeof feature.value === "boolean" && "Yes"}
+                {typeof feature.value === "number" && feature.value}
+                {typeof feature.value === "string" && feature.value}
+              </p>
               {feature.percentage && (
                 <Chip
                   variant={

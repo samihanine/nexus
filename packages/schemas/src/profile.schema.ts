@@ -2,9 +2,6 @@ import { z } from "zod";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { ProfileType } from "@prisma/client";
-import { brokerSchema } from "./broker.schema";
-import { buyerSchema } from "./buyer.schema";
-import { sellerSchema } from "./seller.schema";
 
 export const profileSchema = z.object({
   id: z.string().uuid(),
@@ -12,9 +9,6 @@ export const profileSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   imageUrl: z.string().nullish(),
-  broker: brokerSchema.nullish(),
-  seller: sellerSchema.nullish(),
-  buyer: buyerSchema.nullish(),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullish(),

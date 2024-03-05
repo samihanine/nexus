@@ -6,7 +6,7 @@ export const useUpdateBuyer = () => {
   return useMutation({
     onSuccess: async (data) => {
       queryClient.refetchQueries({
-        queryKey: ["profiles", data.profileId],
+        queryKey: ["buyers", data.profileId],
       });
     },
     mutationFn: async (

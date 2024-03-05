@@ -24,6 +24,7 @@ export const buttonVariants = cva(
         default: "py-3 h-10 px-4",
         sm: "h-9 px-3",
         lg: "h-10 px-8",
+        icon: "p-2 rounded-full",
       },
     },
     defaultVariants: {

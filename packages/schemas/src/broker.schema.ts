@@ -3,6 +3,7 @@ import { agencySchema } from "./agency.schema";
 import { apiBuilder } from "@zodios/core";
 import { schemaError } from "@nexus/utils";
 import { addressSchema } from "./address.schema";
+import { profileSchema } from "./profile.schema";
 
 export const brokerSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -15,6 +16,7 @@ export const brokerSchema = z.object({
   addressId: z.string().uuid(),
   address: addressSchema.nullish(),
   profileId: z.string().uuid(),
+  profile: profileSchema.nullish(),
   radius: z.number(),
   agencyId: z.string().uuid().nullish(),
   createdAt: z.string().or(z.date()).nullish(),
@@ -120,6 +122,7 @@ export const brokerApi = apiBuilder()
             deletedAt: true,
             address: true,
             agency: true,
+            profile: true,
           })
           .partial(),
       },
@@ -146,6 +149,30 @@ export const brokerApi = apiBuilder()
       {
         type: "Path",
         name: "brokerId",
+        schema: z.string(),
+      },
+    ],
+    errors: [
+      {
+        status: 500,
+        schema: schemaError,
+      },
+      {
+        status: 404,
+        schema: schemaError,
+      },
+    ],
+  })
+  .addEndpoint({
+    method: "get",
+    alias: "getBrokerByProfileId",
+    path: "/profiles/:profileId/broker",
+    description: "Get Broker by Profile",
+    response: brokerSchema,
+    parameters: [
+      {
+        type: "Query",
+        name: "profileId",
         schema: z.string(),
       },
     ],

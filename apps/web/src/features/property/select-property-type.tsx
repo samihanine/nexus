@@ -38,7 +38,7 @@ export default function SelectPropertyType({
   ];
 
   return (
-    <div className="flex gap-10 items-center">
+    <div className="flex gap-5 flex-wrap flex-row sm:gap-10 items-center">
       {propertyTypes.map((item, index) => (
         <Card
           key={index}
@@ -51,7 +51,7 @@ export default function SelectPropertyType({
           <CardContent
             className={cn("flex flex-col gap-5 items-center justify-between")}
           >
-            <item.Icon className="h-16" />
+            <item.Icon className="h-10 sm:h-16" />
 
             <Strong>{item.label}</Strong>
           </CardContent>

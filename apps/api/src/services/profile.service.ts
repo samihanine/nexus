@@ -36,19 +36,6 @@ export const getProfileById = async (id: string) => {
     where: {
       id,
     },
-    include: {
-      buyer: {
-        include: {
-          address: true,
-        },
-      },
-      seller: true,
-      broker: {
-        include: {
-          agency: true,
-        },
-      },
-    },
   });
 };
 
@@ -58,15 +45,6 @@ export const getProfilesByUserId = async (userId: string) => {
       profileUsers: {
         some: {
           userId,
-        },
-      },
-    },
-    include: {
-      buyer: true,
-      seller: true,
-      broker: {
-        include: {
-          agency: true,
         },
       },
     },
@@ -85,15 +63,6 @@ export const getCurrentProfile = async (userId: string) => {
   return await prisma.profile.findFirst({
     where: {
       id: user.currentProfileId,
-    },
-    include: {
-      buyer: true,
-      seller: true,
-      broker: {
-        include: {
-          agency: true,
-        },
-      },
     },
   });
 };

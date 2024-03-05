@@ -30,3 +30,11 @@ export const updateBroker = async (
     },
   });
 };
+
+export const getBrokerByProfileId = async (profileId: string) => {
+  return await prisma.broker.findFirst({
+    where: {
+      profileId,
+    },
+  });
+};

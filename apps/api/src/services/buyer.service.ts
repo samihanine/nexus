@@ -22,3 +22,30 @@ export const updateBuyer = async (
     },
   });
 };
+
+export const getBuyerByProfileId = async (profileId: string) => {
+  return await prisma.buyer.findFirst({
+    where: {
+      profileId,
+    },
+    include: {
+      profile: true,
+      address: true,
+    },
+  });
+};
+
+export const searchBuyers = async (props: {
+  limit?: number;
+  offset?: number;
+  profileId: string;
+}) => {
+  return await prisma.buyer.findMany({
+    take: props.limit,
+    skip: props.offset,
+    include: {
+      profile: true,
+      address: true,
+    },
+  });
+};
